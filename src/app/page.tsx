@@ -256,11 +256,11 @@ export default function Home() {
       <section style={{ borderTop: "1px solid rgba(255,255,255,0.09)", borderBottom: "1px solid rgba(255,255,255,0.09)", padding: "70px 32px 90px", overflow: "visible" }}>
         <div style={{ maxWidth: "1360px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px", alignItems: "flex-start" }}>
           {/* Left: Partner Logos Carousel */}
-          <div style={{ overflow: "hidden", minWidth: 0 }}>
+          <div style={{ overflow: "visible", minWidth: 0 }}>
             <h3 style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", margin: "0 0 32px" }}>
               TRUSTED BY PARTNERS
             </h3>
-            <div style={{ overflow: "hidden", position: "relative", height: "140px", width: "100%" }}>
+            <div style={{ overflow: "hidden", position: "relative", height: "160px", width: "100%" }}>
               <div style={{ display: "flex", gap: "40px", animation: "logoCarousel 20s linear infinite", willChange: "transform", width: "max-content" }}>
                 {isClient && [...PartnerLogos, ...PartnerLogos].map((partner, idx) => (
                   <div key={idx} style={{ width: "140px", height: "140px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.7, transition: "opacity 0.3s ease", cursor: "pointer" }} onMouseEnter={(e) => e.currentTarget.style.opacity = "1"} onMouseLeave={(e) => e.currentTarget.style.opacity = "0.7"}>

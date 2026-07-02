@@ -115,24 +115,16 @@ export function Navbar() {
               )}
             </div>
           ))}
-
-          <Link href="#" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center", gap: "5px" }}>
-            LEAF Academy
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ opacity: 0.55 }}>
-              <path d="M7 17L17 7M9 7h8v8"></path>
-            </svg>
-          </Link>
-          <Link href="https://pathera.io" target="_blank" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center", gap: "5px" }}>
-            Pathera AI
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ opacity: 0.55 }}>
-              <path d="M7 17L17 7M9 7h8v8"></path>
-            </svg>
-          </Link>
-          <Link href="#contact" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", padding: "10px 14px", borderRadius: "4px" }}>Contact</Link>
         </nav>
 
         {/* Right actions */}
-        <div style={{ display: "flex", alignItems: "center", gap: "18px", flexShrink: 0 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
+          <Link href="https://pathera.io" target="_blank" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "13px", fontWeight: "500", padding: "8px 12px", borderRadius: "4px", display: "flex", alignItems: "center", gap: "4px", opacity: 0.7 }}>
+            Pathera
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+              <path d="M7 17L17 7M9 7h8v8"></path>
+            </svg>
+          </Link>
           <Link href="#contact" style={{
             backgroundColor: "#E8B923",
             color: "#0B1410",
