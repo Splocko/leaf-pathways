@@ -140,8 +140,8 @@ export default function Home() {
 
           {/* Right column - Hero image */}
           <div style={{ position: "relative", display: "grid", placeItems: "center" }}>
-            <div style={{ position: "relative", borderRadius: "8px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", width: "100%", aspectRatio: "16/9", backgroundColor: "rgba(245,243,237,0.03)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <div style={{ color: "rgba(245,243,237,0.3)", fontSize: "14px", fontWeight: "500" }}>[Community event photo]</div>
+            <div style={{ position: "relative", borderRadius: "8px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", width: "100%", aspectRatio: "16/9", backgroundColor: "rgba(245,243,237,0.03)" }}>
+              <img src="/hero-community.jpg" alt="LEAF community event" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
             </div>
             {/* Corner brackets */}
             <div style={{ position: "absolute", top: "-10px", left: "-10px", width: "34px", height: "34px", borderTop: "3px solid #E8B923", borderLeft: "3px solid #E8B923" }}></div>
