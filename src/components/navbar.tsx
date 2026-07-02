@@ -43,20 +43,20 @@ export function Navbar() {
 
   return (
     <header style={{
-      position: "fixed",
-      top: "16px",
-      left: "50%",
-      right: "16px",
-      transform: "translateX(-50%)",
+      position: "sticky",
+      top: scrolled ? "16px" : "0",
+      left: scrolled ? "50%" : "0",
+      right: scrolled ? "16px" : "0",
+      transform: scrolled ? "translateX(-50%)" : "none",
       zIndex: 100,
-      backgroundColor: "rgba(11,20,16,0.8)",
-      backdropFilter: "blur(8px)",
-      borderRadius: "8px",
-      border: "1px solid rgba(255,255,255,0.1)",
-      boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+      backgroundColor: scrolled ? "rgba(11,20,16,0.8)" : "transparent",
+      backdropFilter: scrolled ? "blur(8px)" : "none",
+      borderRadius: scrolled ? "8px" : "0",
+      border: scrolled ? "1px solid rgba(255,255,255,0.1)" : "none",
+      boxShadow: scrolled ? "0 8px 32px rgba(0,0,0,0.3)" : "none",
       transition: "all 0.3s",
-      maxWidth: "1360px",
-      width: "calc(100% - 32px)",
+      maxWidth: scrolled ? "1360px" : "none",
+      width: scrolled ? "calc(100% - 32px)" : "100%",
     }}>
       <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px", height: "80px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}>
         {/* Logo */}

@@ -198,7 +198,6 @@ export default function Home() {
   return (
     <main style={{ minHeight: "100vh", backgroundColor: "#0B1410" }}>
       <Navbar />
-      <div style={{ height: "80px" }}></div>
 
       {/* HERO SECTION */}
       <section id="top" style={{ maxWidth: "1360px", margin: "0 auto", padding: "96px 32px 80px", backgroundImage: "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)", backgroundSize: "26px 26px", backgroundPosition: "-8px -8px" }}>
