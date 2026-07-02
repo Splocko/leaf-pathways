@@ -10,7 +10,11 @@ export function Navbar() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 0);
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      setScrolled(isScrolled);
+      console.log("Scroll Y:", window.scrollY, "Is Scrolled:", isScrolled);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -48,15 +52,16 @@ export function Navbar() {
       left: scrolled ? "16px" : "0",
       right: scrolled ? "16px" : "0",
       zIndex: 100,
-      backgroundColor: scrolled ? "rgba(11,20,16,0.8)" : "transparent",
-      WebkitBackdropFilter: scrolled ? "blur(8px)" : "none",
-      backdropFilter: scrolled ? "blur(8px)" : "none",
-      borderRadius: scrolled ? "12px" : "0",
-      border: scrolled ? "1px solid rgba(255,255,255,0.1)" : "none",
-      boxShadow: scrolled ? "0 12px 32px rgba(0,0,0,0.3)" : "none",
+      backgroundColor: scrolled ? "rgba(11,20,16,0.95)" : "transparent",
+      WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
+      backdropFilter: scrolled ? "blur(12px)" : "none",
+      borderRadius: scrolled ? "16px" : "0",
+      border: scrolled ? "1px solid rgba(232,185,35,0.2)" : "none",
+      boxShadow: scrolled ? "0 20px 40px rgba(0,0,0,0.4)" : "none",
       maxWidth: scrolled ? "1328px" : "none",
       margin: scrolled ? "0 auto" : "0",
-      transition: "all 0.3s ease",
+      transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+      width: scrolled ? "calc(100% - 32px)" : "100%",
     }}>
       <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px", height: "80px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}>
         {/* Logo */}
