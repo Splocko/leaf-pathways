@@ -47,22 +47,16 @@ export function Navbar() {
   return (
     <header style={{
       position: "sticky",
-      top: scrolled ? "16px" : "0",
-      left: scrolled ? "16px" : "0",
-      right: scrolled ? "16px" : "0",
+      top: "0",
       zIndex: 100,
-      backgroundColor: scrolled ? "rgba(11,20,16,0.95)" : "transparent",
-      WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
-      backdropFilter: scrolled ? "blur(12px)" : "none",
-      borderRadius: scrolled ? "12px" : "0",
-      border: scrolled ? "1px solid rgba(232,185,35,0.2)" : "none",
-      boxShadow: scrolled ? "0 12px 24px rgba(0,0,0,0.3)" : "none",
-      maxWidth: scrolled ? "1328px" : "none",
-      margin: scrolled ? "0 auto" : "0",
+      backgroundColor: scrolled ? "rgba(11,20,16,0.7)" : "transparent",
+      backdropFilter: scrolled ? "blur(10px)" : "none",
+      WebkitBackdropFilter: scrolled ? "blur(10px)" : "none",
+      borderBottom: scrolled ? "1px solid rgba(255,255,255,0.05)" : "none",
       transition: "all 0.3s ease",
-      width: scrolled ? "calc(100% - 32px)" : "100%",
+      width: "100%",
     }}>
-      <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px", height: scrolled ? "64px" : "80px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px", transition: "height 0.3s ease" }}>
+      <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px", height: "80px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}>
         {/* Logo */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", flexShrink: 0 }}>
           <img src="https://leafpathways.com/images/leaflogo.png" alt="LEAF Pathways" style={{ height: "32px", width: "auto" }} />

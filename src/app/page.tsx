@@ -98,7 +98,7 @@ function TestimonialCarousel({ testimonials }: { testimonials: Array<{ name: str
       setCurrentIdx((prev) => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [testimonials.length]);
+  }, [currentIdx, testimonials.length]);
 
   const current = testimonials[currentIdx];
 
@@ -200,7 +200,7 @@ export default function Home() {
       <Navbar />
 
       {/* HERO SECTION */}
-      <section id="top" style={{ maxWidth: "1360px", margin: "0 auto", padding: "96px 32px 80px", backgroundImage: "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)", backgroundSize: "26px 26px", backgroundPosition: "-8px -8px" }}>
+      <section id="top" style={{ maxWidth: "1360px", margin: "0 auto", padding: "96px 32px 28px", backgroundImage: "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)", backgroundSize: "26px 26px", backgroundPosition: "-8px -8px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1.15fr 0.85fr", gap: "64px", alignItems: "center" }}>
           {/* Left column */}
           <div>
@@ -216,12 +216,12 @@ export default function Home() {
             </h1>
 
             {/* Subhead */}
-            <p style={{ fontSize: "18px", lineHeight: "1.6", color: "rgba(245,243,237,0.68)", maxWidth: "520px", margin: "0 0 36px" }}>
+            <p style={{ fontSize: "18px", lineHeight: "1.6", color: "rgba(245,243,237,0.68)", maxWidth: "520px", margin: "0 0 32px" }}>
               The UK student network for <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Law, Engineering & Technology</strong>, <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Finance</strong>, and beyond. Internships, apprenticeships, and placements that matter. Real connections, real opportunities.
             </p>
 
             {/* CTAs */}
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "14px", marginBottom: "40px" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
               <Link href="#contact" style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "#E8B923", color: "#0B1410", textDecoration: "none", fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "15px", padding: "15px 26px", borderRadius: "4px", border: "none", cursor: "pointer", transition: "background-color 0.2s" }}>
                 Join the community
                 <ArrowRight size={16} />
@@ -229,12 +229,6 @@ export default function Home() {
               <Link href="#" style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "transparent", color: "#F5F3ED", textDecoration: "none", fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "15px", padding: "15px 26px", borderRadius: "4px", border: "1.5px solid rgba(47,191,143,0.5)", cursor: "pointer", transition: "all 0.2s" }}>
                 Explore Pathera
               </Link>
-            </div>
-
-            {/* Stat */}
-            <div style={{ display: "flex", alignItems: "center", gap: "14px", paddingTop: "28px", borderTop: "1px solid rgba(255,255,255,0.09)" }}>
-              <span style={{ fontFamily: "IBM Plex Mono", fontSize: "26px", fontWeight: "500", color: "#E8B923" }}>4,973+</span>
-              <span style={{ fontSize: "14px", color: "rgba(245,243,237,0.55)", maxWidth: "220px", lineHeight: "1.4" }}>students and young professionals already building momentum</span>
             </div>
           </div>
 
@@ -250,21 +244,27 @@ export default function Home() {
             <div style={{ position: "absolute", bottom: "-10px", right: "-10px", width: "34px", height: "34px", borderBottom: "3px solid #E8B923", borderRight: "3px solid #E8B923" }}></div>
           </div>
         </div>
+
+        {/* Stat strip - spans full hero width */}
+        <div style={{ display: "flex", alignItems: "center", gap: "14px", marginTop: "56px", paddingTop: "28px", borderTop: "1px solid rgba(255,255,255,0.09)" }}>
+          <span style={{ fontFamily: "IBM Plex Mono", fontSize: "26px", fontWeight: "500", color: "#E8B923" }}>4,973+</span>
+          <span style={{ fontSize: "14px", color: "rgba(245,243,237,0.55)", maxWidth: "320px", lineHeight: "1.4" }}>students and young professionals already building momentum</span>
+        </div>
       </section>
 
       {/* TRUSTED BY SECTION - Two Carousels */}
       <section style={{ borderTop: "1px solid rgba(255,255,255,0.09)", borderBottom: "1px solid rgba(255,255,255,0.09)", padding: "70px 32px 90px", overflow: "visible" }}>
         <div style={{ maxWidth: "1360px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px", alignItems: "flex-start" }}>
           {/* Left: Partner Logos Carousel */}
-          <div style={{ overflow: "visible", minWidth: 0 }}>
+          <div style={{ overflow: "hidden", minWidth: 0 }}>
             <h3 style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", margin: "0 0 32px" }}>
               TRUSTED BY PARTNERS
             </h3>
-            <div style={{ overflow: "hidden", position: "relative", height: "160px", width: "100%" }}>
+            <div style={{ overflow: "hidden", position: "relative", height: "140px", width: "100%" }}>
               <div style={{ display: "flex", gap: "40px", animation: "logoCarousel 20s linear infinite", willChange: "transform", width: "max-content" }}>
                 {isClient && [...PartnerLogos, ...PartnerLogos].map((partner, idx) => (
                   <div key={idx} style={{ width: "140px", height: "140px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.7, transition: "opacity 0.3s ease", cursor: "pointer" }} onMouseEnter={(e) => e.currentTarget.style.opacity = "1"} onMouseLeave={(e) => e.currentTarget.style.opacity = "0.7"}>
-                    <img src={partner.logo} alt={partner.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                    <img src={partner.logo} alt={partner.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
                   </div>
                 ))}
               </div>
