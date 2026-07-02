@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="page">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<x-import component-from-global-scope="image-slot" from="./image-slot.js"></x-import>
+<style>
+  html, body { margin: 0; background: #0B1410; }
+  * { box-sizing: border-box; }
+  @keyframes marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  [data-marquee-track] { animation: marquee-scroll 32s linear infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    [data-marquee-track] { animation: none !important; }
+  }
+  [data-mobile-toggle] { display: none; }
+  @media (max-width: 940px) {
+    [data-desktop-nav] { display: none !important; }
+    [data-mobile-toggle] { display: flex !important; }
+    [data-hero-grid] { grid-template-columns: 1fr !important; }
+    [data-stats-grid] { grid-template-columns: repeat(2, 1fr) !important; }
+    [data-events-grid] { grid-template-columns: 1fr !important; }
+    [data-about-grid] { grid-template-columns: 1fr !important; }
+    [data-footer-grid] { grid-template-columns: 1fr !important; gap: 32px !important; }
+  }
+</style>
+</helmet>
+<div style="background:#0B1410; min-height:100vh; font-family:'IBM Plex Sans', sans-serif; color:#F5F3ED; letter-spacing:0.01em;" data-screen-label="LEAF Pathways — Landing">
+
+  <!-- NAV -->
+  <header style="position:sticky; top:0; z-index:100; background:rgba(11,20,16,0.92); backdrop-filter:none; border-bottom:1px solid rgba(255,255,255,0.09);">
+    <div style="max-width:1360px; margin:0 auto; padding:0 32px; height:80px; display:flex; align-items:center; justify-content:space-between; gap:24px;">
+
+      <a href="#top" style="display:flex; align-items:center; gap:12px; text-decoration:none; flex-shrink:0;">
+        <span style="width:36px; height:36px; background:#E8B923; color:#0B1410; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:18px; border-radius:4px;">L</span>
+        <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:19px; color:#F5F3ED;">LEAF<span style="font-weight:500; color:rgba(245,243,237,0.6);"> Pathways</span></span>
+      </a>
+
+      <nav data-desktop-nav="" style="display:flex; align-items:center; gap:4px; flex:1; justify-content:center;">
+        <a href="#top" style="color:#F5F3ED; text-decoration:none; font-size:14px; font-weight:500; padding:10px 14px; border-radius:4px;" style-hover="background:rgba(255,255,255,0.06);">Home</a>
+
+        <div style="position:relative;" onMouseEnter="{{ onEnterMenu_about }}" onMouseLeave="{{ onLeaveMenu }}">
+          <span style="display:flex; align-items:center; gap:5px; color:#F5F3ED; font-size:14px; font-weight:500; padding:10px 14px; border-radius:4px; cursor:pointer;">
+            About us
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"></path></svg>
+          </span>
+          <sc-if value="{{ aboutOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; top:100%; left:0; padding-top:10px; width:280px;">
+              <div style="background:#0F1A15; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:8px; box-shadow:0 12px 24px rgba(0,0,0,0.35);">
+                <sc-for list="{{ aboutItems }}" as="item" hint-placeholder-count="3">
+                  <a href="#about" style="display:block; padding:10px 12px; border-radius:6px; text-decoration:none;" style-hover="background:rgba(255,255,255,0.05);">
+                    <div style="font-size:14px; font-weight:600; color:#F5F3ED;">{{ item.title }}</div>
+                    <div style="font-size:12.5px; color:rgba(245,243,237,0.5); margin-top:2px;">{{ item.desc }}</div>
+                  </a>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="position:relative;" onMouseEnter="{{ onEnterMenu_partners }}" onMouseLeave="{{ onLeaveMenu }}">
+          <span style="display:flex; align-items:center; gap:5px; color:#F5F3ED; font-size:14px; font-weight:500; padding:10px 14px; border-radius:4px; cursor:pointer;">
+            Partners
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"></path></svg>
+          </span>
+          <sc-if value="{{ partnersOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; top:100%; left:0; padding-top:10px; width:280px;">
+              <div style="background:#0F1A15; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:8px; box-shadow:0 12px 24px rgba(0,0,0,0.35);">
+                <sc-for list="{{ partnersItems }}" as="item" hint-placeholder-count="3">
+                  <a href="#partners" style="display:block; padding:10px 12px; border-radius:6px; text-decoration:none;" style-hover="background:rgba(255,255,255,0.05);">
+                    <div style="font-size:14px; font-weight:600; color:#F5F3ED;">{{ item.title }}</div>
+                    <div style="font-size:12.5px; color:rgba(245,243,237,0.5); margin-top:2px;">{{ item.desc }}</div>
+                  </a>
+                </sc-for>
+                <a href="#contact" style="display:block; margin-top:4px; padding:10px 12px; border-radius:6px; text-decoration:none; border-top:1px solid rgba(255,255,255,0.08);">
+                  <div style="font-size:14px; font-weight:600; color:#E8B923; padding-top:6px;">Partner with us →</div>
+                </a>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="position:relative;" onMouseEnter="{{ onEnterMenu_events }}" onMouseLeave="{{ onLeaveMenu }}">
+          <span style="display:flex; align-items:center; gap:5px; color:#F5F3ED; font-size:14px; font-weight:500; padding:10px 14px; border-radius:4px; cursor:pointer;">
+            Events
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"></path></svg>
+          </span>
+          <sc-if value="{{ eventsOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; top:100%; left:0; padding-top:10px; width:300px;">
+              <div style="background:#0F1A15; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:8px; box-shadow:0 12px 24px rgba(0,0,0,0.35);">
+                <sc-for list="{{ eventsItems }}" as="item" hint-placeholder-count="6">
+                  <a href="#events" style="display:block; padding:9px 12px; border-radius:6px; text-decoration:none; font-size:14px; font-weight:500; color:#F5F3ED;" style-hover="background:rgba(255,255,255,0.05);">{{ item.title }}</a>
+                </sc-for>
+                <a href="#contact" style="display:block; margin-top:4px; padding:10px 12px 4px 12px; border-radius:6px; text-decoration:none; border-top:1px solid rgba(255,255,255,0.08);">
+                  <div style="font-size:14px; font-weight:600; color:#E8B923; padding-top:6px;">Host an event with us →</div>
+                </a>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="position:relative;" onMouseEnter="{{ onEnterMenu_media }}" onMouseLeave="{{ onLeaveMenu }}">
+          <span style="display:flex; align-items:center; gap:5px; color:#F5F3ED; font-size:14px; font-weight:500; padding:10px 14px; border-radius:4px; cursor:pointer;">
+            Media
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 9l6 6 6-6"></path></svg>
+          </span>
+          <sc-if value="{{ mediaOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; top:100%; left:0; padding-top:10px; width:280px;">
+              <div style="background:#0F1A15; border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:8px; box-shadow:0 12px 24px rgba(0,0,0,0.35);">
+                <sc-for list="{{ mediaItems }}" as="item" hint-placeholder-count="3">
+                  <a href="#media" style="display:block; padding:10px 12px; border-radius:6px; text-decoration:none;" style-hover="background:rgba(255,255,255,0.05);">
+                    <div style="font-size:14px; font-weight:600; color:#F5F3ED;">{{ item.title }}</div>
+                    <div style="font-size:12.5px; color:rgba(245,243,237,0.5); margin-top:2px;">{{ item.desc }}</div>
+                  </a>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <a href="#" style="color:#F5F3ED; text-decoration:none; font-size:14px; font-weight:500; padding:10px 14px; border-radius:4px; display:flex; align-items:center; gap:5px;" style-hover="background:rgba(255,255,255,0.06);">
+          LEAF Academy
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="opacity:0.55;"><path d="M7 17L17 7M9 7h8v8"></path></svg>
+        </a>
+        <a href="#" style="color:#F5F3ED; text-decoration:none; font-size:14px; font-weight:500; padding:10px 14px; border-radius:4px; display:flex; align-items:center; gap:5px;" style-hover="background:rgba(255,255,255,0.06);">
+          Pathera AI
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="opacity:0.55;"><path d="M7 17L17 7M9 7h8v8"></path></svg>
+        </a>
+        <a href="#contact" style="color:#F5F3ED; text-decoration:none; font-size:14px; font-weight:500; padding:10px 14px; border-radius:4px;" style-hover="background:rgba(255,255,255,0.06);">Contact</a>
+      </nav>
+
+      <div data-desktop-nav="" style="display:flex; align-items:center; gap:18px; flex-shrink:0;">
+        <a href="#" style="color:rgba(245,243,237,0.75); text-decoration:none; font-size:14px; font-weight:500;">Login</a>
+        <a href="#contact" style="background:#E8B923; color:#0B1410; text-decoration:none; font-size:14px; font-weight:600; padding:10px 20px; border-radius:4px; font-family:'Space Grotesk',sans-serif;" style-hover="background:#F4CB3A;">Join Network</a>
+      </div>
+
+      <button data-mobile-toggle="" onClick="{{ toggleMobile }}" style="background:none; border:1px solid rgba(255,255,255,0.15); border-radius:4px; width:40px; height:40px; align-items:center; justify-content:center; color:#F5F3ED; cursor:pointer; flex-shrink:0;">
+        <sc-if value="{{ mobileOpen }}" hint-placeholder-val="{{ false }}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+        </sc-if>
+        <sc-if value="{{ notMobileOpen }}" hint-placeholder-val="{{ true }}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"></path></svg>
+        </sc-if>
+      </button>
+    </div>
+
+    <sc-if value="{{ mobileOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="border-top:1px solid rgba(255,255,255,0.09); padding:20px 24px 28px; display:flex; flex-direction:column; gap:4px; background:#0B1410;">
+        <a href="#top" style="color:#F5F3ED; text-decoration:none; font-size:15px; font-weight:600; padding:12px 4px;">Home</a>
+        <a href="#events" style="color:#F5F3ED; text-decoration:none; font-size:15px; font-weight:600; padding:12px 4px;">Events</a>
+        <a href="#partners" style="color:#F5F3ED; text-decoration:none; font-size:15px; font-weight:600; padding:12px 4px;">Partners</a>
+        <a href="#about" style="color:#F5F3ED; text-decoration:none; font-size:15px; font-weight:600; padding:12px 4px;">About us</a>
+        <a href="#" style="color:#F5F3ED; text-decoration:none; font-size:15px; font-weight:600; padding:12px 4px;">Media</a>
+        <a href="#" style="color:#F5F3ED; text-decoration:none; font-size:15px; font-weight:600; padding:12px 4px;">LEAF Academy</a>
+        <a href="#" style="color:#F5F3ED; text-decoration:none; font-size:15px; font-weight:600; padding:12px 4px;">Pathera AI</a>
+        <a href="#contact" style="color:#F5F3ED; text-decoration:none; font-size:15px; font-weight:600; padding:12px 4px;">Contact</a>
+        <div style="display:flex; gap:12px; margin-top:12px;">
+          <a href="#" style="flex:1; text-align:center; border:1px solid rgba(255,255,255,0.18); color:#F5F3ED; text-decoration:none; padding:12px; border-radius:4px; font-weight:600; font-size:14px;">Login</a>
+          <a href="#contact" style="flex:1; text-align:center; background:#E8B923; color:#0B1410; text-decoration:none; padding:12px; border-radius:4px; font-weight:600; font-size:14px;">Join Network</a>
+        </div>
+      </div>
+    </sc-if>
+  </header>
+
+  <!-- HERO -->
+  <section id="top" style="max-width:1360px; margin:0 auto; padding:96px 32px 80px; background-image: radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px); background-size:26px 26px; background-position:-8px -8px;">
+    <div data-hero-grid="" style="display:grid; grid-template-columns:1.15fr 0.85fr; gap:64px; align-items:center;">
+      <div>
+        <div style="display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(232,185,35,0.4); background:rgba(232,185,35,0.08); color:#E8B923; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:500; letter-spacing:0.08em; padding:7px 14px; border-radius:999px; margin-bottom:28px;">
+          <span style="width:6px; height:6px; border-radius:999px; background:#E8B923;"></span>
+          NEW EVENTS — REGISTER NOW
+        </div>
+        <h1 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(40px,5.4vw,72px); line-height:1.03; letter-spacing:-0.02em; margin:0 0 24px;">
+          Empowering <span style="color:#E8B923;">future leaders</span> in LEAF.
+        </h1>
+        <p style="font-size:18px; line-height:1.6; color:rgba(245,243,237,0.68); max-width:520px; margin:0 0 36px;">
+          The UK student network for <strong style="color:#F5F3ED; font-weight:600;">Law, Engineering &amp; Technology</strong>, and <strong style="color:#F5F3ED; font-weight:600;">Finance</strong>. Real connections, real opportunities.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:40px;">
+          <a href="#contact" style="display:inline-flex; align-items:center; gap:9px; background:#E8B923; color:#0B1410; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px; padding:15px 26px; border-radius:4px;" style-hover="background:#F4CB3A;">
+            Join the community
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </a>
+          <a href="#" style="display:inline-flex; align-items:center; gap:9px; background:transparent; color:#F5F3ED; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px; padding:15px 26px; border-radius:4px; border:1.5px solid rgba(47,191,143,0.5);" style-hover="border-color:#2FBF8F; background:rgba(47,191,143,0.08);">
+            Explore Pathera AI
+          </a>
+        </div>
+        <div style="display:flex; align-items:center; gap:14px; padding-top:28px; border-top:1px solid rgba(255,255,255,0.09);">
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:26px; font-weight:500; color:#E8B923;">4,973+</span>
+          <span style="font-size:14px; color:rgba(245,243,237,0.55); max-width:220px; line-height:1.4;">students and young professionals already building momentum</span>
+        </div>
+      </div>
+
+      <div style="position:relative;">
+        <div style="position:relative; border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,0.1);">
+          <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="hero-photo" style="width:100%; height:460px; display:block;" shape="rect" placeholder="Drop a community / event photo" hint-size="100%,460px"></x-import>
+        </div>
+        <div style="position:absolute; top:-10px; left:-10px; width:34px; height:34px; border-top:3px solid #E8B923; border-left:3px solid #E8B923;"></div>
+        <div style="position:absolute; bottom:-10px; right:-10px; width:34px; height:34px; border-bottom:3px solid #E8B923; border-right:3px solid #E8B923;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNER MARQUEE -->
+  <section style="border-top:1px solid rgba(255,255,255,0.09); border-bottom:1px solid rgba(255,255,255,0.09); padding:28px 0; overflow:hidden;">
+    <div style="max-width:1360px; margin:0 auto; padding:0 32px 20px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; color:rgba(245,243,237,0.4);">TRUSTED BY STUDENT SOCIETIES &amp; PARTNERS AT</div>
+    <div style="overflow:hidden; width:100%;">
+      <div data-marquee-track="" style="display:flex; gap:16px; width:max-content;">
+        <sc-for list="{{ partnerLogos }}" as="logo" hint-placeholder-count="8">
+          <div style="width:170px; height:64px; flex-shrink:0; border:1px solid rgba(255,255,255,0.1); border-radius:6px; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:13px; color:rgba(245,243,237,0.4); letter-spacing:0.06em;">{{ logo.label }}</div>
+        </sc-for>
+        <sc-for list="{{ partnerLogos }}" as="logo" hint-placeholder-count="8">
+          <div style="width:170px; height:64px; flex-shrink:0; border:1px solid rgba(255,255,255,0.1); border-radius:6px; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:13px; color:rgba(245,243,237,0.4); letter-spacing:0.06em;">{{ logo.label }}</div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section id="events" style="max-width:1360px; margin:0 auto; padding:110px 32px 100px;">
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-bottom:48px;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; color:#2FBF8F; margin-bottom:14px;">(01) UPCOMING EVENTS</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(30px,3.4vw,44px); line-height:1.1; margin:0; letter-spacing:-0.01em;">
+          Connect at our <span style="color:#E8B923;">major events</span>.
+        </h2>
+        <p style="font-size:16px; color:rgba(245,243,237,0.6); margin:14px 0 0; max-width:440px;">A packed calendar this year — book your place before spots fill up.</p>
+      </div>
+      <a href="#" style="display:inline-flex; align-items:center; gap:8px; color:#F5F3ED; text-decoration:none; font-weight:600; font-size:14px; border:1px solid rgba(255,255,255,0.18); padding:12px 20px; border-radius:4px; flex-shrink:0;" style-hover="border-color:rgba(255,255,255,0.4);">
+        View full calendar
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+    </div>
+
+    <div data-events-grid="" style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px;">
+      <sc-for list="{{ eventCards }}" as="ev" hint-placeholder-count="3">
+        <div style="border:1px solid rgba(255,255,255,0.1); border-radius:8px; overflow:hidden; background:#0F1A15; display:flex; flex-direction:column;">
+          <div style="position:relative; height:170px;">
+            <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ ev.slotId }}" style="width:100%; height:170px; display:block;" shape="rect" placeholder="Drop event photo" hint-size="100%,170px"></x-import>
+            <span style="position:absolute; top:12px; left:12px; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:500; letter-spacing:0.06em; padding:5px 10px; border-radius:999px; background:{{ ev.tagBg }}; color:{{ ev.tagColor }}; border:1px solid {{ ev.tagBorder }};">{{ ev.tag }}</span>
+          </div>
+          <div style="padding:24px; display:flex; flex-direction:column; gap:10px; flex:1;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:rgba(245,243,237,0.45); letter-spacing:0.04em;">{{ ev.date }}</div>
+            <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:19px; margin:0; line-height:1.25;">{{ ev.title }}</h3>
+            <p style="font-size:14px; line-height:1.55; color:rgba(245,243,237,0.6); margin:0; flex:1;">{{ ev.desc }}</p>
+            <a href="#" style="display:inline-flex; align-items:center; gap:7px; color:#E8B923; text-decoration:none; font-weight:600; font-size:14px; margin-top:6px;">
+              {{ ev.ctaLabel }}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats" style="border-top:1px solid rgba(255,255,255,0.09); border-bottom:1px solid rgba(255,255,255,0.09); background:#0F1A15;">
+    <div data-stats-grid="" style="max-width:1360px; margin:0 auto; padding:0 32px; display:grid; grid-template-columns:1fr 1fr;">
+      <div style="padding:56px 40px 56px 0; border-right:1px solid rgba(255,255,255,0.09);">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:44px; font-weight:500; color:#E8B923; letter-spacing:-0.01em;">4,973+</div>
+        <div style="font-size:15px; color:rgba(245,243,237,0.6); margin-top:10px;">Students &amp; young professionals in the LEAF community — and growing every day.</div>
+      </div>
+      <div style="padding:56px 0 56px 40px;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:44px; font-weight:500; color:#2FBF8F; letter-spacing:-0.01em;">3,500+</div>
+        <div style="font-size:15px; color:rgba(245,243,237,0.6); margin-top:10px;">Members supported into placements, internships and opportunities.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PATHERA AI -->
+  <section id="pathera" style="max-width:1360px; margin:0 auto; padding:110px 32px;">
+    <div style="display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:center; border:1px solid rgba(47,191,143,0.3); border-radius:12px; padding:56px; background:rgba(47,191,143,0.05);">
+      <div style="display:flex; align-items:center; justify-content:center;">
+        <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#2FBF8F" stroke-width="1.2">
+          <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"></path>
+        </svg>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; color:#2FBF8F; margin-bottom:14px;">EXCLUSIVE PARTNER TECHNOLOGY</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(28px,3.2vw,40px); margin:0 0 18px; line-height:1.15;">
+          Your career, <span style="color:#2FBF8F;">accelerated.</span>
+        </h2>
+        <p style="font-size:16px; line-height:1.6; color:rgba(245,243,237,0.68); margin:0 0 20px; max-width:520px;">
+          Pathera gives LEAF members a genuine edge: instant CV analysis, structured interview preparation, and a career roadmap built around your goals.
+        </p>
+        <div style="display:flex; align-items:center; gap:10px; font-size:14px; color:rgba(245,243,237,0.6); margin-bottom:32px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2FBF8F" stroke-width="2.3"><path d="M20 6L9 17l-5-5"></path></svg>
+          AI-powered CV grading &amp; optimisation
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:14px;">
+          <a href="#" style="display:inline-flex; align-items:center; gap:9px; background:#2FBF8F; color:#0B1410; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px; padding:14px 24px; border-radius:4px;">
+            Visit Pathera.io
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M7 17L17 7M9 7h8v8"></path></svg>
+          </a>
+          <a href="#contact" style="display:inline-flex; align-items:center; gap:9px; background:transparent; color:#F5F3ED; text-decoration:none; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px; padding:14px 24px; border-radius:4px; border:1.5px solid rgba(255,255,255,0.18);">
+            Join community
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="max-width:1360px; margin:0 auto; padding:0 32px 120px;">
+    <div data-about-grid="" style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:64px;">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.1em; color:#E8B923; margin-bottom:14px;">(02) ABOUT US</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(30px,3.4vw,44px); margin:0; line-height:1.1; letter-spacing:-0.01em;">
+          More than a network.
+        </h2>
+      </div>
+      <div>
+        <p style="font-size:17px; line-height:1.7; color:rgba(245,243,237,0.72); margin:0 0 20px;">
+          LEAF Pathways connects driven students with the careers they've been working towards. We're not another networking group — we're the insider knowledge your university never taught, the warm introductions, the curated opportunities, and the connections that actually open doors.
+        </p>
+        <p style="font-size:17px; line-height:1.7; color:rgba(245,243,237,0.72); margin:0 0 36px;">
+          Built by students who've been there, we know how hard it is to break into competitive industries without the right people in your corner. That's precisely why LEAF exists.
+        </p>
+        <div style="border-top:1px solid rgba(255,255,255,0.12); padding-top:28px;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:32px; font-weight:500; color:#E8B923;">3,500+</div>
+          <div style="font-size:14px; color:rgba(245,243,237,0.5); margin-top:6px;">Members and counting</div>
+          <p style="font-style:italic; font-size:18px; color:#F5F3ED; margin:24px 0 0; font-family:'Space Grotesk',sans-serif; font-weight:500;">"We turn potential into placement."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact" style="border-top:1px solid rgba(255,255,255,0.09); background:#0B1410;">
+    <div style="max-width:1360px; margin:0 auto; padding:80px 32px 0;">
+      <div style="border:1px solid rgba(232,185,35,0.3); background:rgba(232,185,35,0.06); border-radius:12px; padding:48px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:32px; margin-bottom:80px;">
+        <div style="max-width:460px;">
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:24px; margin:0 0 10px;">Join the LEAF newsletter</h3>
+          <p style="font-size:15px; color:rgba(245,243,237,0.62); margin:0; line-height:1.6;">Be the first to hear about major opportunities, upcoming events, and industry insight — delivered to your inbox.</p>
+        </div>
+        <sc-if value="{{ notSubscribed }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ onSubscribe }}" style="display:flex; gap:10px; flex-wrap:wrap; flex:1; min-width:280px; max-width:420px;">
+            <input type="email" required="" value="{{ newsletterEmail }}" onChange="{{ onEmailChange }}" placeholder="you@university.ac.uk" style="flex:1; min-width:200px; background:#0F1A15; border:1px solid rgba(255,255,255,0.15); border-radius:4px; padding:14px 16px; color:#F5F3ED; font-size:14px; font-family:'IBM Plex Sans',sans-serif;"></input>
+            <button type="submit" style="background:#E8B923; color:#0B1410; border:none; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px; padding:14px 22px; border-radius:4px; cursor:pointer;">Subscribe</button>
+          </form>
+        </sc-if>
+        <sc-if value="{{ newsletterSubmitted }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; align-items:center; gap:10px; color:#2FBF8F; font-weight:600; font-size:15px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M20 6L9 17l-5-5"></path></svg>
+            You're subscribed.
+          </div>
+        </sc-if>
+      </div>
+
+      <div data-footer-grid="" style="display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:48px; padding-bottom:56px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span style="width:32px; height:32px; background:#E8B923; color:#0B1410; display:flex; align-items:center; justify-content:center; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px; border-radius:4px;">L</span>
+            <span style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:17px;">LEAF Pathways</span>
+          </div>
+          <p style="font-size:14px; line-height:1.6; color:rgba(245,243,237,0.5); max-width:280px; margin:0 0 20px;">The student network for Law, Engineering, Accounting and Finance. From potential to placement.</p>
+          <div style="display:flex; gap:10px;">
+            <sc-for list="{{ socials }}" as="s" hint-placeholder-count="4">
+              <a href="#" style="width:36px; height:36px; border:1px solid rgba(255,255,255,0.15); border-radius:4px; display:flex; align-items:center; justify-content:center; text-decoration:none; color:rgba(245,243,237,0.6); font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:500;">{{ s }}</a>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; color:rgba(245,243,237,0.4); margin-bottom:18px;">EXPLORE</div>
+          <div style="display:flex; flex-direction:column; gap:13px;">
+            <a href="#events" style="color:rgba(245,243,237,0.72); text-decoration:none; font-size:14.5px;">Events calendar</a>
+            <a href="#partners" style="color:rgba(245,243,237,0.72); text-decoration:none; font-size:14.5px;">Partner network</a>
+            <a href="#about" style="color:rgba(245,243,237,0.72); text-decoration:none; font-size:14.5px;">Our mission</a>
+            <a href="#pathera" style="color:#E8B923; text-decoration:none; font-size:14.5px;">Pathera AI tool</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.08em; color:rgba(245,243,237,0.4); margin-bottom:18px;">LEGAL &amp; SUPPORT</div>
+          <div style="display:flex; flex-direction:column; gap:13px;">
+            <a href="#" style="color:rgba(245,243,237,0.72); text-decoration:none; font-size:14.5px;">Privacy policy</a>
+            <a href="#" style="color:rgba(245,243,237,0.72); text-decoration:none; font-size:14.5px;">Terms of service</a>
+            <a href="#" style="color:rgba(245,243,237,0.72); text-decoration:none; font-size:14.5px;">Contact us</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid rgba(255,255,255,0.09); padding:24px 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+        <span style="font-size:13px; color:rgba(245,243,237,0.4);">© 2026 LEAF Pathways. All rights reserved.</span>
+        <span style="font-size:13px; color:rgba(245,243,237,0.4); font-family:'IBM Plex Mono',monospace;">Made by students, for students.</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    openMenu: null,
+    mobileOpen: false,
+    newsletterEmail: '',
+    newsletterSubmitted: false,
+  };
+
+  onEnterMenu(key) {
+    this.setState({ openMenu: key });
+  }
+
+  renderVals() {
+    const openMenu = this.state.openMenu;
+
+    const eventCardsRaw = [
+      {
+        tag: 'COMING SOON',
+        tone: 'gold',
+        date: '1 JUL 2026',
+        title: 'LEAF Healthcare Bootcamp',
+        desc: 'UCAS prep, personal statements, work experience and application support.',
+        ctaLabel: 'Register interest',
+        slotId: 'event-healthcare',
+      },
+      {
+        tag: 'SOLD OUT',
+        tone: 'muted',
+        date: "4 JUL 2026 · 00:00",
+        title: "LEAF Hacks '26",
+        desc: 'A 24-hour build sprint for students who want to create, iterate, and pitch under pressure.',
+        ctaLabel: 'Join the waitlist',
+        slotId: 'event-hacks',
+      },
+      {
+        tag: 'COMING SOON',
+        tone: 'gold',
+        date: 'OCT 2026',
+        title: 'LEAF Apprenticeship Bootcamp 2026',
+        desc: 'Winning applications, final interview prep, and the insider knowledge that gets you hired.',
+        ctaLabel: 'Register interest',
+        slotId: 'event-apprenticeship',
+      },
+    ];
+
+    const tones = {
+      gold: { tagBg: 'rgba(232,185,35,0.12)', tagColor: '#E8B923', tagBorder: 'rgba(232,185,35,0.4)' },
+      muted: { tagBg: 'rgba(245,243,237,0.08)', tagColor: 'rgba(245,243,237,0.6)', tagBorder: 'rgba(255,255,255,0.18)' },
+    };
+
+    const eventCards = eventCardsRaw.map((ev) => ({ ...ev, ...tones[ev.tone] }));
+
+    return {
+      aboutOpen: openMenu === 'about',
+      partnersOpen: openMenu === 'partners',
+      eventsOpen: openMenu === 'events',
+      mediaOpen: openMenu === 'media',
+
+      onEnterMenu_about: () => this.onEnterMenu('about'),
+      onEnterMenu_partners: () => this.onEnterMenu('partners'),
+      onEnterMenu_events: () => this.onEnterMenu('events'),
+      onEnterMenu_media: () => this.onEnterMenu('media'),
+      onLeaveMenu: () => this.setState({ openMenu: null }),
+
+      aboutItems: [
+        { title: 'Our mission', desc: 'What LEAF is, and why it exists.' },
+        { title: 'Meet the team', desc: 'Run by students, for students.' },
+        { title: 'Our impact', desc: 'The numbers behind the network.' },
+      ],
+      partnersItems: [
+        { title: 'Our partners', desc: 'Every organisation in the network.' },
+        { title: 'Corporate partners', desc: 'Talent sourcing & brand awareness.' },
+        { title: 'University partners', desc: 'Careers teams & student societies.' },
+      ],
+      eventsItems: [
+        { title: 'Overview' },
+        { title: 'Commercial Awareness Competition' },
+        { title: 'Engineering Innovation Competition' },
+        { title: 'LEAF Hacks' },
+        { title: 'Finance Bootcamp' },
+        { title: 'Apprenticeship Bootcamp' },
+      ],
+      mediaItems: [
+        { title: 'Blog', desc: 'Newsletters & community spotlights.' },
+        { title: 'Pathways Webinar Series', desc: 'Upcoming & past webinars.' },
+        { title: 'Branching Out Podcast', desc: 'YouTube · Spotify · Apple Podcasts.' },
+      ],
+
+      mobileOpen: this.state.mobileOpen,
+      notMobileOpen: !this.state.mobileOpen,
+      toggleMobile: () => this.setState((s) => ({ mobileOpen: !s.mobileOpen })),
+
+      partnerLogos: [
+        { label: 'PARTNER 01' }, { label: 'PARTNER 02' }, { label: 'PARTNER 03' }, { label: 'PARTNER 04' },
+        { label: 'PARTNER 05' }, { label: 'PARTNER 06' }, { label: 'PARTNER 07' }, { label: 'PARTNER 08' },
+      ],
+
+      eventCards,
+
+      socials: ['IG', 'LI', 'TT', 'YT'],
+
+      newsletterEmail: this.state.newsletterEmail,
+      onEmailChange: (e) => this.setState({ newsletterEmail: e.target.value }),
+      newsletterSubmitted: this.state.newsletterSubmitted,
+      notSubscribed: !this.state.newsletterSubmitted,
+      onSubscribe: (e) => {
+        e.preventDefault();
+        if (this.state.newsletterEmail) {
+          this.setState({ newsletterSubmitted: true });
+        }
+      },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

@@ -1,210 +1,215 @@
 "use client";
 
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
-
-const navItems = [
-  { name: "Home", href: "/" },
-  {
-    name: "About Us",
-    href: "/about",
-    submenu: [
-      { name: "Our Mission", href: "/about/mission" },
-      { name: "Meet the Team", href: "/about/team" },
-      { name: "Our Impact", href: "/about/impact" },
-    ],
-  },
-  {
-    name: "Partners",
-    href: "/partners",
-  },
-  {
-    name: "Events",
-    href: "/events",
-    submenu: [
-      { name: "Overview", href: "/events" },
-      { name: "Commercial Awareness Competition", href: "/events/commercial-awareness" },
-      { name: "Engineering Innovation Competition", href: "/events/engineering-innovation" },
-      { name: "LEAF Hacks", href: "/events/leaf-hacks" },
-      { name: "Finance Bootcamp", href: "/events/finance-bootcamp" },
-      { name: "Apprenticeship Bootcamp", href: "/events/apprenticeship-bootcamp" },
-      { name: "Host an Event with Us", href: "/events/host-event" },
-    ],
-  },
-  {
-    name: "Media",
-    href: "/media",
-    submenu: [
-      { name: "Blog", href: "/media/blog" },
-      { name: "Pathways Webinar Series", href: "/media/webinars" },
-      { name: "Branching Out Podcast", href: "/media/podcast" },
-    ],
-  },
-  { name: "Contact Us", href: "/contact" },
-];
+import { Menu, X } from "lucide-react";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 0);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const dropdownItems = {
+    "About us": [
+      { title: "Our mission", desc: "What LEAF is, and why it exists." },
+      { title: "Meet the team", desc: "Run by students, for students." },
+      { title: "Our impact", desc: "The numbers behind the network." },
+    ],
+    "Partners": [
+      { title: "Our partners", desc: "Every organisation in the network." },
+      { title: "Corporate partners", desc: "Talent sourcing & brand awareness." },
+      { title: "University partners", desc: "Careers teams & student societies." },
+    ],
+    "Events": [
+      { title: "Overview" },
+      { title: "Commercial Awareness Competition" },
+      { title: "Engineering Innovation Competition" },
+      { title: "LEAF Hacks" },
+      { title: "Finance Bootcamp" },
+      { title: "Apprenticeship Bootcamp" },
+    ],
+    "Media": [
+      { title: "Blog", desc: "Newsletters & community spotlights." },
+      { title: "Pathways Webinar Series", desc: "Upcoming & past webinars." },
+      { title: "Branching Out Podcast", desc: "YouTube · Spotify · Apple Podcasts." },
+    ],
+  };
+
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 flex justify-center p-4 transition-all duration-300",
-        scrolled ? "pt-2" : "pt-6"
-      )}
-    >
-      <nav
-        className={cn(
-          "flex items-center justify-between w-full max-w-7xl px-6 py-3 rounded-full border transition-all duration-300",
-          scrolled 
-            ? "glass-emerald shadow-2xl shadow-emerald-900/20 py-2 backdrop-blur-md bg-emerald-950/40 border-emerald-900/30" 
-            : "bg-transparent border-transparent"
-        )}
-      >
+    <header style={{
+      position: "sticky",
+      top: 0,
+      zIndex: 100,
+      backgroundColor: scrolled ? "rgba(11,20,16,0.92)" : "transparent",
+      borderBottom: scrolled ? "1px solid rgba(255,255,255,0.09)" : "none",
+      transition: "all 0.3s",
+    }}>
+      <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px", height: "80px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}>
         {/* Logo */}
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <Link href="/" className="text-xl font-bold tracking-tighter flex items-center gap-3">
-            <img 
-              src="https://leafpathways.com/images/leaflogo-96.webp" 
-              alt="LEAF Logo" 
-              className="w-8 h-8 object-contain"
-            />
-            <span className="font-black tracking-tight hidden sm:inline">
-              <span className="text-amber-500">LEAF</span>
-              <span className="text-white">Pathways</span>
-            </span>
-          </Link>
-        </div>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", flexShrink: 0 }}>
+          <div style={{ width: "36px", height: "36px", backgroundColor: "#E8B923", color: "#0B1410", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "Space Grotesk", fontWeight: "700", fontSize: "18px", borderRadius: "4px" }}>L</div>
+          <span style={{ fontFamily: "Space Grotesk", fontWeight: "700", fontSize: "19px", color: "#F5F3ED" }}>LEAF<span style={{ fontWeight: "500", color: "rgba(245,243,237,0.6)" }}> Pathways</span></span>
+        </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-1">
-          {navItems.map((item) => (
-            <div
-              key={item.name}
-              className="relative group"
-              onMouseEnter={() => item.submenu && setActiveDropdown(item.name)}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <Link
-                href={item.href}
-                className={cn(
-                  "px-4 py-2 text-sm font-medium rounded-lg transition-colors flex items-center gap-1",
-                  "text-muted-foreground hover:text-foreground hover:bg-white/5"
-                )}
-              >
-                {item.name}
-                {item.submenu && (
-                  <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
-                )}
-              </Link>
+        {/* Desktop Nav */}
+        <nav style={{ display: "flex", flex: 1, alignItems: "center", gap: "4px", justifyContent: "center" }} className="hidden lg:flex">
+          <Link href="#top" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
 
-              {/* Dropdown Menu */}
-              {item.submenu && (
-                <div className="absolute left-0 mt-0 pt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                  <div className="bg-emerald-950/95 backdrop-blur-md border border-emerald-900/50 rounded-lg shadow-lg overflow-hidden">
-                    {item.submenu.map((subitem) => (
-                      <Link
-                        key={subitem.name}
-                        href={subitem.href}
-                        className="block px-4 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors border-b border-emerald-900/30 last:border-b-0"
-                      >
-                        {subitem.name}
+          {Object.entries(dropdownItems).map(([label, items]) => (
+            <div key={label} style={{ position: "relative" }} onMouseEnter={() => setOpenMenu(label)} onMouseLeave={() => setOpenMenu(null)}>
+              <button style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "5px",
+                color: "#F5F3ED",
+                fontSize: "14px",
+                fontWeight: "500",
+                padding: "10px 14px",
+                borderRadius: "4px",
+                border: "none",
+                backgroundColor: "transparent",
+                cursor: "pointer",
+              }}>
+                {label}
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M6 9l6 6 6-6"></path>
+                </svg>
+              </button>
+
+              {openMenu === label && (
+                <div style={{ position: "absolute", top: "100%", left: 0, paddingTop: "10px", width: "280px", zIndex: 50 }}>
+                  <div style={{ backgroundColor: "#0F1A15", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", padding: "8px", boxShadow: "0 12px 24px rgba(0,0,0,0.35)" }}>
+                    {items.map((item, idx) => (
+                      <Link key={idx} href="#" style={{
+                        display: "block",
+                        padding: "10px 12px",
+                        borderRadius: "6px",
+                        textDecoration: "none",
+                        borderBottom: (label === "Partners" || label === "Events") && idx === items.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
+                      }}>
+                        <div style={{ fontSize: "14px", fontWeight: "600", color: "#F5F3ED" }}>{item.title}</div>
+                        {item.desc && <div style={{ fontSize: "12.5px", color: "rgba(245,243,237,0.5)", marginTop: "2px" }}>{item.desc}</div>}
                       </Link>
                     ))}
+                    {(label === "Partners" || label === "Events") && (
+                      <Link href="#contact" style={{
+                        display: "block",
+                        marginTop: "4px",
+                        padding: "10px 12px",
+                        borderRadius: "6px",
+                        textDecoration: "none",
+                      }}>
+                        <div style={{ fontSize: "14px", fontWeight: "600", color: "#E8B923", paddingTop: "6px" }}>
+                          {label === "Partners" ? "Partner with us →" : "Host an event with us →"}
+                        </div>
+                      </Link>
+                    )}
                   </div>
                 </div>
               )}
             </div>
           ))}
-        </div>
 
-        {/* Right Actions */}
-        <div className="flex items-center gap-3">
-          <Button variant="ghost" className="hidden sm:flex text-sm">
-            Login
-          </Button>
-          <Button className="rounded-full glow-gold text-sm px-6 hidden sm:flex">
+          <Link href="#" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center", gap: "5px" }}>
+            LEAF Academy
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ opacity: 0.55 }}>
+              <path d="M7 17L17 7M9 7h8v8"></path>
+            </svg>
+          </Link>
+          <Link href="https://pathera.io" target="_blank" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center", gap: "5px" }}>
+            Pathera AI
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" style={{ opacity: 0.55 }}>
+              <path d="M7 17L17 7M9 7h8v8"></path>
+            </svg>
+          </Link>
+          <Link href="#contact" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", padding: "10px 14px", borderRadius: "4px" }}>Contact</Link>
+        </nav>
+
+        {/* Right actions */}
+        <div style={{ display: "flex", alignItems: "center", gap: "18px", flexShrink: 0 }}>
+          <Link href="#contact" style={{
+            backgroundColor: "#E8B923",
+            color: "#0B1410",
+            textDecoration: "none",
+            fontSize: "14px",
+            fontWeight: "600",
+            padding: "10px 20px",
+            borderRadius: "4px",
+            fontFamily: "Space Grotesk",
+            cursor: "pointer",
+          }} className="hidden sm:inline-block">
             Join Network
-          </Button>
-          
-          {/* Mobile Menu Button */}
+          </Link>
+
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 hover:bg-white/5 rounded-lg transition-colors"
+            style={{
+              background: "none",
+              border: "1px solid rgba(255,255,255,0.15)",
+              borderRadius: "4px",
+              width: "40px",
+              height: "40px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#F5F3ED",
+              cursor: "pointer",
+              flexShrink: 0,
+            }}
+            className="lg:hidden"
           >
-            {mobileOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
+            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
-      </nav>
+      </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-0 right-0 mt-4 mx-4 bg-emerald-950/95 backdrop-blur-md border border-emerald-900/50 rounded-lg shadow-lg lg:hidden"
-          >
-            <div className="p-4 space-y-2 max-h-[70vh] overflow-y-auto">
-              {navItems.map((item) => (
-                <div key={item.name}>
-                  <Link
-                    href={item.href}
-                    className="block px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-white/5 rounded-lg transition-colors"
-                    onClick={() => !item.submenu && setMobileOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                  {item.submenu && (
-                    <div className="ml-4 space-y-1">
-                      {item.submenu.map((subitem) => (
-                        <Link
-                          key={subitem.name}
-                          href={subitem.href}
-                          className="block px-4 py-2 text-xs text-muted-foreground hover:text-foreground hover:bg-white/5 rounded-lg transition-colors"
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          {subitem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-              <div className="pt-4 border-t border-emerald-900/30 flex flex-col gap-2">
-                <Button variant="ghost" className="w-full justify-center">
-                  Login
-                </Button>
-                <Button className="w-full rounded-lg glow-gold">
-                  Join Network
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.09)", padding: "20px 24px 28px", display: "flex", flexDirection: "column", gap: "4px", backgroundColor: "#0B1410" }}>
+          <Link href="#top" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Home</Link>
+          <Link href="#events" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Events</Link>
+          <Link href="#partners" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Partners</Link>
+          <Link href="#about" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>About us</Link>
+          <Link href="#" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Media</Link>
+          <Link href="#" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>LEAF Academy</Link>
+          <Link href="https://pathera.io" target="_blank" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Pathera AI</Link>
+          <Link href="#contact" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Contact</Link>
+          <div style={{ display: "flex", gap: "12px", marginTop: "12px" }}>
+            <Link href="#" style={{
+              flex: 1,
+              textAlign: "center",
+              border: "1px solid rgba(255,255,255,0.18)",
+              color: "#F5F3ED",
+              textDecoration: "none",
+              padding: "12px",
+              borderRadius: "4px",
+              fontWeight: "600",
+              fontSize: "14px",
+            }}>
+              Login
+            </Link>
+            <Link href="#contact" style={{
+              flex: 1,
+              textAlign: "center",
+              backgroundColor: "#E8B923",
+              color: "#0B1410",
+              textDecoration: "none",
+              padding: "12px",
+              borderRadius: "4px",
+              fontWeight: "600",
+              fontSize: "14px",
+            }}>
+              Join Network
+            </Link>
+          </div>
+        </div>
+      )}
+    </header>
   );
 }
