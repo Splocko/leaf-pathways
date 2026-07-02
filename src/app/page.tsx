@@ -227,7 +227,7 @@ export default function Home() {
                 <ArrowRight size={16} />
               </Link>
               <Link href="#" style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "transparent", color: "#F5F3ED", textDecoration: "none", fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "15px", padding: "15px 26px", borderRadius: "4px", border: "1.5px solid rgba(47,191,143,0.5)", cursor: "pointer", transition: "all 0.2s" }}>
-                Explore Pathera AI
+                Explore Pathera
               </Link>
             </div>
 
