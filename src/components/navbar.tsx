@@ -44,19 +44,11 @@ export function Navbar() {
   return (
     <header style={{
       position: "sticky",
-      top: scrolled ? "16px" : "0",
-      left: scrolled ? "50%" : "0",
-      right: scrolled ? "16px" : "0",
-      transform: scrolled ? "translateX(-50%)" : "none",
+      top: 0,
       zIndex: 100,
-      backgroundColor: scrolled ? "rgba(11,20,16,0.8)" : "transparent",
-      backdropFilter: scrolled ? "blur(8px)" : "none",
-      borderRadius: scrolled ? "8px" : "0",
-      border: scrolled ? "1px solid rgba(255,255,255,0.1)" : "none",
-      boxShadow: scrolled ? "0 8px 32px rgba(0,0,0,0.3)" : "none",
+      backgroundColor: scrolled ? "rgba(11,20,16,0.92)" : "transparent",
+      borderBottom: scrolled ? "1px solid rgba(255,255,255,0.09)" : "none",
       transition: "all 0.3s",
-      maxWidth: scrolled ? "1360px" : "none",
-      width: scrolled ? "calc(100% - 32px)" : "100%",
     }}>
       <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px", height: "80px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}>
         {/* Logo */}
