@@ -59,7 +59,7 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav style={{ display: "flex", flex: 1, alignItems: "center", gap: "4px", justifyContent: "center" }} className="hidden lg:flex">
-          <Link href="#top" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
+          <Link href="#top" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", fontFamily: "IBM Plex Sans", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
 
           {Object.entries(dropdownItems).map(([label, items]) => (
             <div key={label} style={{ position: "relative" }} onMouseEnter={() => setOpenMenu(label)} onMouseLeave={() => setOpenMenu(null)}>
@@ -70,6 +70,7 @@ export function Navbar() {
                 color: "#F5F3ED",
                 fontSize: "14px",
                 fontWeight: "500",
+                fontFamily: "IBM Plex Sans",
                 padding: "10px 14px",
                 borderRadius: "4px",
                 border: "none",
@@ -119,7 +120,7 @@ export function Navbar() {
 
         {/* Right actions */}
         <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
-          <Link href="https://pathera.io" target="_blank" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "13px", fontWeight: "500", padding: "8px 12px", borderRadius: "4px", display: "flex", alignItems: "center", gap: "4px", opacity: 0.7 }}>
+          <Link href="https://pathera.io" target="_blank" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", fontFamily: "IBM Plex Sans", padding: "8px 12px", borderRadius: "4px", display: "flex", alignItems: "center", gap: "4px", opacity: 0.7 }}>
             Pathera
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
               <path d="M7 17L17 7M9 7h8v8"></path>
