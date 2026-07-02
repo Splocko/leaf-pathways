@@ -2,6 +2,7 @@
 
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { PartnerLogos } from "@/components/partner-logos";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
@@ -36,10 +37,109 @@ const events = [
   },
 ];
 
-const partners = [
-  "PARTNER 01", "PARTNER 02", "PARTNER 03", "PARTNER 04",
-  "PARTNER 05", "PARTNER 06", "PARTNER 07", "PARTNER 08",
+const testimonials = [
+  {
+    name: "Elliot Shaw",
+    title: "Social Value Lead for London and the South East, AtkinsRéalis",
+    quote: "The real impact of LEAF is the access it gives young people. It opens the door to engineering in a way that feels real and achievable.",
+  },
+  {
+    name: "Joseph Clarke",
+    title: "Competition Judge and STEM Content Creator",
+    quote: "The competition had a really positive impact on aspiring engineers, giving them a chance to develop their confidence, creativity, and problem-solving abilities.",
+  },
+  {
+    name: "Temiloluwa 'Temmy' Phillips",
+    title: "EIC 2026 Winner",
+    quote: "Entering the LEAF Engineering Innovation Competition was one of the most valuable decisions of my gap year.",
+  },
+  {
+    name: "Vincent Egunlae",
+    title: "Senior Speaker, Investment Banker & Keynote Speaker",
+    quote: "LEAF is a highly professional organisation creating impact for thousands of young people throughout the UK.",
+  },
+  {
+    name: "Placeholder Smith",
+    title: "Student, University of London",
+    quote: "Being part of LEAF transformed my career prospects and connected me with mentors who genuinely care about my success.",
+  },
+  {
+    name: "Placeholder Jones",
+    title: "Graduate, Finance Professional",
+    quote: "The networking opportunities at LEAF were invaluable. I met industry professionals who became my colleagues.",
+  },
+  {
+    name: "Placeholder Kumar",
+    title: "Student, Imperial College London",
+    quote: "LEAF gave me the confidence to pursue opportunities I never thought were possible.",
+  },
+  {
+    name: "Placeholder Williams",
+    title: "Career Coach, Corporate Partner",
+    quote: "The caliber of students in LEAF is exceptional. It's been a pleasure working with such driven young people.",
+  },
+  {
+    name: "Placeholder Brown",
+    title: "Student, LSE",
+    quote: "The mentorship program at LEAF helped me land my dream internship in the financial sector.",
+  },
+  {
+    name: "Placeholder Davis",
+    title: "Graduate, Law & Finance",
+    quote: "LEAF bridges the gap between university and professional life in a way few organizations can.",
+  },
 ];
+
+function TestimonialCarousel({ testimonials }: { testimonials: Array<{ name: string; title: string; quote: string }> }) {
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIdx((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
+  const current = testimonials[currentIdx];
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      {/* Quote */}
+      <blockquote style={{ fontFamily: "IBM Plex Sans", fontSize: "16px", lineHeight: "1.6", color: "#F5F3ED", margin: 0, fontStyle: "italic", borderLeft: "4px solid #E8B923", paddingLeft: "20px" }}>
+        "{current.quote}"
+      </blockquote>
+
+      {/* Attribution */}
+      <div>
+        <div style={{ fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "14px", color: "#F5F3ED" }}>
+          {current.name}
+        </div>
+        <div style={{ fontSize: "13px", color: "rgba(245,243,237,0.6)", marginTop: "3px" }}>
+          {current.title}
+        </div>
+      </div>
+
+      {/* Indicators */}
+      <div style={{ display: "flex", gap: "8px", marginTop: "16px" }}>
+        {testimonials.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentIdx(idx)}
+            style={{
+              width: "8px",
+              height: "8px",
+              borderRadius: "999px",
+              border: "none",
+              backgroundColor: idx === currentIdx ? "#E8B923" : "rgba(255,255,255,0.2)",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function EventCard({ event }: { event: (typeof events)[0] }) {
   const isGold = event.tone === "gold";
@@ -112,12 +212,12 @@ export default function Home() {
 
             {/* H1 */}
             <h1 style={{ fontFamily: "Space Grotesk", fontWeight: "700", fontSize: "clamp(40px, 5.4vw, 72px)", lineHeight: "1.03", letterSpacing: "-0.02em", margin: "0 0 24px", color: "#F5F3ED" }}>
-              Empowering <span style={{ color: "#E8B923" }}>future leaders</span> in LEAF.
+              Where ambition meets <span style={{ color: "#E8B923" }}>real opportunity</span> in LEAF.
             </h1>
 
             {/* Subhead */}
             <p style={{ fontSize: "18px", lineHeight: "1.6", color: "rgba(245,243,237,0.68)", maxWidth: "520px", margin: "0 0 36px" }}>
-              The UK student network for <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Law, Engineering & Technology</strong>, and <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Finance</strong>. Real connections, real opportunities.
+              The UK student network for <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Law, Engineering & Technology</strong>, <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Finance</strong>, and beyond. Internships, apprenticeships, and placements that matter. Real connections, real opportunities.
             </p>
 
             {/* CTAs */}
@@ -138,10 +238,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right column - Hero image */}
+          {/* Right column - Hero video */}
           <div style={{ position: "relative", display: "grid", placeItems: "center" }}>
             <div style={{ position: "relative", borderRadius: "8px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", width: "100%", aspectRatio: "16/9", backgroundColor: "rgba(245,243,237,0.03)" }}>
-              <img src="/hero-community.jpg" alt="LEAF community event" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+              <video autoPlay muted loop playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}>
+                <source src="https://leafpathways.com/videos/vid1.mp4" type="video/mp4" />
+              </video>
             </div>
             {/* Corner brackets */}
             <div style={{ position: "absolute", top: "-10px", left: "-10px", width: "34px", height: "34px", borderTop: "3px solid #E8B923", borderLeft: "3px solid #E8B923" }}></div>
@@ -150,20 +252,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PARTNER MARQUEE */}
-      <section style={{ borderTop: "1px solid rgba(255,255,255,0.09)", borderBottom: "1px solid rgba(255,255,255,0.09)", padding: "28px 0", overflow: "hidden" }}>
-        <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px 20px", fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)" }}>
-          TRUSTED BY STUDENT SOCIETIES & PARTNERS AT
-        </div>
-        <div style={{ overflow: "hidden", width: "100%" }}>
-          <div style={{ display: "flex", gap: "16px", width: "max-content", animation: "marquee 32s linear infinite" }}>
-            {isClient && [...partners, ...partners].map((logo, idx) => (
-              <div key={idx} style={{ width: "170px", height: "64px", flexShrink: 0, border: "1px solid rgba(255,255,255,0.1)", borderRadius: "6px", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "IBM Plex Mono", fontSize: "13px", color: "rgba(245,243,237,0.4)", letterSpacing: "0.06em" }}>
-                {logo}
+      {/* TRUSTED BY SECTION - Two Carousels */}
+      <section style={{ borderTop: "1px solid rgba(255,255,255,0.09)", borderBottom: "1px solid rgba(255,255,255,0.09)", padding: "70px 32px 90px", overflow: "visible" }}>
+        <div style={{ maxWidth: "1360px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px", alignItems: "flex-start" }}>
+          {/* Left: Partner Logos Carousel */}
+          <div style={{ overflow: "hidden", minWidth: 0 }}>
+            <h3 style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", margin: "0 0 32px" }}>
+              TRUSTED BY PARTNERS
+            </h3>
+            <div style={{ overflow: "hidden", position: "relative", height: "140px", width: "100%" }}>
+              <div style={{ display: "flex", gap: "40px", animation: "logoCarousel 20s linear infinite", willChange: "transform", width: "max-content" }}>
+                {isClient && [...PartnerLogos, ...PartnerLogos].map((partner, idx) => (
+                  <div key={idx} style={{ width: "140px", height: "140px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.7, transition: "opacity 0.3s ease", cursor: "pointer" }} onMouseEnter={(e) => e.currentTarget.style.opacity = "1"} onMouseLeave={(e) => e.currentTarget.style.opacity = "0.7"}>
+                    <img src={partner.logo} alt={partner.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* Right: Testimonials Carousel */}
+          <div style={{ overflow: "hidden", minWidth: 0 }}>
+            <h3 style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", margin: "0 0 32px" }}>
+              STUDENT & PARTNER VOICES
+            </h3>
+            <TestimonialCarousel testimonials={testimonials} />
           </div>
         </div>
+
+        <style>{`
+          @keyframes logoCarousel {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-180px * ${PartnerLogos.length})); }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            [data-carousel] { animation: none !important; }
+          }
+        `}</style>
       </section>
 
       {/* EVENTS SECTION */}

@@ -90,7 +90,7 @@ export function Footer() {
           {/* Brand Column */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-              <span style={{ width: "32px", height: "32px", backgroundColor: "#E8B923", color: "#0B1410", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "Space Grotesk", fontWeight: "700", fontSize: "16px", borderRadius: "4px" }}>L</span>
+              <img src="https://leafpathways.com/images/leaflogo.png" alt="LEAF Pathways" style={{ height: "32px", width: "auto" }} />
               <span style={{ fontFamily: "Space Grotesk", fontWeight: "700", fontSize: "17px", color: "#F5F3ED" }}>LEAF Pathways</span>
             </div>
             <p style={{ fontSize: "14px", lineHeight: "1.6", color: "rgba(245,243,237,0.5)", maxWidth: "280px", margin: "0 0 20px" }}>The student network for Law, Engineering, Accounting and Finance. From potential to placement.</p>
