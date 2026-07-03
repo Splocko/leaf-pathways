@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Check } from "lucide-react";
+import { useIsMobile } from "@/lib/use-is-mobile";
 
 export function Footer() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,19 +22,19 @@ export function Footer() {
 
   return (
     <footer id="contact" style={{ borderTop: "1px solid rgba(255,255,255,0.09)", backgroundColor: "#0B1410" }}>
-      <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "80px 32px 0" }}>
+      <div style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "48px 20px 0" : "80px 32px 0" }}>
         {/* Newsletter Section */}
         <div style={{
           border: "1px solid rgba(232,185,35,0.3)",
           backgroundColor: "rgba(232,185,35,0.06)",
           borderRadius: "12px",
-          padding: "48px",
+          padding: isMobile ? "28px 24px" : "48px",
           display: "flex",
           flexWrap: "wrap",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: "32px",
-          marginBottom: "80px",
+          gap: "24px",
+          marginBottom: isMobile ? "48px" : "80px",
         }}>
           <div style={{ maxWidth: "460px" }}>
             <h3 style={{ fontFamily: "Space Grotesk", fontWeight: "700", fontSize: "24px", margin: "0 0 10px", color: "#F5F3ED" }}>Join the LEAF newsletter</h3>
@@ -86,7 +88,7 @@ export function Footer() {
         </div>
 
         {/* Footer Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr", gap: "48px", paddingBottom: "56px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr 1fr", gap: isMobile ? "32px" : "48px", paddingBottom: isMobile ? "40px" : "56px" }}>
           {/* Brand Column */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>

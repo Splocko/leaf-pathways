@@ -67,7 +67,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav style={{ display: "flex", flex: 1, alignItems: "center", gap: "4px", justifyContent: "center" }} className="hidden lg:flex">
+        <nav style={{ flex: 1, alignItems: "center", gap: "4px", justifyContent: "center" }} className="hidden lg:flex">
           <Link href="#top" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", fontFamily: "IBM Plex Sans", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
 
           {Object.entries(dropdownItems).map(([label, items]) => (
@@ -157,14 +157,13 @@ export function Navbar() {
               borderRadius: "4px",
               width: "40px",
               height: "40px",
-              display: "flex",
               alignItems: "center",
               justifyContent: "center",
               color: "#F5F3ED",
               cursor: "pointer",
               flexShrink: 0,
             }}
-            className="lg:hidden"
+            className="flex lg:hidden"
           >
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>

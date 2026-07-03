@@ -6,6 +6,7 @@ import { PartnerLogos } from "@/components/partner-logos";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
+import { useIsMobile } from "@/lib/use-is-mobile";
 
 const events = [
   {
@@ -190,6 +191,7 @@ function EventCard({ event }: { event: (typeof events)[0] }) {
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     setIsClient(true);
@@ -200,8 +202,8 @@ export default function Home() {
       <Navbar />
 
       {/* HERO SECTION */}
-      <section id="top" style={{ maxWidth: "1360px", margin: "0 auto", padding: "96px 32px 28px", backgroundImage: "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)", backgroundSize: "26px 26px", backgroundPosition: "-8px -8px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.15fr 0.85fr", gap: "64px", alignItems: "center" }}>
+      <section id="top" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "48px 20px 28px" : "96px 32px 28px", backgroundImage: "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)", backgroundSize: "26px 26px", backgroundPosition: "-8px -8px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.15fr 0.85fr", gap: isMobile ? "40px" : "64px", alignItems: "center" }}>
           {/* Left column */}
           <div>
             {/* Eyebrow pill */}
@@ -253,8 +255,8 @@ export default function Home() {
       </section>
 
       {/* TRUSTED BY SECTION - Two Carousels */}
-      <section style={{ borderTop: "1px solid rgba(255,255,255,0.09)", borderBottom: "1px solid rgba(255,255,255,0.09)", padding: "70px 32px 90px", overflow: "visible" }}>
-        <div style={{ maxWidth: "1360px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "48px", alignItems: "flex-start" }}>
+      <section style={{ borderTop: "1px solid rgba(255,255,255,0.09)", borderBottom: "1px solid rgba(255,255,255,0.09)", padding: isMobile ? "48px 20px 56px" : "70px 32px 90px", overflow: "visible" }}>
+        <div style={{ maxWidth: "1360px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "48px" : "48px", alignItems: "flex-start" }}>
           {/* Left: Partner Logos Carousel */}
           <div style={{ overflow: "hidden", minWidth: 0 }}>
             <h3 style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", margin: "0 0 32px" }}>
@@ -292,7 +294,7 @@ export default function Home() {
       </section>
 
       {/* EVENTS SECTION */}
-      <section id="events" style={{ maxWidth: "1360px", margin: "0 auto", padding: "110px 32px 100px" }}>
+      <section id="events" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "56px 20px 56px" : "110px 32px 100px" }}>
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "24px", marginBottom: "48px" }}>
           <div>
@@ -318,12 +320,12 @@ export default function Home() {
 
       {/* STATS SECTION */}
       <section id="stats" style={{ borderTop: "1px solid rgba(255,255,255,0.09)", borderBottom: "1px solid rgba(255,255,255,0.09)", backgroundColor: "#0F1A15" }}>
-        <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px", display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-          <div style={{ padding: "56px 40px 56px 0", borderRight: "1px solid rgba(255,255,255,0.09)" }}>
+        <div style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 32px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr" }}>
+          <div style={{ padding: isMobile ? "40px 0" : "56px 40px 56px 0", borderRight: isMobile ? "none" : "1px solid rgba(255,255,255,0.09)", borderBottom: isMobile ? "1px solid rgba(255,255,255,0.09)" : "none" }}>
             <div style={{ fontFamily: "IBM Plex Mono", fontSize: "44px", fontWeight: "500", color: "#E8B923", letterSpacing: "-0.01em" }}>4,973+</div>
             <div style={{ fontSize: "15px", color: "rgba(245,243,237,0.6)", marginTop: "10px" }}>Students & young professionals in the LEAF community — and growing every day.</div>
           </div>
-          <div style={{ padding: "56px 0 56px 40px" }}>
+          <div style={{ padding: isMobile ? "40px 0" : "56px 0 56px 40px" }}>
             <div style={{ fontFamily: "IBM Plex Mono", fontSize: "44px", fontWeight: "500", color: "#2FBF8F", letterSpacing: "-0.01em" }}>3,500+</div>
             <div style={{ fontSize: "15px", color: "rgba(245,243,237,0.6)", marginTop: "10px" }}>Members supported into placements, internships and opportunities.</div>
           </div>
@@ -331,8 +333,8 @@ export default function Home() {
       </section>
 
       {/* PATHERA AI SECTION */}
-      <section id="pathera" style={{ maxWidth: "1360px", margin: "0 auto", padding: "110px 32px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: "64px", alignItems: "center", border: "1px solid rgba(47,191,143,0.3)", borderRadius: "12px", padding: "56px", backgroundColor: "rgba(47,191,143,0.05)" }}>
+      <section id="pathera" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "56px 20px" : "110px 32px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.9fr 1.1fr", gap: isMobile ? "32px" : "64px", alignItems: "center", border: "1px solid rgba(47,191,143,0.3)", borderRadius: "12px", padding: isMobile ? "32px 24px" : "56px", backgroundColor: "rgba(47,191,143,0.05)" }}>
           {/* Icon */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
             <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#2FBF8F" strokeWidth="1.2">
@@ -367,8 +369,8 @@ export default function Home() {
       </section>
 
       {/* ABOUT SECTION */}
-      <section id="about" style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px 120px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "0.85fr 1.15fr", gap: "64px" }}>
+      <section id="about" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "0 20px 64px" : "0 32px 120px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.85fr 1.15fr", gap: isMobile ? "24px" : "64px" }}>
           <div>
             <div style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.1em", color: "#E8B923", marginBottom: "14px" }}>(02) ABOUT US</div>
             <h2 style={{ fontFamily: "Space Grotesk", fontWeight: "700", fontSize: "clamp(30px, 3.4vw, 44px)", margin: 0, lineHeight: "1.1", letterSpacing: "-0.01em", color: "#F5F3ED" }}>
