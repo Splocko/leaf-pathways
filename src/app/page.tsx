@@ -256,7 +256,7 @@ export default function Home() {
       </section>
 
       {/* TRUSTED BY SECTION - Two Carousels */}
-      <section style={{ borderTop: "1px solid rgba(255,255,255,0.09)", borderBottom: "1px solid rgba(255,255,255,0.09)", padding: isMobile ? "48px 20px 56px" : "70px 32px 90px", overflow: "visible" }}>
+      <section style={{ borderTop: "1px solid rgba(255,255,255,0.16)", borderBottom: "1px solid rgba(255,255,255,0.16)", padding: isMobile ? "48px 20px 56px" : "70px 32px 90px", overflow: "visible" }}>
         <div style={{ maxWidth: "1360px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "48px" : "48px", alignItems: "flex-start" }}>
           {/* Left: Partner Logos Carousel */}
           <div style={{ overflow: "hidden", minWidth: 0 }}>
@@ -320,9 +320,9 @@ export default function Home() {
       </section>
 
       {/* STATS SECTION */}
-      <section id="stats" style={{ borderTop: "1px solid rgba(255,255,255,0.09)", borderBottom: "1px solid rgba(255,255,255,0.09)" }}>
+      <section id="stats" style={{ borderTop: "1px solid rgba(255,255,255,0.16)", borderBottom: "1px solid rgba(255,255,255,0.16)" }}>
         <div style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 32px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr" }}>
-          <div style={{ padding: isMobile ? "40px 0" : "56px 40px 56px 0", borderRight: isMobile ? "none" : "1px solid rgba(255,255,255,0.09)", borderBottom: isMobile ? "1px solid rgba(255,255,255,0.09)" : "none" }}>
+          <div style={{ padding: isMobile ? "40px 0" : "56px 40px 56px 0", borderRight: isMobile ? "none" : "1px solid rgba(255,255,255,0.16)", borderBottom: isMobile ? "1px solid rgba(255,255,255,0.16)" : "none" }}>
             <div style={{ fontFamily: "IBM Plex Mono", fontSize: "44px", fontWeight: "500", color: "#E8B923", letterSpacing: "-0.01em" }}>4,973+</div>
             <div style={{ fontSize: "15px", color: "rgba(245,243,237,0.6)", marginTop: "10px" }}>Students & young professionals in the LEAF community — and growing every day.</div>
           </div>
