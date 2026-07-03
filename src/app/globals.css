@@ -126,8 +126,8 @@
 }
 
 body {
-  background: linear-gradient(135deg, #0a1310 0%, #0f2118 22%, #17331f 46%, #103524 62%, #0d1e16 80%, #0a1310 100%);
-  background-size: 300% 300%;
+  background: linear-gradient(135deg, #060b09 0%, #0d1f16 18%, #1f4a2c 40%, #123a28 55%, #082e1f 68%, #071510 84%, #060b09 100%);
+  background-size: 320% 320%;
   background-attachment: fixed;
   animation: siteGradientShift 26s ease-in-out infinite;
 }

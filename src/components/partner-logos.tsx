@@ -10,11 +10,6 @@ export const PartnerLogos = [
     logo: "https://leafpathways.com/images/partners/oasis-sm.webp",
   },
   {
-    id: "pathera",
-    name: "Pathera",
-    logo: "https://leafpathways.com/images/partners/pathera.webp",
-  },
-  {
     id: "skl",
     name: "SKL",
     logo: "https://leafpathways.com/images/partners/skl-sm.webp",

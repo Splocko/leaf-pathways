@@ -125,7 +125,6 @@ export function Footer() {
               <Link href="#events" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Events calendar</Link>
               <Link href="#partners" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Partner network</Link>
               <Link href="#about" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Our mission</Link>
-              <Link href="#pathera" style={{ color: "#E8B923", textDecoration: "none", fontSize: "14.5px" }}>Pathera AI tool</Link>
             </div>
           </div>
 

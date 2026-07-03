@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { JoinCommunityDialog } from "@/components/join-community-dialog";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -68,7 +69,7 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav style={{ flex: 1, alignItems: "center", gap: "4px", justifyContent: "center" }} className="hidden lg:flex">
-          <Link href="#top" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", fontFamily: "IBM Plex Sans", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
+          <Link href="#top" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "16px", fontWeight: "500", fontFamily: "IBM Plex Sans", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
 
           {Object.entries(dropdownItems).map(([label, items]) => (
             <div key={label} style={{ position: "relative" }} onMouseEnter={() => setOpenMenu(label)} onMouseLeave={() => setOpenMenu(null)}>
@@ -77,7 +78,7 @@ export function Navbar() {
                 alignItems: "center",
                 gap: "5px",
                 color: "#F5F3ED",
-                fontSize: "14px",
+                fontSize: "16px",
                 fontWeight: "500",
                 fontFamily: "IBM Plex Sans",
                 padding: "10px 14px",
@@ -129,16 +130,10 @@ export function Navbar() {
 
         {/* Right actions */}
         <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
-          <Link href="https://pathera.io" target="_blank" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "14px", fontWeight: "500", fontFamily: "IBM Plex Sans", padding: "8px 12px", borderRadius: "4px", display: "flex", alignItems: "center", gap: "4px", opacity: 0.7 }}>
-            Pathera
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-              <path d="M7 17L17 7M9 7h8v8"></path>
-            </svg>
-          </Link>
-          <Link href="#contact" style={{
+          <JoinCommunityDialog style={{
             backgroundColor: "#E8B923",
             color: "#0B1410",
-            textDecoration: "none",
+            border: "none",
             fontSize: "14px",
             fontWeight: "600",
             padding: "10px 20px",
@@ -146,8 +141,8 @@ export function Navbar() {
             fontFamily: "Space Grotesk",
             cursor: "pointer",
           }} className="hidden sm:inline-block">
-            Join Network
-          </Link>
+            Join the community
+          </JoinCommunityDialog>
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -179,7 +174,6 @@ export function Navbar() {
           <Link href="#about" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>About us</Link>
           <Link href="#" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Media</Link>
           <Link href="#" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>LEAF Academy</Link>
-          <Link href="https://pathera.io" target="_blank" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Pathera</Link>
           <Link href="#contact" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Contact</Link>
           <div style={{ display: "flex", gap: "12px", marginTop: "12px" }}>
             <Link href="#" style={{
@@ -195,19 +189,19 @@ export function Navbar() {
             }}>
               Login
             </Link>
-            <Link href="#contact" style={{
+            <JoinCommunityDialog style={{
               flex: 1,
               textAlign: "center",
               backgroundColor: "#E8B923",
               color: "#0B1410",
-              textDecoration: "none",
+              border: "none",
               padding: "12px",
               borderRadius: "4px",
               fontWeight: "600",
               fontSize: "14px",
             }}>
-              Join Network
-            </Link>
+              Join the community
+            </JoinCommunityDialog>
           </div>
         </div>
       )}

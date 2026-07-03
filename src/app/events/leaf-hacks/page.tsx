@@ -20,6 +20,11 @@ export default function LeafHacks() {
             ← Back to Events
           </Link>
 
+          {/* Event image — 16/9, matches the thumbnail on the homepage event card */}
+          <div style={{ position: "relative", aspectRatio: "16/9", borderRadius: "8px", overflow: "hidden", backgroundColor: "#e5e5e5", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "32px" }}>
+            <span style={{ color: "#888", fontSize: "14px", fontWeight: 500 }}>[Event image]</span>
+          </div>
+
           <h1 className="text-5xl md:text-6xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-400">
             LEAF Hacks
           </h1>

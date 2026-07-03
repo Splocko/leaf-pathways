@@ -5,8 +5,9 @@ import { Footer } from "@/components/footer";
 import { PartnerLogos } from "@/components/partner-logos";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useIsMobile } from "@/lib/use-is-mobile";
+import { JoinCommunityDialog } from "@/components/join-community-dialog";
 
 const events = [
   {
@@ -17,6 +18,7 @@ const events = [
     desc: "UCAS prep, personal statements, work experience and application support.",
     ctaLabel: "Register interest",
     id: "event-healthcare",
+    href: "/events/healthcare-bootcamp",
   },
   {
     tag: "SOLD OUT",
@@ -26,6 +28,7 @@ const events = [
     desc: "A 24-hour build sprint for students who want to create, iterate, and pitch under pressure.",
     ctaLabel: "Join the waitlist",
     id: "event-hacks",
+    href: "/events/leaf-hacks",
   },
   {
     tag: "COMING SOON",
@@ -35,6 +38,7 @@ const events = [
     desc: "Winning applications, final interview prep, and the insider knowledge that gets you hired.",
     ctaLabel: "Register interest",
     id: "event-apprenticeship",
+    href: "/events/apprenticeship-bootcamp",
   },
 ];
 
@@ -147,8 +151,8 @@ function EventCard({ event }: { event: (typeof events)[0] }) {
 
   return (
     <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", overflow: "hidden", backgroundColor: "#0F1A15", display: "flex", flexDirection: "column", height: "100%" }}>
-      {/* Image placeholder */}
-      <div style={{ position: "relative", height: "170px", backgroundColor: "rgba(245,243,237,0.03)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+      {/* Image — fixed 16/9 aspect ratio, matched on the event detail page so photos never crop inconsistently between the two */}
+      <Link href={event.href} style={{ position: "relative", aspectRatio: "16/9", backgroundColor: "rgba(245,243,237,0.03)", display: "flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>
         <div style={{ color: "rgba(245,243,237,0.3)", fontSize: "14px", fontWeight: "500" }}>[Event image]</div>
         {/* Status pill */}
         <div style={{
@@ -167,7 +171,7 @@ function EventCard({ event }: { event: (typeof events)[0] }) {
         }}>
           {event.tag}
         </div>
-      </div>
+      </Link>
 
       {/* Content */}
       <div style={{ padding: "24px", display: "flex", flexDirection: "column", gap: "10px", flex: 1 }}>
@@ -175,12 +179,12 @@ function EventCard({ event }: { event: (typeof events)[0] }) {
           {event.date}
         </div>
         <h3 style={{ fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "19px", margin: 0, lineHeight: "1.25" }}>
-          {event.title}
+          <Link href={event.href} style={{ color: "inherit", textDecoration: "none" }}>{event.title}</Link>
         </h3>
         <p style={{ fontSize: "14px", lineHeight: "1.55", color: "rgba(245,243,237,0.6)", margin: 0, flex: 1 }}>
           {event.desc}
         </p>
-        <Link href="#" style={{ display: "inline-flex", alignItems: "center", gap: "7px", color: "#E8B923", textDecoration: "none", fontWeight: "600", fontSize: "14px", marginTop: "6px" }}>
+        <Link href={event.href} style={{ display: "inline-flex", alignItems: "center", gap: "7px", color: "#E8B923", textDecoration: "none", fontWeight: "600", fontSize: "14px", marginTop: "6px" }}>
           {event.ctaLabel}
           <ArrowRight size={14} />
         </Link>
@@ -219,18 +223,21 @@ export default function Home() {
 
             {/* Subhead */}
             <p style={{ fontSize: "18px", lineHeight: "1.6", color: "rgba(245,243,237,0.68)", maxWidth: "520px", margin: "0 0 32px" }}>
-              The UK student network for <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Law, Engineering & Technology</strong>, <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Finance</strong>, and beyond. Internships, apprenticeships, and placements that matter. Real connections, real opportunities.
+              The UK student network for <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Law, Engineering/Tech And Finance</strong>, and beyond. Internships, apprenticeships, and placements that matter. Real connections, real opportunities.
             </p>
 
             {/* CTAs */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
-              <Link href="#contact" style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "#E8B923", color: "#0B1410", textDecoration: "none", fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "15px", padding: "15px 26px", borderRadius: "4px", border: "none", cursor: "pointer", transition: "background-color 0.2s" }}>
+              <JoinCommunityDialog style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "#E8B923", color: "#0B1410", fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "15px", padding: "15px 26px", borderRadius: "4px", border: "none", cursor: "pointer" }}>
                 Join the community
                 <ArrowRight size={16} />
-              </Link>
-              <Link href="#" style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "transparent", color: "#F5F3ED", textDecoration: "none", fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "15px", padding: "15px 26px", borderRadius: "4px", border: "1.5px solid rgba(47,191,143,0.5)", cursor: "pointer", transition: "all 0.2s" }}>
-                Explore Pathera
-              </Link>
+              </JoinCommunityDialog>
+            </div>
+
+            {/* Member count */}
+            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "20px" }}>
+              <span style={{ fontFamily: "IBM Plex Mono", fontSize: "14px", fontWeight: "500", color: "#E8B923" }}>4,973+</span>
+              <span style={{ fontSize: "13.5px", color: "rgba(245,243,237,0.55)" }}>students already in the community</span>
             </div>
           </div>
 
@@ -260,7 +267,7 @@ export default function Home() {
           {/* Left: Partner Logos Carousel */}
           <div style={{ overflow: "hidden", minWidth: 0 }}>
             <h3 style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", margin: "0 0 32px" }}>
-              TRUSTED BY PARTNERS
+              TRUSTED BY
             </h3>
             <div style={{ overflow: "hidden", position: "relative", height: "140px", width: "100%" }}>
               <div style={{ display: "flex", gap: "40px", animation: "logoCarousel 20s linear infinite", willChange: "transform", width: "max-content" }}>
@@ -328,42 +335,6 @@ export default function Home() {
           <div style={{ padding: isMobile ? "40px 0" : "56px 0 56px 40px" }}>
             <div style={{ fontFamily: "IBM Plex Mono", fontSize: "44px", fontWeight: "500", color: "#2FBF8F", letterSpacing: "-0.01em" }}>3,500+</div>
             <div style={{ fontSize: "15px", color: "rgba(245,243,237,0.6)", marginTop: "10px" }}>Members supported into placements, internships and opportunities.</div>
-          </div>
-        </div>
-      </section>
-
-      {/* PATHERA AI SECTION */}
-      <section id="pathera" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "56px 20px" : "110px 32px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.9fr 1.1fr", gap: isMobile ? "32px" : "64px", alignItems: "center", border: "1px solid rgba(47,191,143,0.3)", borderRadius: "12px", padding: isMobile ? "32px 24px" : "56px", backgroundColor: "rgba(47,191,143,0.05)" }}>
-          {/* Icon */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#2FBF8F" strokeWidth="1.2">
-              <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"></path>
-            </svg>
-          </div>
-
-          {/* Copy */}
-          <div>
-            <div style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.1em", color: "#2FBF8F", marginBottom: "14px" }}>EXCLUSIVE PARTNER TECHNOLOGY</div>
-            <h2 style={{ fontFamily: "Space Grotesk", fontWeight: "700", fontSize: "clamp(28px, 3.2vw, 40px)", margin: "0 0 18px", lineHeight: "1.15", color: "#F5F3ED" }}>
-              Your career, <span style={{ color: "#2FBF8F" }}>accelerated.</span>
-            </h2>
-            <p style={{ fontSize: "16px", lineHeight: "1.6", color: "rgba(245,243,237,0.68)", margin: "0 0 20px", maxWidth: "520px" }}>
-              Pathera gives LEAF members a genuine edge: instant CV analysis, structured interview preparation, and a career roadmap built around your goals.
-            </p>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px", color: "rgba(245,243,237,0.6)", marginBottom: "32px" }}>
-              <Check size={16} style={{ color: "#2FBF8F", flexShrink: 0 }} />
-              AI-powered CV grading & optimisation
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "14px" }}>
-              <Link href="#" style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "#2FBF8F", color: "#0B1410", textDecoration: "none", fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "15px", padding: "14px 24px", borderRadius: "4px", cursor: "pointer" }}>
-                Visit Pathera.io
-                <ArrowRight size={14} />
-              </Link>
-              <Link href="#contact" style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "transparent", color: "#F5F3ED", textDecoration: "none", fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "15px", padding: "14px 24px", borderRadius: "4px", border: "1.5px solid rgba(255,255,255,0.18)", cursor: "pointer" }}>
-                Join community
-              </Link>
-            </div>
           </div>
         </div>
       </section>

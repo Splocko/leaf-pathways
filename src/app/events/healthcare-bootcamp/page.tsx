@@ -4,11 +4,11 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Apprenticeship Bootcamp | LEAF Pathways",
-  description: "Comprehensive training for aspiring apprentices in tech and business.",
+  title: "Healthcare Bootcamp | LEAF Pathways",
+  description: "UCAS prep, personal statements, work experience and application support.",
 };
 
-export default function ApprenticeshipBootcamp() {
+export default function HealthcareBootcamp() {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
@@ -24,11 +24,11 @@ export default function ApprenticeshipBootcamp() {
           </div>
 
           <h1 className="text-5xl md:text-6xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-400">
-            Apprenticeship Bootcamp
+            LEAF Healthcare Bootcamp
           </h1>
           <div className="prose prose-invert max-w-none space-y-8 text-lg mb-12">
             <p className="text-muted-foreground leading-relaxed">
-              Get ready for your apprenticeship with our comprehensive bootcamp program. Develop the skills employers are looking for in tech and business. More details coming soon.
+              UCAS prep, personal statements, work experience and application support for students pursuing a career in healthcare. More details coming soon.
             </p>
           </div>
           <Button className="rounded-full glow-gold">Register Interest</Button>
