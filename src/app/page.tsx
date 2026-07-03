@@ -236,8 +236,8 @@ export default function Home() {
 
             {/* Member count */}
             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "20px" }}>
-              <span style={{ fontFamily: "IBM Plex Mono", fontSize: "14px", fontWeight: "500", color: "#E8B923" }}>4,973+</span>
-              <span style={{ fontSize: "13.5px", color: "rgba(245,243,237,0.55)" }}>students already in the community</span>
+              <span style={{ fontFamily: "IBM Plex Mono", fontSize: "16px", fontWeight: "500", color: "#E8B923" }}>4,973+</span>
+              <span style={{ fontSize: "15px", color: "rgba(245,243,237,0.55)" }}>students and young professionals already building momentum</span>
             </div>
           </div>
 
@@ -253,12 +253,6 @@ export default function Home() {
             <div style={{ position: "absolute", bottom: "-10px", right: "-10px", width: "34px", height: "34px", borderBottom: "3px solid #E8B923", borderRight: "3px solid #E8B923" }}></div>
           </div>
         </div>
-
-        {/* Stat strip - spans full hero width */}
-        <div style={{ display: "flex", alignItems: "center", gap: "14px", marginTop: "56px", paddingTop: "28px", borderTop: "1px solid rgba(255,255,255,0.09)" }}>
-          <span style={{ fontFamily: "IBM Plex Mono", fontSize: "26px", fontWeight: "500", color: "#E8B923" }}>4,973+</span>
-          <span style={{ fontSize: "14px", color: "rgba(245,243,237,0.55)", maxWidth: "320px", lineHeight: "1.4" }}>students and young professionals already building momentum</span>
-        </div>
       </section>
 
       {/* TRUSTED BY SECTION - Two Carousels */}
@@ -273,7 +267,7 @@ export default function Home() {
               <div style={{ display: "flex", gap: "40px", animation: "logoCarousel 20s linear infinite", willChange: "transform", width: "max-content" }}>
                 {isClient && [...PartnerLogos, ...PartnerLogos].map((partner, idx) => (
                   <div key={idx} style={{ width: "140px", height: "140px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.7, transition: "opacity 0.3s ease", cursor: "pointer" }} onMouseEnter={(e) => e.currentTarget.style.opacity = "1"} onMouseLeave={(e) => e.currentTarget.style.opacity = "0.7"}>
-                    <img src={partner.logo} alt={partner.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                    <img src={partner.logo} alt={partner.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", filter: "brightness(0) invert(1)" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
                   </div>
                 ))}
               </div>
@@ -340,7 +334,7 @@ export default function Home() {
       </section>
 
       {/* ABOUT SECTION */}
-      <section id="about" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "0 20px 64px" : "0 32px 120px" }}>
+      <section id="about" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "56px 20px 64px" : "110px 32px 120px" }}>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.85fr 1.15fr", gap: isMobile ? "24px" : "64px" }}>
           <div>
             <div style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.1em", color: "#E8B923", marginBottom: "14px" }}>(02) ABOUT US</div>
@@ -356,9 +350,7 @@ export default function Home() {
               Built by students who've been there, we know how hard it is to break into competitive industries without the right people in your corner. That's precisely why LEAF exists.
             </p>
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.12)", paddingTop: "28px" }}>
-              <div style={{ fontFamily: "IBM Plex Mono", fontSize: "32px", fontWeight: "500", color: "#E8B923" }}>3,500+</div>
-              <div style={{ fontSize: "14px", color: "rgba(245,243,237,0.5)", marginTop: "6px" }}>Members and counting</div>
-              <p style={{ fontStyle: "italic", fontSize: "18px", color: "#F5F3ED", margin: "24px 0 0", fontFamily: "Space Grotesk", fontWeight: "500" }}>
+              <p style={{ fontStyle: "italic", fontSize: "18px", color: "#F5F3ED", margin: 0, fontFamily: "Space Grotesk", fontWeight: "500" }}>
                 "We turn potential into placement."
               </p>
             </div>
