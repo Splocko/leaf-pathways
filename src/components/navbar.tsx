@@ -18,7 +18,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const dropdownItems = {
+  const dropdownItems: Record<string, { title: string; desc?: string }[]> = {
     "About us": [
       { title: "Our mission", desc: "What LEAF is, and why it exists." },
       { title: "Meet the team", desc: "Run by students, for students." },

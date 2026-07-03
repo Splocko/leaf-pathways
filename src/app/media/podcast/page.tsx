@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Play, Music, Spotify } from "lucide-react";
+import { Play, Music } from "lucide-react";
 
 export const metadata = {
   title: "Branching Out Podcast | LEAF Pathways",
@@ -75,7 +75,7 @@ export default function Podcast() {
                 Apple Podcasts
               </Button>
               <Button variant="outline" className="rounded-lg gap-2">
-                <Spotify className="w-4 h-4" />
+                <Music className="w-4 h-4" />
                 Spotify
               </Button>
               <Button variant="outline" className="rounded-lg gap-2">
@@ -177,7 +177,7 @@ export default function Podcast() {
                 Subscribe on Apple
               </Button>
               <Button variant="outline" className="rounded-lg">
-                <Spotify className="w-4 h-4 mr-2" />
+                <Music className="w-4 h-4 mr-2" />
                 Subscribe on Spotify
               </Button>
             </div>
