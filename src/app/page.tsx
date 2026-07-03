@@ -115,7 +115,7 @@ function PhotoMarquee() {
           From the group chat to <span style={{ color: "#2FBF8F" }}>real life</span>.
         </h2>
         <p style={{ fontSize: "16px", color: "rgba(245,243,237,0.6)", margin: "14px 0 0", maxWidth: "520px" }}>
-          Bootcamps, competitions, insight days and socials — this is what LEAF looks like in person.
+          Bootcamps, competitions, insight days and socials: this is what LEAF looks like in person.
         </p>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -261,23 +261,23 @@ export default function Home() {
       }} />
 
       {/* HERO SECTION */}
-      <section id="top" className="px-5 pt-12 pb-7 md:px-8 md:pt-24" style={{ maxWidth: "1360px", margin: "0 auto", position: "relative", zIndex: 1 }}>
-        <div className="grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr] gap-10 md:gap-16 items-center">
+      <section id="top" className="px-5 pt-8 pb-7 md:px-8 md:pt-24" style={{ maxWidth: "1360px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_1.05fr] gap-10 md:gap-16 items-center">
           {/* Left column */}
           <div>
             {/* Eyebrow pill */}
             <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", border: "1px solid rgba(232,185,35,0.4)", backgroundColor: "rgba(232,185,35,0.08)", color: "#E8B923", fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: "500", letterSpacing: "0.08em", padding: "7px 14px", borderRadius: "999px", marginBottom: "28px" }}>
               <span style={{ width: "6px", height: "6px", borderRadius: "999px", backgroundColor: "#E8B923" }}></span>
-              NEW EVENTS — REGISTER NOW
+              NEW EVENTS: REGISTER NOW
             </div>
 
             {/* H1 */}
-            <h1 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "clamp(40px, 5.4vw, 72px)", lineHeight: "1.03", letterSpacing: "-0.02em", margin: "0 0 24px", color: "#F5F3ED" }}>
+            <h1 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "clamp(46px, 8vw, 72px)", lineHeight: "1.03", letterSpacing: "-0.02em", margin: "0 0 20px", color: "#F5F3ED" }}>
               The Home of<br /><span style={{ color: "#E8B923" }}>Ambition</span>.
             </h1>
 
             {/* Subhead */}
-            <p style={{ fontSize: "18px", lineHeight: "1.6", color: "rgba(245,243,237,0.68)", maxWidth: "520px", margin: "0 0 32px" }}>
+            <p style={{ fontSize: "clamp(15px, 1.6vw, 18px)", lineHeight: "1.55", color: "rgba(245,243,237,0.68)", maxWidth: "520px", margin: "0 0 clamp(20px, 3vw, 32px)" }}>
               The UK student network for <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Law, Engineering/Tech, and Finance</strong>. Creating opportunities for the next generation of young professionals.
             </p>
 
@@ -291,7 +291,7 @@ export default function Home() {
 
             {/* Member count */}
             <div style={{ display: "flex", alignItems: "center", gap: "14px", marginTop: "22px" }}>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "34px", fontWeight: "500", color: "#E8B923", lineHeight: 1, letterSpacing: "-0.01em", flexShrink: 0 }}>4,000+</span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "clamp(26px, 6vw, 34px)", fontWeight: "500", color: "#E8B923", lineHeight: 1, letterSpacing: "-0.01em", flexShrink: 0 }}>4,000+</span>
               <span style={{ fontSize: "14px", lineHeight: 1.35, color: "rgba(245,243,237,0.6)", maxWidth: "240px" }}>students &amp; young professionals building momentum</span>
             </div>
           </div>
@@ -358,7 +358,7 @@ export default function Home() {
             <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "clamp(30px, 3.4vw, 44px)", lineHeight: "1.1", margin: 0, letterSpacing: "-0.01em", color: "#F5F3ED" }}>
               Connect at our <span style={{ color: "#E8B923" }}>major events</span>.
             </h2>
-            <p style={{ fontSize: "16px", color: "rgba(245,243,237,0.6)", margin: "14px 0 0", maxWidth: "440px" }}>A packed calendar this year — book your place before spots fill up.</p>
+            <p style={{ fontSize: "16px", color: "rgba(245,243,237,0.6)", margin: "14px 0 0", maxWidth: "440px" }}>A packed calendar this year. Book your place before spots fill up.</p>
           </div>
           <Link href="/events" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#F5F3ED", textDecoration: "none", fontWeight: "600", fontSize: "14px", border: "1px solid rgba(255,255,255,0.18)", padding: "12px 20px", borderRadius: "4px", cursor: "pointer", flexShrink: 0 }}>
             View full calendar
@@ -382,7 +382,7 @@ export default function Home() {
         <div className="px-5 md:px-8 grid grid-cols-1 md:grid-cols-2" style={{ maxWidth: "1360px", margin: "0 auto" }}>
           <div className="py-10 md:py-14 md:pr-10 border-b md:border-b-0 md:border-r border-white/[0.16]">
             <div style={{ fontFamily: "var(--font-mono)", fontSize: "44px", fontWeight: "500", color: "#E8B923", letterSpacing: "-0.01em" }}>4,000+</div>
-            <div style={{ fontSize: "15px", color: "rgba(245,243,237,0.6)", marginTop: "10px" }}>Students & young professionals in the LEAF community — and growing every day.</div>
+            <div style={{ fontSize: "15px", color: "rgba(245,243,237,0.6)", marginTop: "10px" }}>Students & young professionals in the LEAF community, and growing every day.</div>
           </div>
           <div className="py-10 md:py-14 md:pl-10">
             <div style={{ fontFamily: "var(--font-mono)", fontSize: "44px", fontWeight: "500", color: "#2FBF8F", letterSpacing: "-0.01em" }}>10,000+</div>
@@ -402,7 +402,7 @@ export default function Home() {
           </div>
           <div>
             <p style={{ fontSize: "17px", lineHeight: "1.7", color: "rgba(245,243,237,0.72)", margin: "0 0 20px" }}>
-              LEAF Pathways is one of the UK's fastest-growing student communities — the home of opportunity for the next generation of ambitious young professionals. Our mission is to inspire youth early, so every young person has a competitive shot at success, regardless of their background.
+              LEAF Pathways is one of the UK's fastest-growing student communities: the home of opportunity for the next generation of ambitious young professionals. Our mission is to inspire youth early, so every young person has a competitive shot at success, regardless of their background.
             </p>
             <p style={{ fontSize: "17px", lineHeight: "1.7", color: "rgba(245,243,237,0.72)", margin: "0 0 36px" }}>
               Spanning Law, Engineering, Tech and Finance, LEAF has supported 10,000+ students nationwide with the careers, experiences, and networks that were once out of reach.

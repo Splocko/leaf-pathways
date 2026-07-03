@@ -66,7 +66,7 @@ export function Navbar() {
           className={cn("transition-opacity duration-300", mobileFloating && "max-lg:opacity-0 max-lg:pointer-events-none")}
           style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", flexShrink: 0 }}
         >
-          <img src="https://leafpathways.com/images/leaflogo.png" alt="LEAF Pathways" style={{ height: "36px", width: "auto" }} />
+          <img src="/leaf-icon.png" alt="" style={{ height: "44px", width: "auto" }} />
           <span style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "24px", letterSpacing: "-0.01em" }}>
             <span style={{ color: "#E8B923" }}>LEAF</span>
             <span style={{ color: "#F5F3ED" }}> Pathways</span>

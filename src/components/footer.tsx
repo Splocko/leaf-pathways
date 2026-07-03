@@ -62,7 +62,7 @@ export function Footer() {
         }}>
           <div style={{ maxWidth: "460px" }}>
             <h3 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "24px", margin: "0 0 10px", color: "#F5F3ED" }}>Join the LEAF newsletter</h3>
-            <p style={{ fontSize: "15px", color: "rgba(245,243,237,0.62)", margin: 0, lineHeight: "1.6" }}>Be the first to hear about major opportunities, upcoming events, and industry insight — delivered to your inbox.</p>
+            <p style={{ fontSize: "15px", color: "rgba(245,243,237,0.62)", margin: 0, lineHeight: "1.6" }}>Be the first to hear about major opportunities, upcoming events, and industry insight, delivered to your inbox.</p>
           </div>
 
           {!submitted ? (
@@ -116,7 +116,7 @@ export function Footer() {
           {/* Brand Column */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-              <img src="https://leafpathways.com/images/leaflogo.png" alt="LEAF Pathways" style={{ height: "32px", width: "auto" }} />
+              <img src="/leaf-icon.png" alt="" style={{ height: "38px", width: "auto" }} />
               <span style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "17px", color: "#F5F3ED" }}>LEAF Pathways</span>
             </div>
             <p style={{ fontSize: "14px", lineHeight: "1.6", color: "rgba(245,243,237,0.5)", maxWidth: "280px", margin: "0 0 20px" }}>The student network for Law, Engineering/Tech and Finance. Success is built together, not alone.</p>

@@ -22,7 +22,7 @@ const sections = [
   },
   {
     title: "Our impact",
-    description: "The numbers behind the network — and the students behind the numbers.",
+    description: "The numbers behind the network, and the students behind the numbers.",
     href: "/about/impact",
   },
 ];
@@ -37,7 +37,7 @@ export default function About() {
             More than a network. A <span style={{ color: "#E8B923" }}>home for ambition</span>.
           </>
         }
-        subtitle="Run by students, for students. LEAF Pathways is one of the UK's fastest-growing student communities — the home of opportunity for the next generation of young professionals."
+        subtitle="Run by students, for students. LEAF Pathways is one of the UK's fastest-growing student communities: the home of opportunity for the next generation of young professionals."
       />
 
       <section className={`${PAGE_CONTAINER} pb-20 md:pb-28`}>

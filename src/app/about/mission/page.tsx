@@ -11,15 +11,15 @@ export const metadata = {
 const blocks = [
   {
     h: "What we do",
-    p: "LEAF Pathways is one of the UK's fastest-growing student communities — the home of opportunity for the next generation of ambitious young professionals. Through events, bootcamps, competitions and community, we connect driven students with the careers they've been working towards across Law, Engineering, Tech and Finance.",
+    p: "LEAF Pathways is one of the UK's fastest-growing student communities: the home of opportunity for the next generation of ambitious young professionals. Through events, bootcamps, competitions and community, we connect driven students with the careers they've been working towards across Law, Engineering, Tech and Finance.",
   },
   {
     h: "Our vision",
-    p: "A future where every young person has a competitive shot at success, regardless of their background. Where the brightest talent is discovered early, nurtured thoughtfully, and connected with opportunities that were once out of reach — because success is built together, not alone.",
+    p: "A future where every young person has a competitive shot at success, regardless of their background. Where the brightest talent is discovered early, nurtured thoughtfully, and connected with opportunities that were once out of reach, because success is built together, not alone.",
   },
   {
     h: "Our purpose",
-    p: "We exist to inspire youth early and democratise access to opportunity. Whether you're exploring a career path, preparing for an apprenticeship, sharpening your technical skills or building your network, LEAF provides the events, mentorship and community to help you thrive — so talent, not privilege, is what gets noticed.",
+    p: "We exist to inspire youth early and democratise access to opportunity. Whether you're exploring a career path, preparing for an apprenticeship, sharpening your technical skills or building your network, LEAF provides the events, mentorship and community to help you thrive, so talent, not privilege, is what gets noticed.",
   },
 ];
 
@@ -33,7 +33,7 @@ export default function Mission() {
             Our <span style={{ color: "#E8B923" }}>mission</span> &amp; vision.
           </>
         }
-        subtitle="Inspiring youth early, so every young person has a competitive shot at success — regardless of their background."
+        subtitle="Inspiring youth early, so every young person has a competitive shot at success, regardless of their background."
         back={{ href: "/about", label: "Back to About" }}
       />
 
