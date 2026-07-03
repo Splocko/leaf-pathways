@@ -6,7 +6,6 @@ import { PartnerLogos } from "@/components/partner-logos";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import { useIsMobile } from "@/lib/use-is-mobile";
 import { JoinCommunityDialog } from "@/components/join-community-dialog";
 
 const events = [
@@ -68,6 +67,65 @@ const testimonials = [
   },
 ];
 
+const communityPhotos = [
+  { file: "community-01.jpg", alt: "LEAF students at a corporate insight day" },
+  { file: "community-05.jpg", alt: "A packed auditorium at a LEAF event" },
+  { file: "community-03.jpg", alt: "LEAF members at a community social" },
+  { file: "community-07.jpg", alt: "A speaker taking questions at a LEAF event" },
+  { file: "community-09.jpg", alt: "Networking circles at a LEAF bootcamp" },
+  { file: "community-12.jpg", alt: "Students on stage at a LEAF competition" },
+  { file: "community-02.jpg", alt: "LEAF students visiting a partner office" },
+  { file: "community-11.jpg", alt: "Discussion groups at a LEAF event" },
+  { file: "community-14.jpg", alt: "Finalists on stage at a LEAF competition" },
+  { file: "community-06.jpg", alt: "The audience at a LEAF keynote" },
+  { file: "community-13.jpg", alt: "A LEAF workshop session" },
+  { file: "community-04.jpg", alt: "LEAF members at an insight day" },
+  { file: "community-10.jpg", alt: "Students networking at a LEAF event" },
+  { file: "community-08.jpg", alt: "A full house at a LEAF event" },
+];
+
+function PhotoMarquee() {
+  const rowA = communityPhotos.slice(0, 7);
+  const rowB = communityPhotos.slice(7);
+
+  const renderRow = (row: typeof communityPhotos, direction: "left" | "right") => (
+    <div style={{ overflow: "hidden", width: "100%" }}>
+      <div className={direction === "left" ? "marquee-track-left" : "marquee-track-right"} style={{ display: "flex", gap: "16px", width: "max-content", paddingRight: "16px" }}>
+        {[...row, ...row].map((photo, idx) => (
+          <img
+            key={idx}
+            src={`/events/thumbs/${photo.file}`}
+            alt={idx < row.length ? photo.alt : ""}
+            aria-hidden={idx >= row.length}
+            width={320}
+            height={214}
+            loading="lazy"
+            style={{ width: "320px", height: "214px", objectFit: "cover", borderRadius: "8px", border: "1px solid rgba(255,255,255,0.1)", flexShrink: 0 }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <section aria-label="LEAF events in photos" style={{ padding: "0 0 8px", overflow: "hidden" }}>
+      <div className="px-5 md:px-8" style={{ maxWidth: "1360px", margin: "0 auto 40px" }}>
+        <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.1em", color: "#2FBF8F", marginBottom: "14px" }}>(02) THE COMMUNITY</div>
+        <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "clamp(30px, 3.4vw, 44px)", lineHeight: "1.1", margin: 0, letterSpacing: "-0.01em", color: "#F5F3ED" }}>
+          From the group chat to <span style={{ color: "#2FBF8F" }}>real life</span>.
+        </h2>
+        <p style={{ fontSize: "16px", color: "rgba(245,243,237,0.6)", margin: "14px 0 0", maxWidth: "520px" }}>
+          Bootcamps, competitions, insight days and socials — this is what LEAF looks like in person.
+        </p>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        {renderRow(rowA, "left")}
+        {renderRow(rowB, "right")}
+      </div>
+    </section>
+  );
+}
+
 function TestimonialCarousel({ testimonials }: { testimonials: Array<{ name: string; title: string; quote: string }> }) {
   const [currentIdx, setCurrentIdx] = useState(0);
 
@@ -83,13 +141,13 @@ function TestimonialCarousel({ testimonials }: { testimonials: Array<{ name: str
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
       {/* Quote */}
-      <blockquote style={{ fontFamily: "Hanken Grotesk", fontSize: "16px", lineHeight: "1.6", color: "#F5F3ED", margin: 0, fontStyle: "italic", borderLeft: "4px solid #E8B923", paddingLeft: "20px" }}>
+      <blockquote style={{ fontFamily: "var(--font-sans)", fontSize: "16px", lineHeight: "1.6", color: "#F5F3ED", margin: 0, fontStyle: "italic", borderLeft: "4px solid #E8B923", paddingLeft: "20px" }}>
         "{current.quote}"
       </blockquote>
 
       {/* Attribution */}
       <div>
-        <div style={{ fontFamily: "Hanken Grotesk", fontWeight: "600", fontSize: "14px", color: "#F5F3ED" }}>
+        <div style={{ fontFamily: "var(--font-sans)", fontWeight: "600", fontSize: "14px", color: "#F5F3ED" }}>
           {current.name}
         </div>
         <div style={{ fontSize: "13px", color: "rgba(245,243,237,0.6)", marginTop: "3px" }}>
@@ -132,7 +190,7 @@ function EventCard({ event }: { event: (typeof events)[0] }) {
           position: "absolute",
           top: "12px",
           left: "12px",
-          fontFamily: "IBM Plex Mono",
+          fontFamily: "var(--font-mono)",
           fontSize: "11px",
           fontWeight: "500",
           letterSpacing: "0.06em",
@@ -148,10 +206,10 @@ function EventCard({ event }: { event: (typeof events)[0] }) {
 
       {/* Content */}
       <div style={{ padding: "24px", display: "flex", flexDirection: "column", gap: "10px", flex: 1 }}>
-        <div style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", color: "rgba(245,243,237,0.45)", letterSpacing: "0.04em" }}>
+        <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "rgba(245,243,237,0.45)", letterSpacing: "0.04em" }}>
           {event.date}
         </div>
-        <h3 style={{ fontFamily: "Hanken Grotesk", fontWeight: "600", fontSize: "19px", margin: 0, lineHeight: "1.25" }}>
+        <h3 style={{ fontFamily: "var(--font-sans)", fontWeight: "600", fontSize: "19px", margin: 0, lineHeight: "1.25" }}>
           <Link href={event.href} style={{ color: "inherit", textDecoration: "none" }}>{event.title}</Link>
         </h3>
         <p style={{ fontSize: "14px", lineHeight: "1.55", color: "rgba(245,243,237,0.6)", margin: 0, flex: 1 }}>
@@ -167,58 +225,54 @@ function EventCard({ event }: { event: (typeof events)[0] }) {
 }
 
 export default function Home() {
-  const [isClient, setIsClient] = useState(false);
-  const isMobile = useIsMobile();
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
   return (
     <main style={{ minHeight: "100vh", position: "relative", overflowX: "hidden" }}>
       <Navbar />
 
       {/* Background orbs — placed at different depths so they scroll naturally */}
 
-      {/* Orb 1: Hero area */}
+      {/* Orb 1: Hero area — no blur filter: softness is baked into the gradient falloff so iOS Safari paints it correctly and cheaply */}
       <div className="animate-orb-drift" style={{
         position: "absolute", top: "30vh", left: "50%",
-        width: "70vw", height: "70vw", maxWidth: "800px", maxHeight: "800px",
-        background: "radial-gradient(circle, rgba(47, 191, 143, 0.38) 0%, rgba(5, 30, 18, 0.12) 50%, transparent 72%)",
-        borderRadius: "50%", filter: "blur(120px)", pointerEvents: "none", zIndex: 0,
+        width: "min(130vw, 980px)", height: "min(130vw, 980px)",
+        background: "radial-gradient(circle, rgba(47, 191, 143, 0.34) 0%, rgba(47, 191, 143, 0.14) 34%, rgba(5, 30, 18, 0.05) 58%, transparent 74%)",
+        borderRadius: "50%", pointerEvents: "none", zIndex: 0,
+        transform: "translate(-50%, -50%)",
       }} />
 
       {/* Orb 2: Mid-page, offset to the right */}
       <div className="animate-orb-drift" style={{
         position: "absolute", top: "130vh", left: "65%",
-        width: "55vw", height: "55vw", maxWidth: "650px", maxHeight: "650px",
-        background: "radial-gradient(circle, rgba(47, 191, 143, 0.28) 0%, rgba(5, 30, 18, 0.08) 50%, transparent 72%)",
-        borderRadius: "50%", filter: "blur(130px)", pointerEvents: "none", zIndex: 0,
+        width: "min(105vw, 780px)", height: "min(105vw, 780px)",
+        background: "radial-gradient(circle, rgba(47, 191, 143, 0.26) 0%, rgba(47, 191, 143, 0.1) 34%, rgba(5, 30, 18, 0.04) 58%, transparent 74%)",
+        borderRadius: "50%", pointerEvents: "none", zIndex: 0,
+        transform: "translate(-50%, -50%)",
         animationDelay: "-6s",
       }} />
 
       {/* Orb 3: Lower section, offset to the left */}
       <div className="animate-orb-drift" style={{
         position: "absolute", top: "250vh", left: "30%",
-        width: "60vw", height: "60vw", maxWidth: "700px", maxHeight: "700px",
-        background: "radial-gradient(circle, rgba(47, 191, 143, 0.3) 0%, rgba(5, 30, 18, 0.1) 50%, transparent 72%)",
-        borderRadius: "50%", filter: "blur(125px)", pointerEvents: "none", zIndex: 0,
+        width: "min(115vw, 860px)", height: "min(115vw, 860px)",
+        background: "radial-gradient(circle, rgba(47, 191, 143, 0.28) 0%, rgba(47, 191, 143, 0.11) 34%, rgba(5, 30, 18, 0.04) 58%, transparent 74%)",
+        borderRadius: "50%", pointerEvents: "none", zIndex: 0,
+        transform: "translate(-50%, -50%)",
         animationDelay: "-12s",
       }} />
 
       {/* HERO SECTION */}
-      <section id="top" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "48px 20px 28px" : "96px 32px 28px", position: "relative", zIndex: 1 }}>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.15fr 0.85fr", gap: isMobile ? "40px" : "64px", alignItems: "center" }}>
+      <section id="top" className="px-5 pt-12 pb-7 md:px-8 md:pt-24" style={{ maxWidth: "1360px", margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <div className="grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr] gap-10 md:gap-16 items-center">
           {/* Left column */}
           <div>
             {/* Eyebrow pill */}
-            <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", border: "1px solid rgba(232,185,35,0.4)", backgroundColor: "rgba(232,185,35,0.08)", color: "#E8B923", fontFamily: "IBM Plex Mono", fontSize: "12px", fontWeight: "500", letterSpacing: "0.08em", padding: "7px 14px", borderRadius: "999px", marginBottom: "28px" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", border: "1px solid rgba(232,185,35,0.4)", backgroundColor: "rgba(232,185,35,0.08)", color: "#E8B923", fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: "500", letterSpacing: "0.08em", padding: "7px 14px", borderRadius: "999px", marginBottom: "28px" }}>
               <span style={{ width: "6px", height: "6px", borderRadius: "999px", backgroundColor: "#E8B923" }}></span>
               NEW EVENTS — REGISTER NOW
             </div>
 
             {/* H1 */}
-            <h1 style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "clamp(40px, 5.4vw, 72px)", lineHeight: "1.03", letterSpacing: "-0.02em", margin: "0 0 24px", color: "#F5F3ED" }}>
+            <h1 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "clamp(40px, 5.4vw, 72px)", lineHeight: "1.03", letterSpacing: "-0.02em", margin: "0 0 24px", color: "#F5F3ED" }}>
               Where ambition meets <span style={{ color: "#E8B923" }}>real opportunity</span> in LEAF.
             </h1>
 
@@ -229,7 +283,7 @@ export default function Home() {
 
             {/* CTAs */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
-              <JoinCommunityDialog style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "#E8B923", color: "#0B1410", fontFamily: "Hanken Grotesk", fontWeight: "600", fontSize: "15px", padding: "15px 26px", borderRadius: "4px", border: "none", cursor: "pointer" }}>
+              <JoinCommunityDialog style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "#E8B923", color: "#0B1410", fontFamily: "var(--font-sans)", fontWeight: "600", fontSize: "15px", padding: "15px 26px", borderRadius: "4px", border: "none", cursor: "pointer" }}>
                 Join the community
                 <ArrowRight size={16} />
               </JoinCommunityDialog>
@@ -237,7 +291,7 @@ export default function Home() {
 
             {/* Member count */}
             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "20px" }}>
-              <span style={{ fontFamily: "IBM Plex Mono", fontSize: "16px", fontWeight: "500", color: "#E8B923" }}>4,000+</span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: "500", color: "#E8B923" }}>4,000+</span>
               <span style={{ fontSize: "15px", color: "rgba(245,243,237,0.55)" }}>students and young professionals already building momentum</span>
             </div>
           </div>
@@ -245,7 +299,7 @@ export default function Home() {
           {/* Right column - Hero video */}
           <div style={{ position: "relative", display: "grid", placeItems: "center" }}>
             <div style={{ position: "relative", borderRadius: "8px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", width: "100%", aspectRatio: "16/9", backgroundColor: "rgba(245,243,237,0.03)" }}>
-              <video autoPlay muted loop playsInline style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}>
+              <video autoPlay muted loop playsInline poster="https://leafpathways.com/videos/vid1_poster.webp" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}>
                 <source src="https://leafpathways.com/videos/vid1.mp4" type="video/mp4" />
               </video>
             </div>
@@ -257,16 +311,16 @@ export default function Home() {
       </section>
 
       {/* TRUSTED BY SECTION - Two Carousels */}
-      <section style={{ borderTop: "1px solid rgba(255,255,255,0.16)", borderBottom: "1px solid rgba(255,255,255,0.16)", padding: isMobile ? "48px 20px 56px" : "70px 32px 90px", overflow: "visible" }}>
-        <div style={{ maxWidth: "1360px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "48px" : "48px", alignItems: "flex-start" }}>
+      <section className="px-5 pt-12 pb-14 md:px-8 md:pt-[70px] md:pb-[90px]" style={{ borderTop: "1px solid rgba(255,255,255,0.16)", borderBottom: "1px solid rgba(255,255,255,0.16)", overflow: "visible" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start" style={{ maxWidth: "1360px", margin: "0 auto" }}>
           {/* Left: Partner Logos Carousel */}
           <div style={{ overflow: "hidden", minWidth: 0 }}>
-            <h3 style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", margin: "0 0 32px" }}>
+            <h3 style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", margin: "0 0 32px" }}>
               TRUSTED BY
             </h3>
             <div style={{ overflow: "hidden", position: "relative", height: "140px", width: "100%" }}>
-              <div style={{ display: "flex", gap: "40px", animation: "logoCarousel 20s linear infinite", willChange: "transform", width: "max-content" }}>
-                {isClient && [...PartnerLogos, ...PartnerLogos].map((partner, idx) => (
+              <div data-carousel style={{ display: "flex", gap: "40px", animation: "logoCarousel 20s linear infinite", willChange: "transform", width: "max-content" }}>
+                {[...PartnerLogos, ...PartnerLogos].map((partner, idx) => (
                   <div key={idx} style={{ width: "140px", height: "140px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.7, transition: "opacity 0.3s ease", cursor: "pointer" }} onMouseEnter={(e) => e.currentTarget.style.opacity = "1"} onMouseLeave={(e) => e.currentTarget.style.opacity = "0.7"}>
                     <img src={partner.logo} alt={partner.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
                   </div>
@@ -277,7 +331,7 @@ export default function Home() {
 
           {/* Right: Testimonials Carousel */}
           <div style={{ overflow: "hidden", minWidth: 0 }}>
-            <h3 style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", margin: "0 0 32px" }}>
+            <h3 style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", margin: "0 0 32px" }}>
               STUDENT & PARTNER VOICES
             </h3>
             <TestimonialCarousel testimonials={testimonials} />
@@ -296,12 +350,12 @@ export default function Home() {
       </section>
 
       {/* EVENTS SECTION */}
-      <section id="events" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "56px 20px 56px" : "110px 32px 100px" }}>
+      <section id="events" className="px-5 py-14 md:px-8 md:pt-[110px] md:pb-[100px]" style={{ maxWidth: "1360px", margin: "0 auto" }}>
         {/* Header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "24px", marginBottom: "48px" }}>
           <div>
-            <div style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.1em", color: "#2FBF8F", marginBottom: "14px" }}>(01) UPCOMING EVENTS</div>
-            <h2 style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "clamp(30px, 3.4vw, 44px)", lineHeight: "1.1", margin: 0, letterSpacing: "-0.01em", color: "#F5F3ED" }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.1em", color: "#2FBF8F", marginBottom: "14px" }}>(01) UPCOMING EVENTS</div>
+            <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "clamp(30px, 3.4vw, 44px)", lineHeight: "1.1", margin: 0, letterSpacing: "-0.01em", color: "#F5F3ED" }}>
               Connect at our <span style={{ color: "#E8B923" }}>major events</span>.
             </h2>
             <p style={{ fontSize: "16px", color: "rgba(245,243,237,0.6)", margin: "14px 0 0", maxWidth: "440px" }}>A packed calendar this year — book your place before spots fill up.</p>
@@ -320,26 +374,29 @@ export default function Home() {
         </div>
       </section>
 
+      {/* COMMUNITY PHOTO MARQUEE */}
+      <PhotoMarquee />
+
       {/* STATS SECTION */}
       <section id="stats" style={{ borderTop: "1px solid rgba(255,255,255,0.16)", borderBottom: "1px solid rgba(255,255,255,0.16)" }}>
-        <div style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 32px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr" }}>
-          <div style={{ padding: isMobile ? "40px 0" : "56px 40px 56px 0", borderRight: isMobile ? "none" : "1px solid rgba(255,255,255,0.16)", borderBottom: isMobile ? "1px solid rgba(255,255,255,0.16)" : "none" }}>
-            <div style={{ fontFamily: "IBM Plex Mono", fontSize: "44px", fontWeight: "500", color: "#E8B923", letterSpacing: "-0.01em" }}>4,000+</div>
+        <div className="px-5 md:px-8 grid grid-cols-1 md:grid-cols-2" style={{ maxWidth: "1360px", margin: "0 auto" }}>
+          <div className="py-10 md:py-14 md:pr-10 border-b md:border-b-0 md:border-r border-white/[0.16]">
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: "44px", fontWeight: "500", color: "#E8B923", letterSpacing: "-0.01em" }}>4,000+</div>
             <div style={{ fontSize: "15px", color: "rgba(245,243,237,0.6)", marginTop: "10px" }}>Students & young professionals in the LEAF community — and growing every day.</div>
           </div>
-          <div style={{ padding: isMobile ? "40px 0" : "56px 0 56px 40px" }}>
-            <div style={{ fontFamily: "IBM Plex Mono", fontSize: "44px", fontWeight: "500", color: "#2FBF8F", letterSpacing: "-0.01em" }}>10,000+</div>
+          <div className="py-10 md:py-14 md:pl-10">
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: "44px", fontWeight: "500", color: "#2FBF8F", letterSpacing: "-0.01em" }}>10,000+</div>
             <div style={{ fontSize: "15px", color: "rgba(245,243,237,0.6)", marginTop: "10px" }}>Students supported nationwide with careers, experiences and networks.</div>
           </div>
         </div>
       </section>
 
       {/* ABOUT SECTION */}
-      <section id="about" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "56px 20px 64px" : "110px 32px 120px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.85fr 1.15fr", gap: isMobile ? "24px" : "64px" }}>
+      <section id="about" className="px-5 pt-14 pb-16 md:px-8 md:pt-[110px] md:pb-[120px]" style={{ maxWidth: "1360px", margin: "0 auto" }}>
+        <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] gap-6 md:gap-16">
           <div>
-            <div style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.1em", color: "#E8B923", marginBottom: "14px" }}>(02) ABOUT US</div>
-            <h2 style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "clamp(30px, 3.4vw, 44px)", margin: 0, lineHeight: "1.1", letterSpacing: "-0.01em", color: "#F5F3ED" }}>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.1em", color: "#E8B923", marginBottom: "14px" }}>(03) ABOUT US</div>
+            <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "clamp(30px, 3.4vw, 44px)", margin: 0, lineHeight: "1.1", letterSpacing: "-0.01em", color: "#F5F3ED" }}>
               More than a network.
             </h2>
           </div>
@@ -351,7 +408,7 @@ export default function Home() {
               Spanning Law, Engineering, Tech and Finance, LEAF has supported 10,000+ students nationwide with the careers, experiences, and networks that were once out of reach.
             </p>
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.12)", paddingTop: "28px" }}>
-              <p style={{ fontStyle: "italic", fontSize: "18px", color: "#F5F3ED", margin: 0, fontFamily: "Hanken Grotesk", fontWeight: "500" }}>
+              <p style={{ fontStyle: "italic", fontSize: "18px", color: "#F5F3ED", margin: 0, fontFamily: "var(--font-sans)", fontWeight: "500" }}>
                 "Success is built together, not alone."
               </p>
             </div>

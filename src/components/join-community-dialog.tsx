@@ -57,7 +57,7 @@ export function JoinCommunityDialog({
             <X size={18} />
           </DialogClose>
 
-          <h3 style={{ fontFamily: "Hanken Grotesk", fontWeight: "800", fontSize: "26px", color: "#F5F3ED", margin: "0 0 8px" }}>
+          <h3 style={{ fontFamily: "var(--font-sans)", fontWeight: "800", fontSize: "26px", color: "#F5F3ED", margin: "0 0 8px" }}>
             Join <span style={{ color: "#E8B923" }}>LEAF</span>
           </h3>
           <p style={{ fontSize: "14px", color: "rgba(245,243,237,0.6)", margin: "0 0 20px", lineHeight: "1.5" }}>

@@ -1,6 +1,5 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -127,7 +126,31 @@
 
 body {
   background: #020704;
-  background-attachment: fixed;
+}
+
+/* Photo marquee — pure CSS, transform-only */
+@keyframes marqueeLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marqueeRight {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+.marquee-track-left {
+  animation: marqueeLeft 70s linear infinite;
+}
+.marquee-track-right {
+  animation: marqueeRight 85s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-orb-drift,
+  .marquee-track-left,
+  .marquee-track-right,
+  [data-carousel] {
+    animation: none !important;
+  }
 }
 
 @keyframes spin-clockwise {

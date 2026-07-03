@@ -15,7 +15,7 @@ export function Navbar() {
       const isScrolled = window.scrollY > 10;
       setScrolled(isScrolled);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -55,14 +55,14 @@ export function Navbar() {
       WebkitBackdropFilter: scrolled ? "blur(10px)" : "none",
       borderBottom: scrolled ? "1px solid rgba(255,255,255,0.05)" : "none",
       height: scrolled ? "64px" : "80px",
-      transition: "all 0.3s ease",
+      transition: "background-color 0.3s ease, height 0.3s ease, border-color 0.3s ease",
       width: "100%",
     }}>
       <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px", height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}>
         {/* Logo */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", flexShrink: 0 }}>
           <img src="https://leafpathways.com/images/leaflogo.png" alt="LEAF Pathways" style={{ height: "36px", width: "auto" }} />
-          <span style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "24px", letterSpacing: "-0.01em" }}>
+          <span style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "24px", letterSpacing: "-0.01em" }}>
             <span style={{ color: "#E8B923" }}>LEAF</span>
             <span style={{ color: "#F5F3ED" }}> Pathways</span>
           </span>
@@ -70,7 +70,7 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav style={{ flex: 1, alignItems: "center", gap: "4px", justifyContent: "center" }} className="hidden lg:flex">
-          <Link href="/" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "19px", fontWeight: "500", fontFamily: "Hanken Grotesk", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
+          <Link href="/" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "19px", fontWeight: "500", fontFamily: "var(--font-sans)", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
 
           {Object.entries(dropdownItems).map(([label, items]) => (
             <div key={label} style={{ position: "relative" }} onMouseEnter={() => setOpenMenu(label)} onMouseLeave={() => setOpenMenu(null)}>
@@ -81,7 +81,7 @@ export function Navbar() {
                 color: "#F5F3ED",
                 fontSize: "19px",
                 fontWeight: "500",
-                fontFamily: "Hanken Grotesk",
+                fontFamily: "var(--font-sans)",
                 padding: "10px 14px",
                 borderRadius: "4px",
                 border: "none",
@@ -139,7 +139,7 @@ export function Navbar() {
             fontWeight: "600",
             padding: "10px 20px",
             borderRadius: "4px",
-            fontFamily: "Hanken Grotesk",
+            fontFamily: "var(--font-sans)",
             cursor: "pointer",
           }} className="hidden sm:inline-block">
             Join the community

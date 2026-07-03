@@ -3,12 +3,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Check } from "lucide-react";
-import { useIsMobile } from "@/lib/use-is-mobile";
 
 export function Footer() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const isMobile = useIsMobile();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,22 +48,20 @@ export function Footer() {
 
   return (
     <footer id="contact" style={{ borderTop: "1px solid rgba(255,255,255,0.09)" }}>
-      <div style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "48px 20px 0" : "80px 32px 0" }}>
+      <div className="px-5 pt-12 md:px-8 md:pt-20" style={{ maxWidth: "1360px", margin: "0 auto" }}>
         {/* Newsletter Section */}
-        <div style={{
+        <div className="p-6 md:p-12 mb-12 md:mb-20" style={{
           border: "1px solid rgba(232,185,35,0.3)",
           backgroundColor: "rgba(232,185,35,0.06)",
           borderRadius: "12px",
-          padding: isMobile ? "28px 24px" : "48px",
           display: "flex",
           flexWrap: "wrap",
           alignItems: "center",
           justifyContent: "space-between",
           gap: "24px",
-          marginBottom: isMobile ? "48px" : "80px",
         }}>
           <div style={{ maxWidth: "460px" }}>
-            <h3 style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "24px", margin: "0 0 10px", color: "#F5F3ED" }}>Join the LEAF newsletter</h3>
+            <h3 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "24px", margin: "0 0 10px", color: "#F5F3ED" }}>Join the LEAF newsletter</h3>
             <p style={{ fontSize: "15px", color: "rgba(245,243,237,0.62)", margin: 0, lineHeight: "1.6" }}>Be the first to hear about major opportunities, upcoming events, and industry insight — delivered to your inbox.</p>
           </div>
 
@@ -86,7 +82,7 @@ export function Footer() {
                   padding: "14px 16px",
                   color: "#F5F3ED",
                   fontSize: "14px",
-                  fontFamily: "Hanken Grotesk",
+                  fontFamily: "var(--font-sans)",
                   boxSizing: "border-box",
                 }}
               />
@@ -96,7 +92,7 @@ export function Footer() {
                   backgroundColor: "#E8B923",
                   color: "#0B1410",
                   border: "none",
-                  fontFamily: "Hanken Grotesk",
+                  fontFamily: "var(--font-sans)",
                   fontWeight: "600",
                   fontSize: "14px",
                   padding: "14px 22px",
@@ -116,12 +112,12 @@ export function Footer() {
         </div>
 
         {/* Footer Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.4fr 1fr 1fr", gap: isMobile ? "32px" : "48px", paddingBottom: isMobile ? "40px" : "56px" }}>
+        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr] gap-8 md:gap-12 pb-10 md:pb-14">
           {/* Brand Column */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
               <img src="https://leafpathways.com/images/leaflogo.png" alt="LEAF Pathways" style={{ height: "32px", width: "auto" }} />
-              <span style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "17px", color: "#F5F3ED" }}>LEAF Pathways</span>
+              <span style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "17px", color: "#F5F3ED" }}>LEAF Pathways</span>
             </div>
             <p style={{ fontSize: "14px", lineHeight: "1.6", color: "rgba(245,243,237,0.5)", maxWidth: "280px", margin: "0 0 20px" }}>The student network for Law, Engineering/Tech and Finance. Success is built together, not alone.</p>
             <div style={{ display: "flex", gap: "10px" }}>
@@ -155,7 +151,7 @@ export function Footer() {
 
           {/* Explore Column */}
           <div>
-            <div style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", marginBottom: "18px" }}>EXPLORE</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", marginBottom: "18px" }}>EXPLORE</div>
             <div style={{ display: "flex", flexDirection: "column", gap: "13px" }}>
               <Link href="/events" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Events calendar</Link>
               <Link href="/partners" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Partner network</Link>
@@ -165,7 +161,7 @@ export function Footer() {
 
           {/* Legal Column */}
           <div>
-            <div style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", marginBottom: "18px" }}>LEGAL & SUPPORT</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", marginBottom: "18px" }}>LEGAL & SUPPORT</div>
             <div style={{ display: "flex", flexDirection: "column", gap: "13px" }}>
               <Link href="#" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Privacy policy</Link>
               <Link href="#" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Terms of service</Link>
@@ -177,7 +173,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.09)", padding: "24px 0", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "12px" }}>
           <span style={{ fontSize: "13px", color: "rgba(245,243,237,0.4)" }}>© 2026 LEAF Pathways. All rights reserved.</span>
-          <span style={{ fontSize: "13px", color: "rgba(245,243,237,0.4)", fontFamily: "IBM Plex Mono" }}>Made by students, for students.</span>
+          <span style={{ fontSize: "13px", color: "rgba(245,243,237,0.4)", fontFamily: "var(--font-mono)" }}>Made by students, for students.</span>
         </div>
       </div>
     </footer>
