@@ -60,8 +60,8 @@ export function Navbar() {
       <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px", height: "80px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}>
         {/* Logo */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", flexShrink: 0 }}>
-          <img src="https://leafpathways.com/images/leaflogo.png" alt="LEAF Pathways" style={{ height: "32px", width: "auto" }} />
-          <span style={{ fontFamily: "Hanken Grotesk", fontWeight: "600", fontSize: "19px", letterSpacing: "-0.01em" }}>
+          <img src="https://leafpathways.com/images/leaflogo.png" alt="LEAF Pathways" style={{ height: "36px", width: "auto" }} />
+          <span style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "24px", letterSpacing: "-0.01em" }}>
             <span style={{ color: "#E8B923" }}>LEAF</span>
             <span style={{ color: "#F5F3ED" }}> Pathways</span>
           </span>
