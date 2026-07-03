@@ -1,74 +1,126 @@
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
-import { Button } from "@/components/ui/button";
+import { PageShell, PAGE_CONTAINER } from "@/components/page-shell";
+import { PageHeader } from "@/components/page-header";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export const metadata = {
   title: "Our Mission | LEAF Pathways",
   description: "LEAF's mission, vision, and the purpose that drives everything we do.",
 };
 
+const blocks = [
+  {
+    h: "What we do",
+    p: "LEAF Pathways is one of the UK's fastest-growing student communities — the home of opportunity for the next generation of ambitious young professionals. Through events, bootcamps, competitions and community, we connect driven students with the careers they've been working towards across Law, Engineering, Tech and Finance.",
+  },
+  {
+    h: "Our vision",
+    p: "A future where every young person has a competitive shot at success, regardless of their background. Where the brightest talent is discovered early, nurtured thoughtfully, and connected with opportunities that were once out of reach — because success is built together, not alone.",
+  },
+  {
+    h: "Our purpose",
+    p: "We exist to inspire youth early and democratise access to opportunity. Whether you're exploring a career path, preparing for an apprenticeship, sharpening your technical skills or building your network, LEAF provides the events, mentorship and community to help you thrive — so talent, not privilege, is what gets noticed.",
+  },
+];
+
 export default function Mission() {
   return (
-    <main className="min-h-screen bg-background">
-      <Navbar />
+    <PageShell>
+      <PageHeader
+        eyebrow="About us"
+        title={
+          <>
+            Our <span style={{ color: "#E8B923" }}>mission</span> &amp; vision.
+          </>
+        }
+        subtitle="Inspiring youth early, so every young person has a competitive shot at success — regardless of their background."
+        back={{ href: "/about", label: "Back to About" }}
+      />
 
-      <div className="pt-32 px-4 pb-20">
-        <div className="max-w-4xl mx-auto">
-          <Link href="/about" className="text-emerald-400 hover:text-emerald-300 mb-8 inline-flex items-center gap-2">
-            ← Back to About
-          </Link>
-
-          <h1 className="text-5xl md:text-6xl font-black mb-8 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-400">
-            Our Mission & Vision
-          </h1>
-
-          <div className="prose prose-invert max-w-none space-y-8 text-lg">
-            <section>
-              <h2 className="text-3xl font-bold mb-4 text-emerald-400">What We Do</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                LEAF Pathways is more than just a student network—we're a movement. Founded by and for students, we create opportunities that bridge the gap between aspiring talent and leading organizations. Through events, bootcamps, competitions, and community initiatives, we empower the next generation of founders, engineers, innovators, and leaders.
+      <section className={`${PAGE_CONTAINER} pb-16 md:pb-24`} style={{ maxWidth: "860px" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "36px" }}>
+          {blocks.map((b) => (
+            <div key={b.h}>
+              <h2
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontWeight: 700,
+                  fontSize: "clamp(22px, 2.4vw, 28px)",
+                  color: "#F5F3ED",
+                  margin: "0 0 12px",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {b.h}
+              </h2>
+              <p style={{ fontSize: "17px", lineHeight: 1.7, color: "rgba(245,243,237,0.72)", margin: 0 }}>
+                {b.p}
               </p>
-            </section>
+            </div>
+          ))}
 
-            <section>
-              <h2 className="text-3xl font-bold mb-4 text-emerald-400">Our Vision</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                We envision a future where every student has the tools, knowledge, and network to succeed. A world where the brightest talent is discovered early, nurtured thoughtfully, and connected with opportunities that align with their ambitions. LEAF is the catalyst that makes this possible—run by students who understand the student experience, for students who are ready to shape the future.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-3xl font-bold mb-4 text-emerald-400">Our Purpose</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                We exist to democratize access to opportunities. Whether you're exploring a career path, launching a startup, honing your technical skills, or building your network, LEAF provides the events, mentorship, and community to help you thrive. We're committed to breaking down barriers and ensuring that talent, not privilege, is what gets noticed.
-              </p>
-            </section>
-
-            <section className="bg-white/5 border border-emerald-900/30 rounded-lg p-8 mt-12">
-              <h3 className="text-2xl font-bold mb-4 text-amber-400">Why It Matters</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                In a fast-changing world, students need more than grades. They need real-world exposure, industry connections, and the confidence to think big. LEAF fills that gap by creating transformative experiences that prepare students not just for jobs, but for impact.
-              </p>
-            </section>
+          <div
+            style={{
+              border: "1px solid rgba(232,185,35,0.3)",
+              backgroundColor: "rgba(232,185,35,0.06)",
+              borderRadius: "12px",
+              padding: "28px 32px",
+              marginTop: "8px",
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "var(--font-sans)",
+                fontStyle: "italic",
+                fontWeight: 500,
+                fontSize: "20px",
+                color: "#F5F3ED",
+                margin: 0,
+              }}
+            >
+              "Success is built together, not alone."
+            </p>
           </div>
 
-          <div className="mt-12 flex gap-4">
-            <Link href="/events">
-              <Button className="rounded-full glow-gold">
-                Explore Our Events
-              </Button>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "14px", marginTop: "8px" }}>
+            <Link
+              href="/events"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                background: "linear-gradient(180deg, #F5CB3D 0%, #E8B923 55%, #D9A70F 100%)",
+                color: "#0B1410",
+                fontWeight: 700,
+                fontSize: "15px",
+                padding: "14px 26px",
+                borderRadius: "999px",
+                textDecoration: "none",
+                boxShadow: "0 6px 18px rgba(232,185,35,0.35)",
+              }}
+            >
+              Explore our events <ArrowRight size={16} />
             </Link>
-            <Link href="/about/team">
-              <Button variant="outline" className="rounded-full">
-                Meet the Team
-              </Button>
+            <Link
+              href="/about/team"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                border: "1px solid rgba(255,255,255,0.18)",
+                color: "#F5F3ED",
+                fontWeight: 600,
+                fontSize: "15px",
+                padding: "14px 24px",
+                borderRadius: "999px",
+                textDecoration: "none",
+              }}
+            >
+              Meet the team
             </Link>
           </div>
         </div>
-      </div>
-
-      <Footer />
-    </main>
+      </section>
+    </PageShell>
   );
 }

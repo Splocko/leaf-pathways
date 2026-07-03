@@ -273,26 +273,26 @@ export default function Home() {
 
             {/* H1 */}
             <h1 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "clamp(40px, 5.4vw, 72px)", lineHeight: "1.03", letterSpacing: "-0.02em", margin: "0 0 24px", color: "#F5F3ED" }}>
-              The home of <span style={{ color: "#E8B923" }}>ambition</span>.
+              The Home of<br /><span style={{ color: "#E8B923" }}>Ambition</span>.
             </h1>
 
             {/* Subhead */}
             <p style={{ fontSize: "18px", lineHeight: "1.6", color: "rgba(245,243,237,0.68)", maxWidth: "520px", margin: "0 0 32px" }}>
-              The UK student network for <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Law, Engineering/Tech and Finance</strong>, and beyond. Internships, apprenticeships, and placements that matter. Real connections, real opportunities.
+              The UK student network for <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Law, Engineering/Tech, and Finance</strong>. Creating opportunities for the next generation of young professionals.
             </p>
 
             {/* CTAs */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
-              <JoinCommunityDialog style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "#E8B923", color: "#0B1410", fontFamily: "var(--font-sans)", fontWeight: "600", fontSize: "15px", padding: "15px 26px", borderRadius: "4px", border: "none", cursor: "pointer" }}>
+              <JoinCommunityDialog style={{ display: "inline-flex", alignItems: "center", gap: "9px", background: "linear-gradient(180deg, #F5CB3D 0%, #E8B923 55%, #D9A70F 100%)", color: "#0B1410", fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "15px", padding: "15px 28px", borderRadius: "999px", border: "none", cursor: "pointer", boxShadow: "0 6px 18px rgba(232,185,35,0.35)" }}>
                 Join the community
                 <ArrowRight size={16} />
               </JoinCommunityDialog>
             </div>
 
             {/* Member count */}
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "20px" }}>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "16px", fontWeight: "500", color: "#E8B923" }}>4,000+</span>
-              <span style={{ fontSize: "15px", color: "rgba(245,243,237,0.55)" }}>students and young professionals already building momentum</span>
+            <div style={{ display: "flex", alignItems: "center", gap: "14px", marginTop: "22px" }}>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "36px", fontWeight: "500", color: "#E8B923", lineHeight: 1, letterSpacing: "-0.01em", flexShrink: 0 }}>4,000+</span>
+              <span style={{ fontSize: "14px", lineHeight: 1.35, color: "rgba(245,243,237,0.55)", maxWidth: "260px" }}>students and young professionals already building momentum</span>
             </div>
           </div>
 

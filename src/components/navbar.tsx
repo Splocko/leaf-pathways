@@ -137,15 +137,16 @@ export function Navbar() {
         {/* Right actions */}
         <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
           <JoinCommunityDialog style={{
-            backgroundColor: "#E8B923",
+            background: "linear-gradient(180deg, #F5CB3D 0%, #E8B923 55%, #D9A70F 100%)",
             color: "#0B1410",
             border: "none",
             fontSize: "16px",
-            fontWeight: "600",
-            padding: "10px 20px",
-            borderRadius: "4px",
+            fontWeight: "700",
+            padding: "10px 22px",
+            borderRadius: "999px",
             fontFamily: "var(--font-sans)",
             cursor: "pointer",
+            boxShadow: "0 6px 18px rgba(232,185,35,0.35)",
           }} className="hidden lg:inline-block">
             Join the community
           </JoinCommunityDialog>
@@ -187,13 +188,14 @@ export function Navbar() {
             <JoinCommunityDialog style={{
               flex: 1,
               textAlign: "center",
-              backgroundColor: "#E8B923",
+              background: "linear-gradient(180deg, #F5CB3D 0%, #E8B923 55%, #D9A70F 100%)",
               color: "#0B1410",
               border: "none",
-              padding: "12px",
-              borderRadius: "4px",
-              fontWeight: "600",
+              padding: "13px",
+              borderRadius: "999px",
+              fontWeight: "700",
               fontSize: "14px",
+              boxShadow: "0 6px 18px rgba(232,185,35,0.35)",
             }}>
               Join the community
             </JoinCommunityDialog>
