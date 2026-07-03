@@ -123,7 +123,7 @@ export function Footer() {
               <img src="https://leafpathways.com/images/leaflogo.png" alt="LEAF Pathways" style={{ height: "32px", width: "auto" }} />
               <span style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "17px", color: "#F5F3ED" }}>LEAF Pathways</span>
             </div>
-            <p style={{ fontSize: "14px", lineHeight: "1.6", color: "rgba(245,243,237,0.5)", maxWidth: "280px", margin: "0 0 20px" }}>The student network for Law, Engineering, Accounting and Finance. From potential to placement.</p>
+            <p style={{ fontSize: "14px", lineHeight: "1.6", color: "rgba(245,243,237,0.5)", maxWidth: "280px", margin: "0 0 20px" }}>The student network for Law, Engineering/Tech and Finance. Success is built together, not alone.</p>
             <div style={{ display: "flex", gap: "10px" }}>
               {socials.map((social) => (
                 <Link
@@ -157,9 +157,9 @@ export function Footer() {
           <div>
             <div style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", marginBottom: "18px" }}>EXPLORE</div>
             <div style={{ display: "flex", flexDirection: "column", gap: "13px" }}>
-              <Link href="#events" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Events calendar</Link>
-              <Link href="#partners" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Partner network</Link>
-              <Link href="#about" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Our mission</Link>
+              <Link href="/events" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Events calendar</Link>
+              <Link href="/partners" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Partner network</Link>
+              <Link href="/about/mission" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Our mission</Link>
             </div>
           </div>
 
@@ -169,7 +169,7 @@ export function Footer() {
             <div style={{ display: "flex", flexDirection: "column", gap: "13px" }}>
               <Link href="#" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Privacy policy</Link>
               <Link href="#" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Terms of service</Link>
-              <Link href="#" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Contact us</Link>
+              <Link href="/contact" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Contact us</Link>
             </div>
           </div>
         </div>

@@ -19,29 +19,29 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const dropdownItems: Record<string, { title: string; desc?: string }[]> = {
+  const dropdownItems: Record<string, { title: string; href: string; desc?: string }[]> = {
     "About us": [
-      { title: "Our mission", desc: "What LEAF is, and why it exists." },
-      { title: "Meet the team", desc: "Run by students, for students." },
-      { title: "Our impact", desc: "The numbers behind the network." },
+      { title: "Our mission", href: "/about/mission", desc: "What LEAF is, and why it exists." },
+      { title: "Meet the team", href: "/about/team", desc: "Run by students, for students." },
+      { title: "Our impact", href: "/about/impact", desc: "The numbers behind the network." },
     ],
     "Partners": [
-      { title: "Our partners", desc: "Every organisation in the network." },
-      { title: "Corporate partners", desc: "Talent sourcing & brand awareness." },
-      { title: "University partners", desc: "Careers teams & student societies." },
+      { title: "Our partners", href: "/partners", desc: "Every organisation in the network." },
+      { title: "Corporate partners", href: "/partners#corporate", desc: "Talent sourcing & brand awareness." },
+      { title: "University partners", href: "/partners#university", desc: "Careers teams & student societies." },
     ],
     "Events": [
-      { title: "Overview" },
-      { title: "Commercial Awareness Competition" },
-      { title: "Engineering Innovation Competition" },
-      { title: "LEAF Hacks" },
-      { title: "Finance Bootcamp" },
-      { title: "Apprenticeship Bootcamp" },
+      { title: "Overview", href: "/events" },
+      { title: "Commercial Awareness Competition", href: "/events/commercial-awareness" },
+      { title: "Engineering Innovation Competition", href: "/events/engineering-innovation" },
+      { title: "LEAF Hacks", href: "/events/leaf-hacks" },
+      { title: "Finance Bootcamp", href: "/events/finance-bootcamp" },
+      { title: "Apprenticeship Bootcamp", href: "/events/apprenticeship-bootcamp" },
     ],
     "Media": [
-      { title: "Blog", desc: "Newsletters & community spotlights." },
-      { title: "Pathways Webinar Series", desc: "Upcoming & past webinars." },
-      { title: "Branching Out Podcast", desc: "YouTube · Spotify · Apple Podcasts." },
+      { title: "Blog", href: "/media/blog", desc: "Newsletters & community spotlights." },
+      { title: "Pathways Webinar Series", href: "/media/webinars", desc: "Upcoming & past webinars." },
+      { title: "Branching Out Podcast", href: "/media/podcast", desc: "YouTube · Spotify · Apple Podcasts." },
     ],
   };
 
@@ -70,7 +70,7 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav style={{ flex: 1, alignItems: "center", gap: "4px", justifyContent: "center" }} className="hidden lg:flex">
-          <Link href="#top" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "19px", fontWeight: "500", fontFamily: "Hanken Grotesk", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
+          <Link href="/" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "19px", fontWeight: "500", fontFamily: "Hanken Grotesk", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
 
           {Object.entries(dropdownItems).map(([label, items]) => (
             <div key={label} style={{ position: "relative" }} onMouseEnter={() => setOpenMenu(label)} onMouseLeave={() => setOpenMenu(null)}>
@@ -98,7 +98,7 @@ export function Navbar() {
                 <div style={{ position: "absolute", top: "100%", left: 0, paddingTop: "10px", width: "280px", zIndex: 50 }}>
                   <div style={{ backgroundColor: "#0F1A15", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", padding: "8px", boxShadow: "0 12px 24px rgba(0,0,0,0.35)" }}>
                     {items.map((item, idx) => (
-                      <Link key={idx} href="#" style={{
+                      <Link key={idx} href={item.href} style={{
                         display: "block",
                         padding: "10px 12px",
                         borderRadius: "6px",
@@ -110,7 +110,7 @@ export function Navbar() {
                       </Link>
                     ))}
                     {(label === "Partners" || label === "Events") && (
-                      <Link href="#contact" style={{
+                      <Link href={label === "Partners" ? "/contact" : "/events/host-event"} style={{
                         display: "block",
                         marginTop: "4px",
                         padding: "10px 12px",
@@ -169,27 +169,13 @@ export function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.09)", padding: "20px 24px 28px", display: "flex", flexDirection: "column", gap: "4px", backgroundColor: "#0B1410" }}>
-          <Link href="#top" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Home</Link>
-          <Link href="#events" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Events</Link>
-          <Link href="#partners" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Partners</Link>
-          <Link href="#about" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>About us</Link>
-          <Link href="#" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Media</Link>
-          <Link href="#" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>LEAF Academy</Link>
-          <Link href="#contact" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Contact</Link>
+          <Link href="/" onClick={() => setMobileOpen(false)} style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Home</Link>
+          <Link href="/events" onClick={() => setMobileOpen(false)} style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Events</Link>
+          <Link href="/partners" onClick={() => setMobileOpen(false)} style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Partners</Link>
+          <Link href="/about/mission" onClick={() => setMobileOpen(false)} style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>About us</Link>
+          <Link href="/media" onClick={() => setMobileOpen(false)} style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Media</Link>
+          <Link href="/contact" onClick={() => setMobileOpen(false)} style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Contact</Link>
           <div style={{ display: "flex", gap: "12px", marginTop: "12px" }}>
-            <Link href="#" style={{
-              flex: 1,
-              textAlign: "center",
-              border: "1px solid rgba(255,255,255,0.18)",
-              color: "#F5F3ED",
-              textDecoration: "none",
-              padding: "12px",
-              borderRadius: "4px",
-              fontWeight: "600",
-              fontSize: "14px",
-            }}>
-              Login
-            </Link>
             <JoinCommunityDialog style={{
               flex: 1,
               textAlign: "center",

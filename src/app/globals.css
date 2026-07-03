@@ -145,6 +145,18 @@ body {
   50% { opacity: 0.95; }
 }
 
+@keyframes orb-drift {
+  0%   { transform: translate(-50%, -50%) translate(0px, 0px); }
+  25%  { transform: translate(-50%, -50%) translate(40px, -15px); }
+  50%  { transform: translate(-50%, -50%) translate(0px, -25px); }
+  75%  { transform: translate(-50%, -50%) translate(-40px, -10px); }
+  100% { transform: translate(-50%, -50%) translate(0px, 0px); }
+}
+
+.animate-orb-drift {
+  animation: orb-drift 18s ease-in-out infinite, pulse-glow 8s ease-in-out infinite;
+}
+
 .animate-spin-slow {
   animation: spin-clockwise 140s linear infinite;
 }

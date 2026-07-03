@@ -13,22 +13,24 @@ const events = [
   {
     tag: "COMING SOON",
     tone: "gold",
-    date: "1 JUL 2026",
+    date: "JUL 2026",
     title: "LEAF Healthcare Bootcamp",
     desc: "UCAS prep, personal statements, work experience and application support.",
     ctaLabel: "Register interest",
     id: "event-healthcare",
     href: "/events/healthcare-bootcamp",
+    image: "https://cueuwyazwjikiogxsbrs.supabase.co/storage/v1/object/public/event-images/events/event-1774222240178-gvkf8u.png",
   },
   {
     tag: "SOLD OUT",
     tone: "muted",
-    date: "4 JUL 2026 · 00:00",
+    date: "4 JUL 2026",
     title: "LEAF Hacks '26",
     desc: "A 24-hour build sprint for students who want to create, iterate, and pitch under pressure.",
     ctaLabel: "Join the waitlist",
     id: "event-hacks",
     href: "/events/leaf-hacks",
+    image: "https://cueuwyazwjikiogxsbrs.supabase.co/storage/v1/object/public/event-images/events/event-1774099008481-ksnbwf.png",
   },
   {
     tag: "COMING SOON",
@@ -39,6 +41,7 @@ const events = [
     ctaLabel: "Register interest",
     id: "event-apprenticeship",
     href: "/events/apprenticeship-bootcamp",
+    image: "https://cueuwyazwjikiogxsbrs.supabase.co/storage/v1/object/public/event-images/events/event-1774304810195-6ilfxc.png",
   },
 ];
 
@@ -62,36 +65,6 @@ const testimonials = [
     name: "Vincent Egunlae",
     title: "Senior Speaker, Investment Banker & Keynote Speaker",
     quote: "LEAF is a highly professional organisation creating impact for thousands of young people throughout the UK.",
-  },
-  {
-    name: "Placeholder Smith",
-    title: "Student, University of London",
-    quote: "Being part of LEAF transformed my career prospects and connected me with mentors who genuinely care about my success.",
-  },
-  {
-    name: "Placeholder Jones",
-    title: "Graduate, Finance Professional",
-    quote: "The networking opportunities at LEAF were invaluable. I met industry professionals who became my colleagues.",
-  },
-  {
-    name: "Placeholder Kumar",
-    title: "Student, Imperial College London",
-    quote: "LEAF gave me the confidence to pursue opportunities I never thought were possible.",
-  },
-  {
-    name: "Placeholder Williams",
-    title: "Career Coach, Corporate Partner",
-    quote: "The caliber of students in LEAF is exceptional. It's been a pleasure working with such driven young people.",
-  },
-  {
-    name: "Placeholder Brown",
-    title: "Student, LSE",
-    quote: "The mentorship program at LEAF helped me land my dream internship in the financial sector.",
-  },
-  {
-    name: "Placeholder Davis",
-    title: "Graduate, Law & Finance",
-    quote: "LEAF bridges the gap between university and professional life in a way few organizations can.",
   },
 ];
 
@@ -152,8 +125,8 @@ function EventCard({ event }: { event: (typeof events)[0] }) {
   return (
     <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", overflow: "hidden", backgroundColor: "#0F1A15", display: "flex", flexDirection: "column", height: "100%" }}>
       {/* Image — fixed 16/9 aspect ratio, matched on the event detail page so photos never crop inconsistently between the two */}
-      <Link href={event.href} style={{ position: "relative", aspectRatio: "16/9", backgroundColor: "rgba(245,243,237,0.03)", display: "flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>
-        <div style={{ color: "rgba(245,243,237,0.3)", fontSize: "14px", fontWeight: "500" }}>[Event image]</div>
+      <Link href={event.href} style={{ position: "relative", aspectRatio: "16/9", backgroundColor: "rgba(245,243,237,0.03)", display: "block", textDecoration: "none", overflow: "hidden" }}>
+        <img src={event.image} alt={event.title} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
         {/* Status pill */}
         <div style={{
           position: "absolute",
@@ -205,25 +178,33 @@ export default function Home() {
     <main style={{ minHeight: "100vh", position: "relative", overflowX: "hidden" }}>
       <Navbar />
 
-      {/* Super blurred green orb in the center (Fixed background) */}
-      <div 
-        className="animate-pulse-glow"
-        style={{
-          position: "fixed",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "75vw",
-          height: "75vw",
-          maxWidth: "850px",
-          maxHeight: "850px",
-          background: "radial-gradient(circle, rgba(47, 191, 143, 0.38) 0%, rgba(5, 30, 18, 0.15) 50%, transparent 75%)",
-          borderRadius: "50%",
-          filter: "blur(120px)",
-          pointerEvents: "none",
-          zIndex: -1,
-        }}
-      />
+      {/* Background orbs — placed at different depths so they scroll naturally */}
+
+      {/* Orb 1: Hero area */}
+      <div className="animate-orb-drift" style={{
+        position: "absolute", top: "30vh", left: "50%",
+        width: "70vw", height: "70vw", maxWidth: "800px", maxHeight: "800px",
+        background: "radial-gradient(circle, rgba(47, 191, 143, 0.38) 0%, rgba(5, 30, 18, 0.12) 50%, transparent 72%)",
+        borderRadius: "50%", filter: "blur(120px)", pointerEvents: "none", zIndex: 0,
+      }} />
+
+      {/* Orb 2: Mid-page, offset to the right */}
+      <div className="animate-orb-drift" style={{
+        position: "absolute", top: "130vh", left: "65%",
+        width: "55vw", height: "55vw", maxWidth: "650px", maxHeight: "650px",
+        background: "radial-gradient(circle, rgba(47, 191, 143, 0.28) 0%, rgba(5, 30, 18, 0.08) 50%, transparent 72%)",
+        borderRadius: "50%", filter: "blur(130px)", pointerEvents: "none", zIndex: 0,
+        animationDelay: "-6s",
+      }} />
+
+      {/* Orb 3: Lower section, offset to the left */}
+      <div className="animate-orb-drift" style={{
+        position: "absolute", top: "250vh", left: "30%",
+        width: "60vw", height: "60vw", maxWidth: "700px", maxHeight: "700px",
+        background: "radial-gradient(circle, rgba(47, 191, 143, 0.3) 0%, rgba(5, 30, 18, 0.1) 50%, transparent 72%)",
+        borderRadius: "50%", filter: "blur(125px)", pointerEvents: "none", zIndex: 0,
+        animationDelay: "-12s",
+      }} />
 
       {/* HERO SECTION */}
       <section id="top" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "48px 20px 28px" : "96px 32px 28px", position: "relative", zIndex: 1 }}>
@@ -243,7 +224,7 @@ export default function Home() {
 
             {/* Subhead */}
             <p style={{ fontSize: "18px", lineHeight: "1.6", color: "rgba(245,243,237,0.68)", maxWidth: "520px", margin: "0 0 32px" }}>
-              The UK student network for <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Law, Engineering/Tech And Finance</strong>, and beyond. Internships, apprenticeships, and placements that matter. Real connections, real opportunities.
+              The UK student network for <strong style={{ color: "#F5F3ED", fontWeight: "600" }}>Law, Engineering/Tech and Finance</strong>, and beyond. Internships, apprenticeships, and placements that matter. Real connections, real opportunities.
             </p>
 
             {/* CTAs */}
@@ -256,7 +237,7 @@ export default function Home() {
 
             {/* Member count */}
             <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "20px" }}>
-              <span style={{ fontFamily: "IBM Plex Mono", fontSize: "16px", fontWeight: "500", color: "#E8B923" }}>4,973+</span>
+              <span style={{ fontFamily: "IBM Plex Mono", fontSize: "16px", fontWeight: "500", color: "#E8B923" }}>4,000+</span>
               <span style={{ fontSize: "15px", color: "rgba(245,243,237,0.55)" }}>students and young professionals already building momentum</span>
             </div>
           </div>
@@ -325,7 +306,7 @@ export default function Home() {
             </h2>
             <p style={{ fontSize: "16px", color: "rgba(245,243,237,0.6)", margin: "14px 0 0", maxWidth: "440px" }}>A packed calendar this year — book your place before spots fill up.</p>
           </div>
-          <Link href="#" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#F5F3ED", textDecoration: "none", fontWeight: "600", fontSize: "14px", border: "1px solid rgba(255,255,255,0.18)", padding: "12px 20px", borderRadius: "4px", cursor: "pointer", flexShrink: 0 }}>
+          <Link href="/events" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#F5F3ED", textDecoration: "none", fontWeight: "600", fontSize: "14px", border: "1px solid rgba(255,255,255,0.18)", padding: "12px 20px", borderRadius: "4px", cursor: "pointer", flexShrink: 0 }}>
             View full calendar
             <ArrowRight size={14} />
           </Link>
@@ -343,12 +324,12 @@ export default function Home() {
       <section id="stats" style={{ borderTop: "1px solid rgba(255,255,255,0.16)", borderBottom: "1px solid rgba(255,255,255,0.16)" }}>
         <div style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 32px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr" }}>
           <div style={{ padding: isMobile ? "40px 0" : "56px 40px 56px 0", borderRight: isMobile ? "none" : "1px solid rgba(255,255,255,0.16)", borderBottom: isMobile ? "1px solid rgba(255,255,255,0.16)" : "none" }}>
-            <div style={{ fontFamily: "IBM Plex Mono", fontSize: "44px", fontWeight: "500", color: "#E8B923", letterSpacing: "-0.01em" }}>4,973+</div>
+            <div style={{ fontFamily: "IBM Plex Mono", fontSize: "44px", fontWeight: "500", color: "#E8B923", letterSpacing: "-0.01em" }}>4,000+</div>
             <div style={{ fontSize: "15px", color: "rgba(245,243,237,0.6)", marginTop: "10px" }}>Students & young professionals in the LEAF community — and growing every day.</div>
           </div>
           <div style={{ padding: isMobile ? "40px 0" : "56px 0 56px 40px" }}>
-            <div style={{ fontFamily: "IBM Plex Mono", fontSize: "44px", fontWeight: "500", color: "#2FBF8F", letterSpacing: "-0.01em" }}>3,500+</div>
-            <div style={{ fontSize: "15px", color: "rgba(245,243,237,0.6)", marginTop: "10px" }}>Members supported into placements, internships and opportunities.</div>
+            <div style={{ fontFamily: "IBM Plex Mono", fontSize: "44px", fontWeight: "500", color: "#2FBF8F", letterSpacing: "-0.01em" }}>10,000+</div>
+            <div style={{ fontSize: "15px", color: "rgba(245,243,237,0.6)", marginTop: "10px" }}>Students supported nationwide with careers, experiences and networks.</div>
           </div>
         </div>
       </section>
@@ -364,14 +345,14 @@ export default function Home() {
           </div>
           <div>
             <p style={{ fontSize: "17px", lineHeight: "1.7", color: "rgba(245,243,237,0.72)", margin: "0 0 20px" }}>
-              LEAF Pathways connects driven students with the careers they've been working towards. We're not another networking group — we're the insider knowledge your university never taught, the warm introductions, the curated opportunities, and the connections that actually open doors.
+              LEAF Pathways is one of the UK's fastest-growing student communities — the home of opportunity for the next generation of ambitious young professionals. Our mission is to inspire youth early, so every young person has a competitive shot at success, regardless of their background.
             </p>
             <p style={{ fontSize: "17px", lineHeight: "1.7", color: "rgba(245,243,237,0.72)", margin: "0 0 36px" }}>
-              Built by students who've been there, we know how hard it is to break into competitive industries without the right people in your corner. That's precisely why LEAF exists.
+              Spanning Law, Engineering, Tech and Finance, LEAF has supported 10,000+ students nationwide with the careers, experiences, and networks that were once out of reach.
             </p>
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.12)", paddingTop: "28px" }}>
               <p style={{ fontStyle: "italic", fontSize: "18px", color: "#F5F3ED", margin: 0, fontFamily: "Hanken Grotesk", fontWeight: "500" }}>
-                "We turn potential into placement."
+                "Success is built together, not alone."
               </p>
             </div>
           </div>
