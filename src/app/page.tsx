@@ -235,7 +235,7 @@ export default function Home() {
       <div className="animate-orb-drift" style={{
         position: "absolute", top: "30vh", left: "50%",
         width: "min(130vw, 980px)", height: "min(130vw, 980px)",
-        background: "radial-gradient(circle, rgba(47, 191, 143, 0.34) 0%, rgba(47, 191, 143, 0.14) 34%, rgba(5, 30, 18, 0.05) 58%, transparent 74%)",
+        background: "radial-gradient(circle, rgba(47, 191, 143, 0.46) 0%, rgba(47, 191, 143, 0.19) 34%, rgba(5, 30, 18, 0.06) 58%, transparent 74%)",
         borderRadius: "50%", pointerEvents: "none", zIndex: 0,
         transform: "translate(-50%, -50%)",
       }} />
@@ -244,7 +244,7 @@ export default function Home() {
       <div className="animate-orb-drift" style={{
         position: "absolute", top: "130vh", left: "65%",
         width: "min(105vw, 780px)", height: "min(105vw, 780px)",
-        background: "radial-gradient(circle, rgba(47, 191, 143, 0.26) 0%, rgba(47, 191, 143, 0.1) 34%, rgba(5, 30, 18, 0.04) 58%, transparent 74%)",
+        background: "radial-gradient(circle, rgba(47, 191, 143, 0.36) 0%, rgba(47, 191, 143, 0.14) 34%, rgba(5, 30, 18, 0.05) 58%, transparent 74%)",
         borderRadius: "50%", pointerEvents: "none", zIndex: 0,
         transform: "translate(-50%, -50%)",
         animationDelay: "-6s",
