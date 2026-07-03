@@ -21,7 +21,7 @@ export function Footer() {
   const socials = ["IG", "LI", "TT", "YT"];
 
   return (
-    <footer id="contact" style={{ borderTop: "1px solid rgba(255,255,255,0.09)", backgroundColor: "#0B1410" }}>
+    <footer id="contact" style={{ borderTop: "1px solid rgba(255,255,255,0.09)" }}>
       <div style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "48px 20px 0" : "80px 32px 0" }}>
         {/* Newsletter Section */}
         <div style={{

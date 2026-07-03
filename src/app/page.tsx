@@ -198,16 +198,12 @@ export default function Home() {
   }, []);
 
   return (
-    <main style={{ minHeight: "100vh", backgroundColor: "#0B1410" }}>
+    <main style={{ minHeight: "100vh" }}>
       <Navbar />
 
       {/* HERO SECTION */}
-      <section id="top" style={{ position: "relative", overflow: "hidden", maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "48px 20px 28px" : "96px 32px 28px", backgroundImage: "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)", backgroundSize: "26px 26px", backgroundPosition: "-8px -8px" }}>
-        {/* Ambient background glow */}
-        <div style={{ position: "absolute", top: "-120px", left: "-100px", width: "480px", height: "480px", borderRadius: "50%", background: "#E8B923", opacity: 0.07, filter: "blur(110px)", animation: "ambientDrift1 16s ease-in-out infinite", pointerEvents: "none" }}></div>
-        <div style={{ position: "absolute", bottom: "-140px", right: "-80px", width: "440px", height: "440px", borderRadius: "50%", background: "#2FBF8F", opacity: 0.08, filter: "blur(110px)", animation: "ambientDrift2 20s ease-in-out infinite", pointerEvents: "none" }}></div>
-
-        <div style={{ position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.15fr 0.85fr", gap: isMobile ? "40px" : "64px", alignItems: "center" }}>
+      <section id="top" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "48px 20px 28px" : "96px 32px 28px", backgroundImage: "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)", backgroundSize: "26px 26px", backgroundPosition: "-8px -8px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.15fr 0.85fr", gap: isMobile ? "40px" : "64px", alignItems: "center" }}>
           {/* Left column */}
           <div>
             {/* Eyebrow pill */}
@@ -252,7 +248,7 @@ export default function Home() {
         </div>
 
         {/* Stat strip - spans full hero width */}
-        <div style={{ position: "relative", zIndex: 1, display: "flex", alignItems: "center", gap: "14px", marginTop: "56px", paddingTop: "28px", borderTop: "1px solid rgba(255,255,255,0.09)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "14px", marginTop: "56px", paddingTop: "28px", borderTop: "1px solid rgba(255,255,255,0.09)" }}>
           <span style={{ fontFamily: "IBM Plex Mono", fontSize: "26px", fontWeight: "500", color: "#E8B923" }}>4,973+</span>
           <span style={{ fontSize: "14px", color: "rgba(245,243,237,0.55)", maxWidth: "320px", lineHeight: "1.4" }}>students and young professionals already building momentum</span>
         </div>
@@ -323,7 +319,7 @@ export default function Home() {
       </section>
 
       {/* STATS SECTION */}
-      <section id="stats" style={{ borderTop: "1px solid rgba(255,255,255,0.09)", borderBottom: "1px solid rgba(255,255,255,0.09)", backgroundColor: "#0F1A15" }}>
+      <section id="stats" style={{ borderTop: "1px solid rgba(255,255,255,0.09)", borderBottom: "1px solid rgba(255,255,255,0.09)" }}>
         <div style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 32px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr" }}>
           <div style={{ padding: isMobile ? "40px 0" : "56px 40px 56px 0", borderRight: isMobile ? "none" : "1px solid rgba(255,255,255,0.09)", borderBottom: isMobile ? "1px solid rgba(255,255,255,0.09)" : "none" }}>
             <div style={{ fontFamily: "IBM Plex Mono", fontSize: "44px", fontWeight: "500", color: "#E8B923", letterSpacing: "-0.01em" }}>4,973+</div>
