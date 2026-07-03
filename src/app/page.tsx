@@ -291,8 +291,8 @@ export default function Home() {
 
             {/* Member count */}
             <div style={{ display: "flex", alignItems: "center", gap: "14px", marginTop: "22px" }}>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "36px", fontWeight: "500", color: "#E8B923", lineHeight: 1, letterSpacing: "-0.01em", flexShrink: 0 }}>4,000+</span>
-              <span style={{ fontSize: "14px", lineHeight: 1.35, color: "rgba(245,243,237,0.55)", maxWidth: "260px" }}>students and young professionals already building momentum</span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "34px", fontWeight: "500", color: "#E8B923", lineHeight: 1, letterSpacing: "-0.01em", flexShrink: 0 }}>4,000+</span>
+              <span style={{ fontSize: "14px", lineHeight: 1.35, color: "rgba(245,243,237,0.6)", maxWidth: "240px" }}>students &amp; young professionals building momentum</span>
             </div>
           </div>
 
@@ -303,9 +303,9 @@ export default function Home() {
                 <source src="https://leafpathways.com/videos/vid1.mp4" type="video/mp4" />
               </video>
             </div>
-            {/* Corner brackets */}
-            <div style={{ position: "absolute", top: "-10px", left: "-10px", width: "34px", height: "34px", borderTop: "3px solid #E8B923", borderLeft: "3px solid #E8B923" }}></div>
-            <div style={{ position: "absolute", bottom: "-10px", right: "-10px", width: "34px", height: "34px", borderBottom: "3px solid #E8B923", borderRight: "3px solid #E8B923" }}></div>
+            {/* Corner brackets — curved to match the rounder button language */}
+            <div style={{ position: "absolute", top: "-10px", left: "-10px", width: "34px", height: "34px", borderTop: "3px solid #E8B923", borderLeft: "3px solid #E8B923", borderTopLeftRadius: "14px" }}></div>
+            <div style={{ position: "absolute", bottom: "-10px", right: "-10px", width: "34px", height: "34px", borderBottom: "3px solid #E8B923", borderRight: "3px solid #E8B923", borderBottomRightRadius: "14px" }}></div>
           </div>
         </div>
       </section>
