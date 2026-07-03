@@ -121,13 +121,48 @@
 
 /* Sitewide animated background gradient */
 @keyframes siteGradientShift {
-  0%, 100% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 body {
-  background: linear-gradient(135deg, #081911 0%, #123322 35%, #1a4c2e 50%, #123322 65%, #081911 100%);
-  background-size: 220% 220%;
+  background: #020704;
   background-attachment: fixed;
-  animation: siteGradientShift 55s ease-in-out infinite;
 }
+
+@keyframes spin-clockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-counter-clockwise {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.95; }
+}
+
+.animate-spin-slow {
+  animation: spin-clockwise 140s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: spin-counter-clockwise 180s linear infinite;
+}
+
+.animate-spin-medium {
+  animation: spin-clockwise 90s linear infinite;
+}
+
+.animate-spin-medium-reverse {
+  animation: spin-counter-clockwise 110s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 8s ease-in-out infinite;
+}
+
+

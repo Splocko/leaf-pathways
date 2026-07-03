@@ -202,11 +202,31 @@ export default function Home() {
   }, []);
 
   return (
-    <main style={{ minHeight: "100vh" }}>
+    <main style={{ minHeight: "100vh", position: "relative", overflowX: "hidden" }}>
       <Navbar />
 
+      {/* Super blurred green orb in the center (Fixed background) */}
+      <div 
+        className="animate-pulse-glow"
+        style={{
+          position: "fixed",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: "75vw",
+          height: "75vw",
+          maxWidth: "850px",
+          maxHeight: "850px",
+          background: "radial-gradient(circle, rgba(47, 191, 143, 0.38) 0%, rgba(5, 30, 18, 0.15) 50%, transparent 75%)",
+          borderRadius: "50%",
+          filter: "blur(120px)",
+          pointerEvents: "none",
+          zIndex: -1,
+        }}
+      />
+
       {/* HERO SECTION */}
-      <section id="top" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "48px 20px 28px" : "96px 32px 28px", backgroundImage: "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)", backgroundSize: "26px 26px", backgroundPosition: "-8px -8px" }}>
+      <section id="top" style={{ maxWidth: "1360px", margin: "0 auto", padding: isMobile ? "48px 20px 28px" : "96px 32px 28px", position: "relative", zIndex: 1 }}>
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.15fr 0.85fr", gap: isMobile ? "40px" : "64px", alignItems: "center" }}>
           {/* Left column */}
           <div>

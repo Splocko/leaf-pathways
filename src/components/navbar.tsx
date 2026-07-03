@@ -54,10 +54,11 @@ export function Navbar() {
       backdropFilter: scrolled ? "blur(10px)" : "none",
       WebkitBackdropFilter: scrolled ? "blur(10px)" : "none",
       borderBottom: scrolled ? "1px solid rgba(255,255,255,0.05)" : "none",
+      height: scrolled ? "64px" : "80px",
       transition: "all 0.3s ease",
       width: "100%",
     }}>
-      <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px", height: "80px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}>
+      <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px", height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}>
         {/* Logo */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", flexShrink: 0 }}>
           <img src="https://leafpathways.com/images/leaflogo.png" alt="LEAF Pathways" style={{ height: "36px", width: "auto" }} />
