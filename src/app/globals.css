@@ -128,6 +128,13 @@ body {
   background: #020704;
 }
 
+/* Clip sideways overflow (orbs) without creating a scroll container —
+   overflow-x: hidden on an ancestor silently kills position: sticky */
+html,
+body {
+  overflow-x: clip;
+}
+
 /* Photo marquee — pure CSS, transform-only */
 @keyframes marqueeLeft {
   from { transform: translateX(0); }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { preconnect } from "react-dom";
 import { Hanken_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
@@ -40,6 +41,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  preconnect("https://leafpathways.com");
+  preconnect("https://cueuwyazwjikiogxsbrs.supabase.co");
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(

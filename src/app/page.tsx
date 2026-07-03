@@ -226,7 +226,7 @@ function EventCard({ event }: { event: (typeof events)[0] }) {
 
 export default function Home() {
   return (
-    <main style={{ minHeight: "100vh", position: "relative", overflowX: "hidden" }}>
+    <main style={{ minHeight: "100vh", position: "relative" }}>
       <Navbar />
 
       {/* Background orbs — placed at different depths so they scroll naturally */}
@@ -254,7 +254,7 @@ export default function Home() {
       <div className="animate-orb-drift" style={{
         position: "absolute", top: "250vh", left: "30%",
         width: "min(115vw, 860px)", height: "min(115vw, 860px)",
-        background: "radial-gradient(circle, rgba(47, 191, 143, 0.28) 0%, rgba(47, 191, 143, 0.11) 34%, rgba(5, 30, 18, 0.04) 58%, transparent 74%)",
+        background: "radial-gradient(circle, rgba(47, 191, 143, 0.38) 0%, rgba(47, 191, 143, 0.15) 34%, rgba(5, 30, 18, 0.05) 58%, transparent 74%)",
         borderRadius: "50%", pointerEvents: "none", zIndex: 0,
         transform: "translate(-50%, -50%)",
         animationDelay: "-12s",

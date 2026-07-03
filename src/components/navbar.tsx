@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { JoinCommunityDialog } from "@/components/join-community-dialog";
+import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -45,22 +46,26 @@ export function Navbar() {
     ],
   };
 
+  // Mobile, scrolled, menu closed → the bar dissolves and only the hamburger floats
+  const mobileFloating = scrolled && !mobileOpen;
+
   return (
-    <header style={{
-      position: "sticky",
-      top: "0",
-      zIndex: 100,
-      backgroundColor: scrolled ? "rgba(11,20,16,0.7)" : "transparent",
-      backdropFilter: scrolled ? "blur(10px)" : "none",
-      WebkitBackdropFilter: scrolled ? "blur(10px)" : "none",
-      borderBottom: scrolled ? "1px solid rgba(255,255,255,0.05)" : "none",
-      height: scrolled ? "64px" : "80px",
-      transition: "background-color 0.3s ease, height 0.3s ease, border-color 0.3s ease",
-      width: "100%",
-    }}>
+    <header
+      className={cn(
+        "sticky top-0 z-[100] w-full border-b transition-[background-color,height,border-color] duration-300",
+        scrolled
+          ? "h-16 bg-[rgba(11,20,16,0.7)] border-white/5 backdrop-blur-[10px]"
+          : "h-20 bg-transparent border-transparent",
+        mobileFloating && "max-lg:bg-transparent max-lg:border-transparent max-lg:backdrop-blur-none max-lg:pointer-events-none"
+      )}
+    >
       <div style={{ maxWidth: "1360px", margin: "0 auto", padding: "0 32px", height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "24px" }}>
-        {/* Logo */}
-        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", flexShrink: 0 }}>
+        {/* Logo — fades out on mobile once the bar dissolves */}
+        <Link
+          href="/"
+          className={cn("transition-opacity duration-300", mobileFloating && "max-lg:opacity-0 max-lg:pointer-events-none")}
+          style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", flexShrink: 0 }}
+        >
           <img src="https://leafpathways.com/images/leaflogo.png" alt="LEAF Pathways" style={{ height: "36px", width: "auto" }} />
           <span style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "24px", letterSpacing: "-0.01em" }}>
             <span style={{ color: "#E8B923" }}>LEAF</span>
@@ -141,16 +146,14 @@ export function Navbar() {
             borderRadius: "4px",
             fontFamily: "var(--font-sans)",
             cursor: "pointer",
-          }} className="hidden sm:inline-block">
+          }} className="hidden lg:inline-block">
             Join the community
           </JoinCommunityDialog>
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
             style={{
-              background: "none",
-              border: "1px solid rgba(255,255,255,0.15)",
-              borderRadius: "4px",
               width: "40px",
               height: "40px",
               alignItems: "center",
@@ -159,7 +162,12 @@ export function Navbar() {
               cursor: "pointer",
               flexShrink: 0,
             }}
-            className="flex lg:hidden"
+            className={cn(
+              "flex lg:hidden pointer-events-auto border transition-all duration-300",
+              mobileFloating
+                ? "rounded-full border-white/15 bg-[rgba(11,20,16,0.8)] backdrop-blur-[10px] shadow-lg shadow-black/30"
+                : "rounded border-white/15 bg-transparent"
+            )}
           >
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
