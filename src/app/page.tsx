@@ -110,13 +110,13 @@ function TestimonialCarousel({ testimonials }: { testimonials: Array<{ name: str
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
       {/* Quote */}
-      <blockquote style={{ fontFamily: "IBM Plex Sans", fontSize: "16px", lineHeight: "1.6", color: "#F5F3ED", margin: 0, fontStyle: "italic", borderLeft: "4px solid #E8B923", paddingLeft: "20px" }}>
+      <blockquote style={{ fontFamily: "Hanken Grotesk", fontSize: "16px", lineHeight: "1.6", color: "#F5F3ED", margin: 0, fontStyle: "italic", borderLeft: "4px solid #E8B923", paddingLeft: "20px" }}>
         "{current.quote}"
       </blockquote>
 
       {/* Attribution */}
       <div>
-        <div style={{ fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "14px", color: "#F5F3ED" }}>
+        <div style={{ fontFamily: "Hanken Grotesk", fontWeight: "600", fontSize: "14px", color: "#F5F3ED" }}>
           {current.name}
         </div>
         <div style={{ fontSize: "13px", color: "rgba(245,243,237,0.6)", marginTop: "3px" }}>
@@ -178,7 +178,7 @@ function EventCard({ event }: { event: (typeof events)[0] }) {
         <div style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", color: "rgba(245,243,237,0.45)", letterSpacing: "0.04em" }}>
           {event.date}
         </div>
-        <h3 style={{ fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "19px", margin: 0, lineHeight: "1.25" }}>
+        <h3 style={{ fontFamily: "Hanken Grotesk", fontWeight: "600", fontSize: "19px", margin: 0, lineHeight: "1.25" }}>
           <Link href={event.href} style={{ color: "inherit", textDecoration: "none" }}>{event.title}</Link>
         </h3>
         <p style={{ fontSize: "14px", lineHeight: "1.55", color: "rgba(245,243,237,0.6)", margin: 0, flex: 1 }}>
@@ -217,7 +217,7 @@ export default function Home() {
             </div>
 
             {/* H1 */}
-            <h1 style={{ fontFamily: "Space Grotesk", fontWeight: "700", fontSize: "clamp(40px, 5.4vw, 72px)", lineHeight: "1.03", letterSpacing: "-0.02em", margin: "0 0 24px", color: "#F5F3ED" }}>
+            <h1 style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "clamp(40px, 5.4vw, 72px)", lineHeight: "1.03", letterSpacing: "-0.02em", margin: "0 0 24px", color: "#F5F3ED" }}>
               Where ambition meets <span style={{ color: "#E8B923" }}>real opportunity</span> in LEAF.
             </h1>
 
@@ -228,7 +228,7 @@ export default function Home() {
 
             {/* CTAs */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
-              <JoinCommunityDialog style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "#E8B923", color: "#0B1410", fontFamily: "Space Grotesk", fontWeight: "600", fontSize: "15px", padding: "15px 26px", borderRadius: "4px", border: "none", cursor: "pointer" }}>
+              <JoinCommunityDialog style={{ display: "inline-flex", alignItems: "center", gap: "9px", backgroundColor: "#E8B923", color: "#0B1410", fontFamily: "Hanken Grotesk", fontWeight: "600", fontSize: "15px", padding: "15px 26px", borderRadius: "4px", border: "none", cursor: "pointer" }}>
                 Join the community
                 <ArrowRight size={16} />
               </JoinCommunityDialog>
@@ -300,7 +300,7 @@ export default function Home() {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "24px", marginBottom: "48px" }}>
           <div>
             <div style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.1em", color: "#2FBF8F", marginBottom: "14px" }}>(01) UPCOMING EVENTS</div>
-            <h2 style={{ fontFamily: "Space Grotesk", fontWeight: "700", fontSize: "clamp(30px, 3.4vw, 44px)", lineHeight: "1.1", margin: 0, letterSpacing: "-0.01em", color: "#F5F3ED" }}>
+            <h2 style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "clamp(30px, 3.4vw, 44px)", lineHeight: "1.1", margin: 0, letterSpacing: "-0.01em", color: "#F5F3ED" }}>
               Connect at our <span style={{ color: "#E8B923" }}>major events</span>.
             </h2>
             <p style={{ fontSize: "16px", color: "rgba(245,243,237,0.6)", margin: "14px 0 0", maxWidth: "440px" }}>A packed calendar this year — book your place before spots fill up.</p>
@@ -338,7 +338,7 @@ export default function Home() {
         <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "0.85fr 1.15fr", gap: isMobile ? "24px" : "64px" }}>
           <div>
             <div style={{ fontFamily: "IBM Plex Mono", fontSize: "12px", letterSpacing: "0.1em", color: "#E8B923", marginBottom: "14px" }}>(02) ABOUT US</div>
-            <h2 style={{ fontFamily: "Space Grotesk", fontWeight: "700", fontSize: "clamp(30px, 3.4vw, 44px)", margin: 0, lineHeight: "1.1", letterSpacing: "-0.01em", color: "#F5F3ED" }}>
+            <h2 style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "clamp(30px, 3.4vw, 44px)", margin: 0, lineHeight: "1.1", letterSpacing: "-0.01em", color: "#F5F3ED" }}>
               More than a network.
             </h2>
           </div>
@@ -350,7 +350,7 @@ export default function Home() {
               Built by students who've been there, we know how hard it is to break into competitive industries without the right people in your corner. That's precisely why LEAF exists.
             </p>
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.12)", paddingTop: "28px" }}>
-              <p style={{ fontStyle: "italic", fontSize: "18px", color: "#F5F3ED", margin: 0, fontFamily: "Space Grotesk", fontWeight: "500" }}>
+              <p style={{ fontStyle: "italic", fontSize: "18px", color: "#F5F3ED", margin: 0, fontFamily: "Hanken Grotesk", fontWeight: "500" }}>
                 "We turn potential into placement."
               </p>
             </div>

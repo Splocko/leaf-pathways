@@ -64,7 +64,7 @@ export function JoinCommunityDialog({
             <X size={18} />
           </DialogClose>
 
-          <h3 style={{ fontFamily: "Space Grotesk", fontWeight: "700", fontSize: "20px", color: "#F5F3ED", margin: "0 0 8px" }}>
+          <h3 style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "20px", color: "#F5F3ED", margin: "0 0 8px" }}>
             Join the LEAF community
           </h3>
           <p style={{ fontSize: "14px", color: "rgba(245,243,237,0.6)", margin: "0 0 24px", lineHeight: "1.5" }}>
