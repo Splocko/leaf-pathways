@@ -61,7 +61,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none", flexShrink: 0 }}>
           <img src="https://leafpathways.com/images/leaflogo.png" alt="LEAF Pathways" style={{ height: "32px", width: "auto" }} />
-          <span style={{ fontFamily: "Hanken Grotesk", fontWeight: "600", fontSize: "16px", letterSpacing: "-0.01em" }}>
+          <span style={{ fontFamily: "Hanken Grotesk", fontWeight: "600", fontSize: "17px", letterSpacing: "-0.01em" }}>
             <span style={{ color: "#E8B923" }}>LEAF</span>
             <span style={{ color: "#F5F3ED" }}> Pathways</span>
           </span>
@@ -69,7 +69,7 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav style={{ flex: 1, alignItems: "center", gap: "4px", justifyContent: "center" }} className="hidden lg:flex">
-          <Link href="#top" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "16px", fontWeight: "500", fontFamily: "Hanken Grotesk", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
+          <Link href="#top" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "17px", fontWeight: "500", fontFamily: "Hanken Grotesk", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
 
           {Object.entries(dropdownItems).map(([label, items]) => (
             <div key={label} style={{ position: "relative" }} onMouseEnter={() => setOpenMenu(label)} onMouseLeave={() => setOpenMenu(null)}>
@@ -78,7 +78,7 @@ export function Navbar() {
                 alignItems: "center",
                 gap: "5px",
                 color: "#F5F3ED",
-                fontSize: "16px",
+                fontSize: "17px",
                 fontWeight: "500",
                 fontFamily: "Hanken Grotesk",
                 padding: "10px 14px",
@@ -134,7 +134,7 @@ export function Navbar() {
             backgroundColor: "#E8B923",
             color: "#0B1410",
             border: "none",
-            fontSize: "14px",
+            fontSize: "15px",
             fontWeight: "600",
             padding: "10px 20px",
             borderRadius: "4px",

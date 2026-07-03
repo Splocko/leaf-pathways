@@ -3,14 +3,7 @@
 import * as React from "react";
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { Dialog, DialogPortal, DialogOverlay, DialogClose } from "@/components/ui/dialog";
-import { X } from "lucide-react";
-
-const communities = [
-  { label: "General LEAF Community", href: "#" },
-  { label: "Law", href: "#" },
-  { label: "Engineering & Technology", href: "#" },
-  { label: "Finance", href: "#" },
-];
+import { X, UserPlus, Mail } from "lucide-react";
 
 export function JoinCommunityDialog({
   style,
@@ -64,38 +57,64 @@ export function JoinCommunityDialog({
             <X size={18} />
           </DialogClose>
 
-          <h3 style={{ fontFamily: "Hanken Grotesk", fontWeight: "700", fontSize: "20px", color: "#F5F3ED", margin: "0 0 8px" }}>
-            Join the LEAF community
+          <h3 style={{ fontFamily: "Hanken Grotesk", fontWeight: "800", fontSize: "26px", color: "#F5F3ED", margin: "0 0 8px" }}>
+            Join <span style={{ color: "#E8B923" }}>LEAF</span>
           </h3>
-          <p style={{ fontSize: "14px", color: "rgba(245,243,237,0.6)", margin: "0 0 24px", lineHeight: "1.5" }}>
-            Pick a WhatsApp community and jump straight into the conversation.
+          <p style={{ fontSize: "14px", color: "rgba(245,243,237,0.6)", margin: "0 0 20px", lineHeight: "1.5" }}>
+            Supporting young professionals across the UK 🌿
           </p>
 
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "20px", marginBottom: "20px" }}>
+            <p style={{ fontSize: "14px", color: "rgba(245,243,237,0.6)", textAlign: "center", margin: 0 }}>
+              New here or already part of the network?
+            </p>
+          </div>
+
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            {communities.map((c) => (
-              <a
-                key={c.label}
-                href={c.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "14px 16px",
-                  borderRadius: "8px",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  backgroundColor: "rgba(255,255,255,0.03)",
-                  color: "#F5F3ED",
-                  textDecoration: "none",
-                  fontSize: "14px",
-                  fontWeight: "600",
-                }}
-              >
-                {c.label}
-                <span style={{ color: "#2FBF8F" }}>→</span>
-              </a>
-            ))}
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "10px",
+                padding: "14px 16px",
+                borderRadius: "8px",
+                border: "none",
+                background: "linear-gradient(90deg, #3ECF8E, #1F6B4A)",
+                color: "#0B1410",
+                textDecoration: "none",
+                fontSize: "15px",
+                fontWeight: "700",
+              }}
+            >
+              <UserPlus size={18} />
+              Join LEAF
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "10px",
+                padding: "14px 16px",
+                borderRadius: "8px",
+                border: "1px solid rgba(255,255,255,0.15)",
+                backgroundColor: "rgba(255,255,255,0.03)",
+                color: "#F5F3ED",
+                textDecoration: "none",
+                fontSize: "15px",
+                fontWeight: "700",
+              }}
+            >
+              <Mail size={18} />
+              Registered before? Rejoin
+            </a>
           </div>
         </DialogPrimitive.Popup>
       </DialogPortal>
