@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { Menu, X } from "lucide-react";
 import { JoinCommunityDialog } from "@/components/join-community-dialog";
 import { cn } from "@/lib/utils";
@@ -68,6 +69,7 @@ export function Navbar() {
   const mobileFloating = scrolled && !mobileOpen;
 
   return (
+    <>
     <header
       className={cn(
         "sticky top-0 z-[100] w-full border-b transition-[background-color,height,border-color] duration-300",
@@ -86,7 +88,7 @@ export function Navbar() {
         >
           <img src="/leaf-icon.png" alt="" style={{ height: "44px", width: "auto" }} />
           <span style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "24px", letterSpacing: "-0.01em" }}>
-            <span style={{ color: "#E8B923" }}>LEAF</span>
+            <span style={{ color: "#E8B923", fontWeight: "800" }}>LEAF</span>
             <span style={{ color: "#F5F3ED" }}> Pathways</span>
           </span>
         </Link>
@@ -192,9 +194,11 @@ export function Navbar() {
           </button>
         </div>
       </div>
+    </header>
 
-      {/* Mobile menu — full-screen overlay, mirrors leafpathways.com */}
-      {mobileOpen && (
+      {/* Mobile menu — full-screen overlay, portaled to <body> so the header's
+          backdrop-filter can't trap the fixed positioning */}
+      {mobileOpen && createPortal(
         <div
           className="lg:hidden"
           style={{
@@ -224,7 +228,7 @@ export function Navbar() {
             <Link href="/" onClick={() => setMobileOpen(false)} style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
               <img src="/leaf-icon.png" alt="" style={{ height: "40px", width: "auto" }} />
               <span style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "22px", letterSpacing: "-0.01em" }}>
-                <span style={{ color: "#E8B923" }}>LEAF</span>
+                <span style={{ color: "#E8B923", fontWeight: "800" }}>LEAF</span>
                 <span style={{ color: "#F5F3ED" }}> Pathways</span>
               </span>
             </Link>
@@ -281,8 +285,9 @@ export function Navbar() {
               Join the community
             </JoinCommunityDialog>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
-    </header>
+    </>
   );
 }
