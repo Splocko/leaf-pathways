@@ -311,18 +311,18 @@ export default function Home() {
       </section>
 
       {/* TRUSTED BY SECTION - Two Carousels */}
-      <section className="px-5 pt-12 pb-14 md:px-8 md:pt-[70px] md:pb-[90px]" style={{ borderTop: "1px solid rgba(255,255,255,0.16)", borderBottom: "1px solid rgba(255,255,255,0.16)", overflow: "visible" }}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start" style={{ maxWidth: "1360px", margin: "0 auto" }}>
+      <section className="pt-12 pb-14 md:pt-[70px] md:pb-[90px]" style={{ borderTop: "1px solid rgba(255,255,255,0.16)", borderBottom: "1px solid rgba(255,255,255,0.16)", overflow: "visible" }}>
+        <div className="px-5 md:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-start" style={{ maxWidth: "1360px", margin: "0 auto" }}>
           {/* Left: Partner Logos Carousel */}
           <div style={{ overflow: "hidden", minWidth: 0 }}>
             <h3 style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", margin: "0 0 32px" }}>
               TRUSTED BY
             </h3>
-            <div style={{ overflow: "hidden", position: "relative", height: "140px", width: "100%" }}>
-              <div data-carousel style={{ display: "flex", gap: "40px", animation: "logoCarousel 20s linear infinite", willChange: "transform", width: "max-content" }}>
+            <div style={{ overflow: "hidden", position: "relative", height: "116px", width: "100%" }}>
+              <div data-carousel style={{ display: "flex", gap: "24px", animation: "logoCarousel 26s linear infinite", willChange: "transform", width: "max-content" }}>
                 {[...PartnerLogos, ...PartnerLogos].map((partner, idx) => (
-                  <div key={idx} style={{ width: "140px", height: "140px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", opacity: 0.7, transition: "opacity 0.3s ease", cursor: "pointer" }} onMouseEnter={(e) => e.currentTarget.style.opacity = "1"} onMouseLeave={(e) => e.currentTarget.style.opacity = "0.7"}>
-                    <img src={partner.logo} alt={partner.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                  <div key={idx} style={{ width: "204px", height: "108px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FFFFFF", borderRadius: "12px", padding: "22px 28px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                    <img src={partner.logo} alt={partner.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} onError={(e) => { e.currentTarget.parentElement!.style.display = "none"; }} />
                   </div>
                 ))}
               </div>
@@ -341,7 +341,7 @@ export default function Home() {
         <style>{`
           @keyframes logoCarousel {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-180px * ${PartnerLogos.length})); }
+            100% { transform: translateX(calc(-228px * ${PartnerLogos.length})); }
           }
           @media (prefers-reduced-motion: reduce) {
             [data-carousel] { animation: none !important; }

@@ -20,6 +20,24 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll while the full-screen mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
+  // Flat mobile nav — mirrors leafpathways.com's overlay (Pathera removed)
+  const mobileNav = [
+    { label: "Events", href: "/events" },
+    { label: "Partners", href: "/partners" },
+    { label: "About", href: "/about" },
+    { label: "Blog", href: "/media/blog" },
+    { label: "Webinars", href: "/media/webinars" },
+    { label: "Contact", href: "/contact" },
+  ];
+
   const dropdownItems: Record<string, { title: string; href: string; desc?: string }[]> = {
     "About us": [
       { title: "Our mission", href: "/about/mission", desc: "What LEAF is, and why it exists." },
@@ -175,28 +193,91 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — full-screen overlay, mirrors leafpathways.com */}
       {mobileOpen && (
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.09)", padding: "20px 24px 28px", display: "flex", flexDirection: "column", gap: "4px", backgroundColor: "#0B1410" }}>
-          <Link href="/" onClick={() => setMobileOpen(false)} style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Home</Link>
-          <Link href="/events" onClick={() => setMobileOpen(false)} style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Events</Link>
-          <Link href="/partners" onClick={() => setMobileOpen(false)} style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Partners</Link>
-          <Link href="/about/mission" onClick={() => setMobileOpen(false)} style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>About us</Link>
-          <Link href="/media" onClick={() => setMobileOpen(false)} style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Media</Link>
-          <Link href="/contact" onClick={() => setMobileOpen(false)} style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "15px", fontWeight: "600", padding: "12px 4px" }}>Contact</Link>
-          <div style={{ display: "flex", gap: "12px", marginTop: "12px" }}>
-            <JoinCommunityDialog style={{
-              flex: 1,
-              textAlign: "center",
-              background: "linear-gradient(180deg, #F5CB3D 0%, #E8B923 55%, #D9A70F 100%)",
-              color: "#0B1410",
-              border: "none",
-              padding: "13px",
-              borderRadius: "999px",
-              fontWeight: "700",
-              fontSize: "14px",
-              boxShadow: "0 6px 18px rgba(232,185,35,0.35)",
-            }}>
+        <div
+          className="lg:hidden"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 200,
+            background: "linear-gradient(160deg, #0C1913 0%, #071611 55%, #030B08 100%)",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          {/* Faint plus texture */}
+          <div
+            aria-hidden
+            style={{
+              position: "absolute",
+              inset: 0,
+              backgroundImage:
+                "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='42'%3E%3Cpath d='M21 15v12M15 21h12' stroke='%23ffffff' stroke-width='1' stroke-opacity='0.05'/%3E%3C/svg%3E\")",
+              backgroundSize: "42px 42px",
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* Top bar */}
+          <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 24px" }}>
+            <Link href="/" onClick={() => setMobileOpen(false)} style={{ display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
+              <img src="/leaf-icon.png" alt="" style={{ height: "40px", width: "auto" }} />
+              <span style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "22px", letterSpacing: "-0.01em" }}>
+                <span style={{ color: "#E8B923" }}>LEAF</span>
+                <span style={{ color: "#F5F3ED" }}> Pathways</span>
+              </span>
+            </Link>
+            <button
+              onClick={() => setMobileOpen(false)}
+              aria-label="Close menu"
+              style={{ background: "none", border: "none", color: "#E8B923", cursor: "pointer", display: "flex", padding: "6px" }}
+            >
+              <X size={28} />
+            </button>
+          </div>
+
+          {/* Nav items */}
+          <nav style={{ position: "relative", flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: "4px", padding: "0 28px" }}>
+            {mobileNav.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontSize: "clamp(34px, 9vw, 44px)",
+                  fontWeight: 800,
+                  color: "#F5F3ED",
+                  textDecoration: "none",
+                  letterSpacing: "-0.02em",
+                  padding: "8px 0",
+                }}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Bottom CTA */}
+          <div style={{ position: "relative", padding: "0 28px calc(40px + env(safe-area-inset-bottom))" }}>
+            <JoinCommunityDialog
+              style={{
+                display: "block",
+                width: "100%",
+                textAlign: "center",
+                background: "linear-gradient(180deg, #F5CB3D 0%, #E8B923 55%, #D9A70F 100%)",
+                color: "#0B1410",
+                border: "none",
+                padding: "18px",
+                borderRadius: "999px",
+                fontFamily: "var(--font-sans)",
+                fontWeight: 800,
+                fontSize: "18px",
+                cursor: "pointer",
+                boxShadow: "0 8px 26px rgba(232,185,35,0.4)",
+              }}
+            >
               Join the community
             </JoinCommunityDialog>
           </div>
