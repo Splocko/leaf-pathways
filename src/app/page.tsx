@@ -273,7 +273,7 @@ export default function Home() {
 
             {/* H1 */}
             <h1 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "clamp(40px, 5.4vw, 72px)", lineHeight: "1.03", letterSpacing: "-0.02em", margin: "0 0 24px", color: "#F5F3ED" }}>
-              Where ambition meets <span style={{ color: "#E8B923" }}>real opportunity</span> in LEAF.
+              The home of <span style={{ color: "#E8B923" }}>ambition</span>.
             </h1>
 
             {/* Subhead */}
