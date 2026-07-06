@@ -43,7 +43,18 @@ function isPast(e: EventRow): boolean {
   return isEventPastByDate(e.date, e.event_date_precision);
 }
 
-export function LiveEvents({ limit, showPastEvents = false }: { limit?: number; showPastEvents?: boolean }) {
+export function LiveEvents({
+  limit,
+  showPastEvents = false,
+  compact = false,
+  align = "start",
+}: {
+  limit?: number;
+  showPastEvents?: boolean;
+  /** Smaller cards — use on the homepage grid */
+  compact?: boolean;
+  align?: "start" | "end";
+}) {
   const [events, setEvents] = useState<EventRow[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -82,17 +93,29 @@ export function LiveEvents({ limit, showPastEvents = false }: { limit?: number; 
     };
   }, [limit, showPastEvents]);
 
-  const gridStyle: React.CSSProperties = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-    gap: "24px",
-  };
+  const gridStyle: React.CSSProperties = compact
+    ? {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(220px, 300px))",
+        gap: "20px",
+        justifyContent: align === "end" ? "end" : "start",
+      }
+    : {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+        gap: "16px",
+      };
+
+  const cardContentPad = compact ? "16px" : "16px";
+  const titleSize = compact ? "15px" : "15px";
+  const descSize = compact ? "12px" : "12px";
+  const skeletonHeight = compact ? "230px" : "260px";
 
   if (loading) {
     return (
       <div style={gridStyle}>
         {Array.from({ length: limit && limit < 3 ? limit : 3 }).map((_, i) => (
-          <div key={i} className="animate-pulse" style={{ height: "360px", borderRadius: "8px", backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }} />
+          <div key={i} className="animate-pulse" style={{ height: skeletonHeight, borderRadius: "8px", backgroundColor: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }} />
         ))}
       </div>
     );
@@ -130,15 +153,15 @@ export function LiveEvents({ limit, showPastEvents = false }: { limit?: number; 
                 {pill.label}
               </div>
             </div>
-            <div style={{ padding: "24px", display: "flex", flexDirection: "column", gap: "10px", flex: 1 }}>
-              <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "rgba(245,243,237,0.45)", letterSpacing: "0.04em" }}>
+            <div style={{ padding: cardContentPad, display: "flex", flexDirection: "column", gap: compact ? "6px" : "8px", flex: 1 }}>
+              <div style={{ fontFamily: "var(--font-mono)", fontSize: compact ? "11px" : "12px", color: "rgba(245,243,237,0.45)", letterSpacing: "0.04em" }}>
                 {formatEventDate(event.date, event.event_date_precision, { includeTime: true })}
               </div>
-              <h3 style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: "19px", margin: 0, lineHeight: 1.25, color: "#F5F3ED" }}>
+              <h3 style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: titleSize, margin: 0, lineHeight: 1.25, color: "#F5F3ED" }}>
                 {event.title}
               </h3>
               {(event.short_description || event.description) && (
-                <p style={{ fontSize: "14px", lineHeight: 1.55, color: "rgba(245,243,237,0.6)", margin: 0, flex: 1 }}>
+                <p style={{ fontSize: descSize, lineHeight: 1.5, color: "rgba(245,243,237,0.6)", margin: 0, flex: 1, display: compact ? "-webkit-box" : undefined, WebkitLineClamp: compact ? 2 : undefined, WebkitBoxOrient: compact ? "vertical" as const : undefined, overflow: compact ? "hidden" : undefined }}>
                   {event.short_description || event.description}
                 </p>
               )}
