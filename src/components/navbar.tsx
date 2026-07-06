@@ -10,13 +10,14 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [mediaOpen, setMediaOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10;
       setScrolled(isScrolled);
     };
+    handleScroll(); // sync immediately — covers reloading while already scrolled down
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -29,40 +30,41 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
-  // Flat mobile nav — mirrors leafpathways.com's overlay (Pathera removed)
-  const mobileNav = [
+  // Simple top-level links (no dropdown)
+  const navLinks = [
+    { label: "Home", href: "/" },
+    { label: "About Us", href: "/about" },
     { label: "Events", href: "/events" },
-    { label: "Partners", href: "/partners" },
-    { label: "About", href: "/about" },
+  ];
+
+  // Media is the only dropdown
+  const mediaItems = [
+    { title: "Blog", href: "/media/blog", desc: "Newsletters & community spotlights." },
+    { title: "Pathways Webinar Series", href: "/media/webinars", desc: "Upcoming & past webinars." },
+    { title: "Branching Out Podcast", href: "/media/podcast", desc: "YouTube · Spotify · Apple Podcasts." },
+  ];
+
+  // Flat mobile nav — mirrors the desktop IA
+  const mobileNav = [
+    { label: "Home", href: "/" },
+    { label: "About Us", href: "/about" },
+    { label: "Events", href: "/events" },
     { label: "Blog", href: "/media/blog" },
     { label: "Webinars", href: "/media/webinars" },
+    { label: "Podcast", href: "/media/podcast" },
     { label: "Contact", href: "/contact" },
   ];
 
-  const dropdownItems: Record<string, { title: string; href: string; desc?: string }[]> = {
-    "About us": [
-      { title: "Our mission", href: "/about/mission", desc: "What LEAF is, and why it exists." },
-      { title: "Meet the team", href: "/about/team", desc: "Run by students, for students." },
-      { title: "Our impact", href: "/about/impact", desc: "The numbers behind the network." },
-    ],
-    "Partners": [
-      { title: "Our partners", href: "/partners", desc: "Every organisation in the network." },
-      { title: "Corporate partners", href: "/partners#corporate", desc: "Talent sourcing & brand awareness." },
-      { title: "University partners", href: "/partners#university", desc: "Careers teams & student societies." },
-    ],
-    "Events": [
-      { title: "Overview", href: "/events" },
-      { title: "Commercial Awareness Competition", href: "/events/commercial-awareness" },
-      { title: "Engineering Innovation Competition", href: "/events/engineering-innovation" },
-      { title: "LEAF Hacks", href: "/events/leaf-hacks" },
-      { title: "Finance Bootcamp", href: "/events/finance-bootcamp" },
-      { title: "Apprenticeship Bootcamp", href: "/events/apprenticeship-bootcamp" },
-    ],
-    "Media": [
-      { title: "Blog", href: "/media/blog", desc: "Newsletters & community spotlights." },
-      { title: "Pathways Webinar Series", href: "/media/webinars", desc: "Upcoming & past webinars." },
-      { title: "Branching Out Podcast", href: "/media/podcast", desc: "YouTube · Spotify · Apple Podcasts." },
-    ],
+  const linkStyle: React.CSSProperties = {
+    color: "#F5F3ED",
+    textDecoration: "none",
+    fontSize: "19px",
+    fontWeight: 500,
+    fontFamily: "var(--font-sans)",
+    padding: "10px 14px",
+    borderRadius: "4px",
+    display: "flex",
+    alignItems: "center",
   };
 
   // Mobile, scrolled, menu closed → the bar dissolves and only the hamburger floats
@@ -95,63 +97,54 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav style={{ flex: 1, alignItems: "center", gap: "4px", justifyContent: "center" }} className="hidden lg:flex">
-          <Link href="/" style={{ color: "#F5F3ED", textDecoration: "none", fontSize: "19px", fontWeight: "500", fontFamily: "var(--font-sans)", padding: "10px 14px", borderRadius: "4px", display: "flex", alignItems: "center" }}>Home</Link>
-
-          {Object.entries(dropdownItems).map(([label, items]) => (
-            <div key={label} style={{ position: "relative" }} onMouseEnter={() => setOpenMenu(label)} onMouseLeave={() => setOpenMenu(null)}>
-              <button style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "5px",
-                color: "#F5F3ED",
-                fontSize: "19px",
-                fontWeight: "500",
-                fontFamily: "var(--font-sans)",
-                padding: "10px 14px",
-                borderRadius: "4px",
-                border: "none",
-                backgroundColor: "transparent",
-                cursor: "pointer",
-              }}>
-                {label}
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                  <path d="M6 9l6 6 6-6"></path>
-                </svg>
-              </button>
-
-              {openMenu === label && (
-                <div style={{ position: "absolute", top: "100%", left: 0, paddingTop: "10px", width: "280px", zIndex: 50 }}>
-                  <div style={{ backgroundColor: "#0F1A15", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", padding: "8px", boxShadow: "0 12px 24px rgba(0,0,0,0.35)" }}>
-                    {items.map((item, idx) => (
-                      <Link key={idx} href={item.href} style={{
-                        display: "block",
-                        padding: "10px 12px",
-                        borderRadius: "6px",
-                        textDecoration: "none",
-                        borderBottom: (label === "Partners" || label === "Events") && idx === items.length - 1 ? "1px solid rgba(255,255,255,0.08)" : "none",
-                      }}>
-                        <div style={{ fontSize: "14px", fontWeight: "600", color: "#F5F3ED" }}>{item.title}</div>
-                        {item.desc && <div style={{ fontSize: "12.5px", color: "rgba(245,243,237,0.5)", marginTop: "2px" }}>{item.desc}</div>}
-                      </Link>
-                    ))}
-                    {(label === "Partners" || label === "Events") && (
-                      <Link href={label === "Partners" ? "/contact" : "/events/host-event"} style={{
-                        display: "block",
-                        marginTop: "4px",
-                        padding: "10px 12px",
-                        borderRadius: "6px",
-                        textDecoration: "none",
-                      }}>
-                        <div style={{ fontSize: "14px", fontWeight: "600", color: "#E8B923", paddingTop: "6px" }}>
-                          {label === "Partners" ? "Partner with us →" : "Host an event with us →"}
-                        </div>
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
+          {navLinks.map((link) => (
+            <Link key={link.href} href={link.href} style={linkStyle}>
+              {link.label}
+            </Link>
           ))}
+
+          {/* Media dropdown */}
+          <div style={{ position: "relative" }} onMouseEnter={() => setMediaOpen(true)} onMouseLeave={() => setMediaOpen(false)}>
+            <button style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+              color: "#F5F3ED",
+              fontSize: "19px",
+              fontWeight: 500,
+              fontFamily: "var(--font-sans)",
+              padding: "10px 14px",
+              borderRadius: "4px",
+              border: "none",
+              backgroundColor: "transparent",
+              cursor: "pointer",
+            }}>
+              Media
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </button>
+
+            {mediaOpen && (
+              <div style={{ position: "absolute", top: "100%", left: 0, paddingTop: "10px", width: "300px", zIndex: 50 }}>
+                <div style={{ backgroundColor: "#0F1A15", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", padding: "8px", boxShadow: "0 12px 24px rgba(0,0,0,0.35)" }}>
+                  {mediaItems.map((item) => (
+                    <Link key={item.href} href={item.href} style={{
+                      display: "block",
+                      padding: "10px 12px",
+                      borderRadius: "6px",
+                      textDecoration: "none",
+                    }}>
+                      <div style={{ fontSize: "14px", fontWeight: "600", color: "#F5F3ED" }}>{item.title}</div>
+                      <div style={{ fontSize: "12.5px", color: "rgba(245,243,237,0.5)", marginTop: "2px" }}>{item.desc}</div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <Link href="/contact" style={linkStyle}>Contact</Link>
         </nav>
 
         {/* Right actions */}
@@ -250,12 +243,12 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 style={{
                   fontFamily: "var(--font-sans)",
-                  fontSize: "clamp(34px, 9vw, 44px)",
+                  fontSize: "clamp(30px, 8vw, 42px)",
                   fontWeight: 800,
                   color: "#F5F3ED",
                   textDecoration: "none",
                   letterSpacing: "-0.02em",
-                  padding: "8px 0",
+                  padding: "7px 0",
                 }}
               >
                 {item.label}

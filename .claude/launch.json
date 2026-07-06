@@ -6,6 +6,18 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "leaf-3100",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--", "-p", "3100"],
+      "port": 3100
+    },
+    {
+      "name": "trusted-preview-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4599", "--directory", "/private/tmp/claude-501/-Users-saood-leaf-redesign/de58032b-2979-4160-8b6d-919c5dd4586d/scratchpad"],
+      "port": 4599
     }
   ]
 }

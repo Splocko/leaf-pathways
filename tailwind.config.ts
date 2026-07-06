@@ -18,8 +18,17 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", "Inter", "sans-serif"],
+        // Ported so the /admin CMS (from the old repo) renders with its fonts.
+        poppins: ["var(--font-poppins)", "Poppins", "sans-serif"],
+        montserrat: ["var(--font-montserrat)", "Montserrat", "sans-serif"],
       },
       colors: {
+        // Admin CMS palette (ported from the old repo so /admin renders correctly).
+        // Public redesign pages don't use these class names, so no conflict.
+        gold: "#D4AF37",
+        "forest-green": "#0A3D2E",
+        "forest-green-dark": "#062419",
+        charcoal: "#2C2C2C",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

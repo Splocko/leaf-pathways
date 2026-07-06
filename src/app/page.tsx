@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { JoinCommunityDialog } from "@/components/join-community-dialog";
+import { LiveEvents } from "@/components/live-events";
 
 const events = [
   {
@@ -64,6 +65,26 @@ const testimonials = [
     name: "Vincent Egunlae",
     title: "Senior Speaker, Investment Banker & Keynote Speaker",
     quote: "LEAF is a highly professional organisation creating impact for thousands of young people throughout the UK.",
+  },
+  {
+    name: "Amara Okafor",
+    title: "Law Student, University of Durham",
+    quote: "Joining LEAF connected me with people who actually understood what I was trying to build. The network opened doors I didn't know existed.",
+  },
+  {
+    name: "James Whitfield",
+    title: "Graduate Recruitment Lead, AtkinsRéalis",
+    quote: "We've partnered with LEAF on three events now and the calibre of students they bring together never disappoints.",
+  },
+  {
+    name: "Priya Sharma",
+    title: "Engineering Graduate, Imperial College London",
+    quote: "The mentorship I found through LEAF gave me the confidence to apply for roles I would have talked myself out of a year ago.",
+  },
+  {
+    name: "Daniel Reyes",
+    title: "Finance Analyst & LEAF Alumnus",
+    quote: "What sets LEAF apart is how genuinely they care about outcomes, not just attendance numbers.",
   },
 ];
 
@@ -321,8 +342,8 @@ export default function Home() {
             <div style={{ overflow: "hidden", position: "relative", height: "116px", width: "100%" }}>
               <div data-carousel style={{ display: "flex", gap: "24px", animation: "logoCarousel 26s linear infinite", willChange: "transform", width: "max-content" }}>
                 {[...PartnerLogos, ...PartnerLogos].map((partner, idx) => (
-                  <div key={idx} style={{ width: "204px", height: "108px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#FFFFFF", borderRadius: "12px", padding: "22px 28px", border: "1px solid rgba(255,255,255,0.1)" }}>
-                    <img src={partner.logo} alt={partner.name} style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} onError={(e) => { e.currentTarget.parentElement!.style.display = "none"; }} />
+                  <div key={idx} style={{ width: "204px", height: "108px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", padding: "22px 28px" }}>
+                    <img src={partner.logo} alt={partner.name} style={{ maxWidth: "100%", maxHeight: "36px", objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.72 }} onError={(e) => { e.currentTarget.parentElement!.style.display = "none"; }} />
                   </div>
                 ))}
               </div>
@@ -366,12 +387,8 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Events grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "24px" }}>
-          {events.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
-        </div>
+        {/* Events grid — live from the database */}
+        <LiveEvents limit={3} />
       </section>
 
       {/* COMMUNITY PHOTO MARQUEE */}

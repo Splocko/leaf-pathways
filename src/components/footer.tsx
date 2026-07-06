@@ -5,14 +5,34 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 
 export function Footer() {
+  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+    if (!firstName.trim() || !email.trim()) return;
+    setLoading(true);
+    setErrorMsg("");
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, firstName }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Something went wrong.");
+      }
       setSubmitted(true);
+      setFirstName("");
       setEmail("");
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -66,7 +86,25 @@ export function Footer() {
           </div>
 
           {!submitted ? (
-            <form onSubmit={handleSubmit} style={{ display: "flex", gap: "10px", flexWrap: "wrap", flex: 1, minWidth: "280px", maxWidth: "420px" }}>
+            <form onSubmit={handleSubmit} style={{ display: "flex", gap: "10px", flexWrap: "wrap", flex: 1, minWidth: "280px", maxWidth: "440px" }}>
+              <input
+                type="text"
+                required
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="First name"
+                style={{
+                  width: "120px",
+                  backgroundColor: "#0F1A15",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  borderRadius: "4px",
+                  padding: "14px 16px",
+                  color: "#F5F3ED",
+                  fontSize: "14px",
+                  fontFamily: "var(--font-sans)",
+                  boxSizing: "border-box",
+                }}
+              />
               <input
                 type="email"
                 required
@@ -75,7 +113,7 @@ export function Footer() {
                 placeholder="you@university.ac.uk"
                 style={{
                   flex: 1,
-                  minWidth: "200px",
+                  minWidth: "180px",
                   backgroundColor: "#0F1A15",
                   border: "1px solid rgba(255,255,255,0.15)",
                   borderRadius: "4px",
@@ -88,6 +126,7 @@ export function Footer() {
               />
               <button
                 type="submit"
+                disabled={loading}
                 style={{
                   backgroundColor: "#E8B923",
                   color: "#0B1410",
@@ -97,11 +136,15 @@ export function Footer() {
                   fontSize: "14px",
                   padding: "14px 22px",
                   borderRadius: "4px",
-                  cursor: "pointer",
+                  cursor: loading ? "not-allowed" : "pointer",
+                  opacity: loading ? 0.6 : 1,
                 }}
               >
-                Subscribe
+                {loading ? "Subscribing…" : "Subscribe"}
               </button>
+              {errorMsg && (
+                <p style={{ width: "100%", margin: "2px 0 0", color: "#ff6b6b", fontSize: "12.5px" }}>{errorMsg}</p>
+              )}
             </form>
           ) : (
             <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#2FBF8F", fontWeight: "600", fontSize: "15px" }}>
@@ -153,9 +196,9 @@ export function Footer() {
           <div>
             <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", marginBottom: "18px" }}>EXPLORE</div>
             <div style={{ display: "flex", flexDirection: "column", gap: "13px" }}>
-              <Link href="/events" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Events calendar</Link>
-              <Link href="/partners" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Partner network</Link>
-              <Link href="/about/mission" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Our mission</Link>
+              <Link href="/events" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Events</Link>
+              <Link href="/media" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Media</Link>
+              <Link href="/about" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>About us</Link>
             </div>
           </div>
 
@@ -163,8 +206,8 @@ export function Footer() {
           <div>
             <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.08em", color: "rgba(245,243,237,0.4)", marginBottom: "18px" }}>LEGAL & SUPPORT</div>
             <div style={{ display: "flex", flexDirection: "column", gap: "13px" }}>
-              <Link href="#" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Privacy policy</Link>
-              <Link href="#" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Terms of service</Link>
+              <Link href="/privacy" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Privacy policy</Link>
+              <Link href="/privacy" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Terms of service</Link>
               <Link href="/contact" style={{ color: "rgba(245,243,237,0.72)", textDecoration: "none", fontSize: "14.5px" }}>Contact us</Link>
             </div>
           </div>

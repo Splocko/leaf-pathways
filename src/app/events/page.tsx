@@ -1,169 +1,108 @@
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { PageShell, PAGE_CONTAINER } from "@/components/page-shell";
+import { PageHeader } from "@/components/page-header";
+import { LiveEvents } from "@/components/live-events";
+import { getEventProgrammes, type EventProgramme } from "@/lib/events";
 import Link from "next/link";
-import { Calendar, Users, Trophy, BookOpen, Briefcase, Hand } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export const metadata = {
   title: "Events | LEAF Pathways",
-  description: "Explore LEAF's transformative events, bootcamps, and competitions.",
+  description: "Explore LEAF's competitions, bootcamps and hackathons across Law, Engineering, Tech and Finance.",
 };
 
-const events = [
-  {
-    id: "commercial-awareness",
-    title: "Commercial Awareness Competition",
-    icon: Trophy,
-    description: "Test your business acumen against the brightest minds in the UK",
-    shortDescription: "Competition",
-    href: "/events/commercial-awareness",
-    color: "from-emerald-500/20 to-teal-500/20",
-  },
-  {
-    id: "engineering-innovation",
-    title: "Engineering Innovation Competition",
-    icon: Briefcase,
-    description: "Showcase your engineering skills and solve real-world problems",
-    shortDescription: "Competition",
-    href: "/events/engineering-innovation",
-    color: "from-blue-500/20 to-cyan-500/20",
-  },
-  {
-    id: "leaf-hacks",
-    title: "LEAF Hacks",
-    icon: BookOpen,
-    description: "24-hour hackathon bringing together builders, designers, and creators",
-    shortDescription: "Hackathon",
-    href: "/events/leaf-hacks",
-    color: "from-pink-500/20 to-rose-500/20",
-  },
-  {
-    id: "finance-bootcamp",
-    title: "Finance Bootcamp",
-    icon: Users,
-    description: "Master financial skills and launch your career in finance",
-    shortDescription: "Bootcamp",
-    href: "/events/finance-bootcamp",
-    color: "from-amber-500/20 to-orange-500/20",
-  },
-  {
-    id: "apprenticeship-bootcamp",
-    title: "Apprenticeship Bootcamp",
-    icon: Calendar,
-    description: "Comprehensive training for aspiring apprentices in tech and business",
-    shortDescription: "Bootcamp",
-    href: "/events/apprenticeship-bootcamp",
-    color: "from-violet-500/20 to-purple-500/20",
-  },
-  {
-    id: "host-event",
-    title: "Host an Event with Us",
-    icon: Hand,
-    description: "Partner with LEAF to create a transformative event for your organization",
-    shortDescription: "Partnership",
-    href: "/events/host-event",
-    color: "from-green-500/20 to-emerald-500/20",
-  },
-];
+const sectionHeading: React.CSSProperties = {
+  fontFamily: "var(--font-sans)",
+  fontWeight: 700,
+  fontSize: "clamp(24px, 3vw, 32px)",
+  color: "#F5F3ED",
+  margin: "0 0 24px",
+  letterSpacing: "-0.01em",
+};
 
-const upcomingEvents = [
-  {
-    date: "Sep 15, 2024",
-    title: "Commercial Awareness Competition Qualifiers",
-    status: "Registration Open",
-  },
-  {
-    date: "Oct 5, 2024",
-    title: "LEAF Hacks 2024",
-    status: "Coming Soon",
-  },
-  {
-    date: "Nov 1, 2024",
-    title: "Finance Bootcamp - Cohort 2",
-    status: "Coming Soon",
-  },
-];
+function ProgrammeCard({ programme }: { programme: EventProgramme }) {
+  const href = `/events/${programme.slug}`;
+  return (
+    <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", overflow: "hidden", backgroundColor: "#0F1A15", display: "flex", flexDirection: "column", height: "100%" }}>
+      <Link href={href} style={{ position: "relative", aspectRatio: "16/9", display: "block", textDecoration: "none", overflow: "hidden", background: "linear-gradient(135deg, #0F1A15 0%, #08110C 100%)" }}>
+        {programme.image ? (
+          <img src={programme.image} alt={programme.title} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+        ) : (
+          <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center" }}>
+            <img src="/leaf-icon.png" alt="" style={{ height: "44px", width: "auto", opacity: 0.35 }} />
+          </div>
+        )}
+      </Link>
+      <div style={{ padding: "24px", display: "flex", flexDirection: "column", gap: "10px", flex: 1 }}>
+        <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "#2FBF8F", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+          {programme.category}
+        </div>
+        <h3 style={{ fontFamily: "var(--font-sans)", fontWeight: 600, fontSize: "19px", margin: 0, lineHeight: 1.25 }}>
+          <Link href={href} style={{ color: "inherit", textDecoration: "none" }}>{programme.title}</Link>
+        </h3>
+        <p style={{ fontSize: "14px", lineHeight: 1.55, color: "rgba(245,243,237,0.6)", margin: 0, flex: 1 }}>
+          {programme.summary}
+        </p>
+        <Link href={href} style={{ display: "inline-flex", alignItems: "center", gap: "7px", color: "#E8B923", textDecoration: "none", fontWeight: 600, fontSize: "14px", marginTop: "6px" }}>
+          Learn more <ArrowRight size={14} />
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 export default function Events() {
+  const programmes = getEventProgrammes();
+
   return (
-    <main className="min-h-screen bg-background">
-      <Navbar />
+    <PageShell>
+      <PageHeader
+        eyebrow="Events"
+        title={
+          <>
+            Our <span style={{ color: "#E8B923" }}>events</span>.
+          </>
+        }
+        subtitle="Workshops, networking evenings, competitions and bootcamps across Law, Engineering, Tech and Finance."
+      />
 
-      <div className="pt-32 px-4 pb-20">
-        <div className="max-w-7xl mx-auto">
-          {/* Hero */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl md:text-6xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-400">
-              Our Events
-            </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Transformative experiences designed to develop skills, build networks, and unlock opportunities.
-            </p>
-          </div>
+      {/* Upcoming — live from the database */}
+      <section className={`${PAGE_CONTAINER} pb-14 md:pb-20`}>
+        <h2 style={sectionHeading}>What&apos;s coming up</h2>
+        <LiveEvents />
+      </section>
 
-          {/* Upcoming Events */}
-          <div className="mb-20">
-            <h2 className="text-2xl font-bold mb-6">What's Coming</h2>
-            <div className="space-y-3">
-              {upcomingEvents.map((event) => (
-                <Card key={event.title} className="bg-white/5 border-white/10 p-6 flex items-center justify-between hover:border-emerald-900/50 transition-colors">
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">{event.date}</p>
-                    <h3 className="font-semibold">{event.title}</h3>
-                  </div>
-                  <span className={`text-xs font-semibold px-3 py-1 rounded-full ${
-                    event.status === "Registration Open"
-                      ? "bg-emerald-500/20 text-emerald-400"
-                      : "bg-white/5 text-muted-foreground"
-                  }`}>
-                    {event.status}
-                  </span>
-                </Card>
-              ))}
-            </div>
-          </div>
+      {/* Past events — live from the database */}
+      <section className={`${PAGE_CONTAINER} pb-14 md:pb-20`}>
+        <h2 style={sectionHeading}>Past events</h2>
+        <LiveEvents showPastEvents />
+      </section>
 
-          {/* Events Grid */}
-          <div className="mb-20">
-            <h2 className="text-2xl font-bold mb-8">All Events</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {events.map((event) => {
-                const Icon = event.icon;
-                return (
-                  <Link key={event.id} href={event.href}>
-                    <Card className={`h-full bg-gradient-to-br ${event.color} border-white/10 p-8 hover:border-emerald-900/50 hover:shadow-lg transition-all cursor-pointer group`}>
-                      <Icon className="w-8 h-8 text-emerald-400 mb-4 group-hover:scale-110 transition-transform" />
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">
-                        {event.title}
-                      </h3>
-                      <p className="text-xs text-emerald-400 font-semibold mb-3">
-                        {event.shortDescription}
-                      </p>
-                      <p className="text-muted-foreground text-sm">
-                        {event.description}
-                      </p>
-                    </Card>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Past Events */}
-          <div className="bg-white/5 border border-emerald-900/30 rounded-lg p-8">
-            <h2 className="text-2xl font-bold mb-4">Past Events & Case Studies</h2>
-            <p className="text-muted-foreground mb-6">
-              View detailed case studies from our previous events, including participant testimonials, impact metrics, and lessons learned.
-            </p>
-            <Link href="/events#past-events" className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-semibold">
-              Explore Past Events →
-            </Link>
-          </div>
+      {/* Programmes we run — evergreen navigation to each detail page */}
+      <section className={`${PAGE_CONTAINER} pb-16 md:pb-24`}>
+        <h2 style={sectionHeading}>What we run</h2>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
+          {programmes.map((programme) => (
+            <ProgrammeCard key={programme.slug} programme={programme} />
+          ))}
         </div>
-      </div>
+      </section>
 
-      <Footer />
-    </main>
+      {/* Host an event CTA */}
+      <section className={`${PAGE_CONTAINER} pb-20 md:pb-28`}>
+        <div style={{ border: "1px solid rgba(232,185,35,0.3)", backgroundColor: "rgba(232,185,35,0.06)", borderRadius: "12px", padding: "clamp(28px, 5vw, 44px)", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "20px" }}>
+          <div style={{ maxWidth: "560px" }}>
+            <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: "clamp(22px, 2.6vw, 28px)", color: "#F5F3ED", margin: "0 0 10px" }}>
+              Want to host an event with us?
+            </h2>
+            <p style={{ fontSize: "16px", lineHeight: 1.6, color: "rgba(245,243,237,0.68)", margin: 0 }}>
+              Partner with LEAF to reach thousands of ambitious students. We handle the logistics — you focus on the impact.
+            </p>
+          </div>
+          <Link href="/events/host-event" style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "linear-gradient(180deg, #F5CB3D 0%, #E8B923 55%, #D9A70F 100%)", color: "#0B1410", fontWeight: 700, fontSize: "15px", padding: "14px 26px", borderRadius: "999px", textDecoration: "none", boxShadow: "0 6px 18px rgba(232,185,35,0.35)", flexShrink: 0 }}>
+            Host an event <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+    </PageShell>
   );
 }

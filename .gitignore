@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# merge/diagnostic workspaces (full clones of the old repo — never commit)
+.merge-tmp/
+.leaf-diagnose/
+.leaf-diagnose
+.merge-tmp

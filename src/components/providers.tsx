@@ -2,6 +2,7 @@
 
 import { ThemeProvider } from "next-themes";
 import { SmoothScroll } from "@/components/smooth-scroll";
+import { ToastProvider } from "@/components/ui/toast";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -11,8 +12,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
       enableSystem
       disableTransitionOnChange
     >
-      <SmoothScroll />
-      {children}
+      <ToastProvider>
+        <SmoothScroll />
+        {children}
+      </ToastProvider>
     </ThemeProvider>
   );
 }

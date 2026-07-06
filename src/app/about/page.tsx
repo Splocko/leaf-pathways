@@ -9,21 +9,18 @@ export const metadata = {
     "Run by students, for students. LEAF Pathways is one of the UK's fastest-growing student communities across Law, Engineering/Tech and Finance.",
 };
 
-const sections = [
+const blocks = [
   {
-    title: "Our mission",
-    description: "What LEAF is, our vision, and the purpose that drives everything we do.",
-    href: "/about/mission",
+    h: "What we do",
+    p: "Through events, bootcamps, competitions and community, we connect driven students with the careers they've been working towards across Law, Engineering, Tech and Finance.",
   },
   {
-    title: "Meet the team",
-    description: "The student-run team behind LEAF Pathways.",
-    href: "/about/team",
+    h: "Our vision",
+    p: "A future where every young person has a competitive shot at success, regardless of their background. Where the brightest talent is discovered early, nurtured thoughtfully, and connected with opportunities that were once out of reach — because success is built together, not alone.",
   },
   {
-    title: "Our impact",
-    description: "The numbers behind the network, and the students behind the numbers.",
-    href: "/about/impact",
+    h: "Our purpose",
+    p: "We exist to inspire youth early and democratise access to opportunity. Whether you're exploring a career path, preparing for an apprenticeship, sharpening your technical skills or building your network, LEAF provides the events, mentorship and community to help you thrive, so talent, not privilege, is what gets noticed.",
   },
 ];
 
@@ -41,59 +38,69 @@ export default function About() {
       />
 
       <section className={`${PAGE_CONTAINER} pb-20 md:pb-28`}>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {sections.map((section) => (
-            <Link
-              key={section.href}
-              href={section.href}
+        <div style={{ maxWidth: "820px", display: "flex", flexDirection: "column", gap: "36px" }}>
+          {blocks.map((b) => (
+            <div key={b.h}>
+              <h2
+                style={{
+                  fontFamily: "var(--font-sans)",
+                  fontWeight: 700,
+                  fontSize: "clamp(22px, 2.4vw, 28px)",
+                  color: "#F5F3ED",
+                  margin: "0 0 12px",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {b.h}
+              </h2>
+              <p style={{ fontSize: "17px", lineHeight: 1.7, color: "rgba(245,243,237,0.72)", margin: 0 }}>
+                {b.p}
+              </p>
+            </div>
+          ))}
+
+          <div
+            style={{
+              border: "1px solid rgba(232,185,35,0.3)",
+              backgroundColor: "rgba(232,185,35,0.06)",
+              borderRadius: "12px",
+              padding: "28px 32px",
+              marginTop: "8px",
+            }}
+          >
+            <p
               style={{
-                display: "flex",
-                flexDirection: "column",
-                height: "100%",
-                border: "1px solid rgba(255,255,255,0.1)",
-                borderRadius: "8px",
-                backgroundColor: "#0F1A15",
-                padding: "28px",
+                fontFamily: "var(--font-sans)",
+                fontStyle: "italic",
+                fontWeight: 500,
+                fontSize: "20px",
+                color: "#F5F3ED",
+                margin: 0,
+              }}
+            >
+              "Success is built together, not alone."
+            </p>
+          </div>
+
+          <div style={{ marginTop: "4px" }}>
+            <Link
+              href="/events"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "7px",
+                border: "1px solid rgba(255,255,255,0.18)",
+                color: "#F5F3ED",
+                fontWeight: 600,
+                fontSize: "14px",
+                padding: "11px 20px",
+                borderRadius: "999px",
                 textDecoration: "none",
               }}
             >
-              <h3
-                style={{
-                  fontFamily: "var(--font-sans)",
-                  fontWeight: 600,
-                  fontSize: "20px",
-                  color: "#F5F3ED",
-                  margin: "0 0 10px",
-                }}
-              >
-                {section.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: "14.5px",
-                  lineHeight: 1.55,
-                  color: "rgba(245,243,237,0.6)",
-                  margin: 0,
-                  flex: 1,
-                }}
-              >
-                {section.description}
-              </p>
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "7px",
-                  color: "#E8B923",
-                  fontWeight: 600,
-                  fontSize: "14px",
-                  marginTop: "20px",
-                }}
-              >
-                Learn more <ArrowRight size={14} />
-              </span>
+              Explore our events <ArrowRight size={14} />
             </Link>
-          ))}
+          </div>
         </div>
       </section>
     </PageShell>

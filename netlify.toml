@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  # Allow public Next.js client keys to appear in build output.
+  # Only include NEXT_PUBLIC_* keys that are safe to be public. Do NOT add
+  # server-only secrets (service role keys, tokens) to this list.
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY"

@@ -207,4 +207,39 @@ body {
   animation: pulse-glow 8s ease-in-out infinite;
 }
 
+/* Admin CMS button classes (ported from the old repo — used only under /admin).
+   Depend on the gold / forest-green tokens added in tailwind.config.ts. */
+@layer components {
+  .btn-primary {
+    @apply bg-forest-green text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-opacity-90 hover:scale-105;
+  }
+  .btn-secondary {
+    @apply bg-gold text-gray-800 px-8 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-opacity-90 hover:scale-105;
+  }
+  .btn-gradient {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 font-semibold text-white shadow-lg transition-all duration-200;
+    background: linear-gradient(135deg, #0EA56B 0%, #0A3D2E 50%, #0EA56B 100%);
+    box-shadow: 0 8px 24px rgba(14, 165, 107, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  .btn-gradient:hover {
+    transform: translateY(-1px) scale(1.01);
+    box-shadow: 0 12px 28px rgba(14, 165, 107, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    filter: saturate(1.05);
+  }
+  .btn-gradient:active {
+    transform: translateY(0) scale(0.995);
+  }
+  .btn-gradient.gold {
+    background: linear-gradient(135deg, #D4AF37 0%, #B68B1E 50%, #F2D360 100%);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    color: #0B1B34;
+  }
+  .btn-gradient.sm {
+    @apply text-sm px-4 py-2;
+  }
+  .btn-gradient.lg {
+    @apply text-base px-6 py-3.5;
+  }
+}
+
 
