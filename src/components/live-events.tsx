@@ -53,7 +53,7 @@ export function LiveEvents({
   showPastEvents?: boolean;
   /** Smaller cards — use on the homepage grid */
   compact?: boolean;
-  align?: "start" | "end";
+  align?: "start" | "end" | "center";
 }) {
   const [events, setEvents] = useState<EventRow[]>([]);
   const [loading, setLoading] = useState(true);
@@ -96,9 +96,11 @@ export function LiveEvents({
   const gridStyle: React.CSSProperties = compact
     ? {
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(220px, 300px))",
+        gridTemplateColumns: "repeat(auto-fit, minmax(220px, 280px))",
         gap: "20px",
-        justifyContent: align === "end" ? "end" : "start",
+        justifyContent:
+          align === "end" ? "end" : align === "center" ? "center" : "start",
+        width: "100%",
       }
     : {
         display: "grid",
