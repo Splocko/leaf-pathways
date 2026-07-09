@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ExternalLink } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { getSupabaseClient } from "@/lib/supabase";
 import { resizedStorageImage } from "@/lib/images";
 import {
@@ -140,9 +141,8 @@ export function LiveEvents({
         const status = resolveEventStatus(event);
         const pill = STATUS_PILL[status];
         const img = event.image_url ? resizedStorageImage(event.image_url, 800) : undefined;
-        const href = event.link || undefined;
         return (
-          <div key={event.id} style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", overflow: "hidden", backgroundColor: "#0F1A15", display: "flex", flexDirection: "column", height: "100%" }}>
+          <Link key={event.id} href={`/events/${event.id}`} style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", overflow: "hidden", backgroundColor: "#0F1A15", display: "flex", flexDirection: "column", height: "100%", textDecoration: "none" }}>
             <div style={{ position: "relative", aspectRatio: "16/9", background: "linear-gradient(135deg, #0F1A15 0%, #08110C 100%)" }}>
               {img ? (
                 <img src={img} alt={event.title} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
@@ -170,13 +170,11 @@ export function LiveEvents({
               {event.location && (
                 <div style={{ fontSize: "13px", color: "rgba(245,243,237,0.45)" }}>{event.location}</div>
               )}
-              {href && status === "available" && (
-                <a href={href} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: "7px", color: "#E8B923", textDecoration: "none", fontWeight: 600, fontSize: "14px", marginTop: "6px" }}>
-                  Register <ExternalLink size={14} />
-                </a>
-              )}
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "7px", color: "#E8B923", fontWeight: 600, fontSize: "14px", marginTop: "6px" }}>
+                View details <ArrowRight size={14} />
+              </span>
             </div>
-          </div>
+          </Link>
         );
       })}
     </div>

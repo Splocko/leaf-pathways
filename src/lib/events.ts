@@ -199,6 +199,17 @@ export const formatEventDate = (
   return date.toLocaleDateString("en-GB", intlOptions);
 };
 
+export const formatEventTime = (
+  dateStr?: string | null,
+  explicitPrecision?: EventDatePrecision | null
+) => {
+  const precision = inferEventDatePrecision(dateStr, explicitPrecision);
+  if (!dateStr || dateStr.trim() === "" || precision !== "time") return "Time TBD";
+  const date = parseLooseLocalDate(dateStr);
+  if (!date) return "Time TBD";
+  return date.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+};
+
 export const isEventPastByDate = (
   dateStr?: string | null,
   explicitPrecision?: EventDatePrecision | null
