@@ -197,28 +197,37 @@ export default function EventDetailPage() {
           </div>
         </div>
 
-        {/* Hero image — 16/9 frame like event cards, full image visible inside */}
+        {/* Hero image — full image visible, border hugs the image only */}
         <div className={PAGE_CONTAINER}>
-          <div
-            style={{
-              position: "relative",
-              aspectRatio: "16/9",
-              borderRadius: "16px",
-              overflow: "hidden",
-              background: "linear-gradient(135deg, #0F1A15 0%, #08110C 100%)",
-              border: "1px solid rgba(255,255,255,0.1)",
-            }}
-          >
+          <div style={{ maxWidth: "920px", margin: "0 auto", display: "flex", justifyContent: "center" }}>
             {event.image_url ? (
               <img
-                src={resizedStorageImage(event.image_url, 1600)}
+                src={resizedStorageImage(event.image_url, 1200)}
                 alt={event.title}
                 onError={fallbackToOriginalImage}
-                style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+                style={{
+                  display: "block",
+                  maxHeight: "clamp(160px, 32vh, 280px)",
+                  maxWidth: "100%",
+                  width: "auto",
+                  height: "auto",
+                  borderRadius: "12px",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                }}
               />
             ) : (
-              <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center" }}>
-                <img src="/leaf-icon.png" alt="" style={{ height: "56px", opacity: 0.3 }} />
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  minHeight: "120px",
+                  padding: "24px 32px",
+                  borderRadius: "12px",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                }}
+              >
+                <img src="/leaf-icon.png" alt="" style={{ height: "48px", opacity: 0.3 }} />
               </div>
             )}
           </div>
