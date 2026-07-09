@@ -18,7 +18,7 @@ import {
 import { PageShell, PAGE_CONTAINER } from "@/components/page-shell";
 import { JoinCommunityDialog } from "@/components/join-community-dialog";
 import { getSupabaseClient } from "@/lib/supabase";
-import { resizedStorageImage } from "@/lib/images";
+import { resizedStorageImage, fallbackToOriginalImage } from "@/lib/images";
 import {
   formatEventDate,
   formatEventTime,
@@ -197,13 +197,29 @@ export default function EventDetailPage() {
           </div>
         </div>
 
-        {/* Hero image — fully visible, not cropped */}
+        {/* Hero image — 16/9 frame like event cards, full image visible inside */}
         <div className={PAGE_CONTAINER}>
-          <div style={{ position: "relative", height: "clamp(180px, 30vh, 320px)", borderRadius: "16px", overflow: "hidden", background: "linear-gradient(135deg, #0F1A15 0%, #08110C 100%)", display: "grid", placeItems: "center" }}>
+          <div
+            style={{
+              position: "relative",
+              aspectRatio: "16/9",
+              borderRadius: "16px",
+              overflow: "hidden",
+              background: "linear-gradient(135deg, #0F1A15 0%, #08110C 100%)",
+              border: "1px solid rgba(255,255,255,0.1)",
+            }}
+          >
             {event.image_url ? (
-              <img src={resizedStorageImage(event.image_url, 1000)} alt={event.title} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+              <img
+                src={resizedStorageImage(event.image_url, 1600)}
+                alt={event.title}
+                onError={fallbackToOriginalImage}
+                style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+              />
             ) : (
-              <img src="/leaf-icon.png" alt="" style={{ height: "56px", opacity: 0.3 }} />
+              <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center" }}>
+                <img src="/leaf-icon.png" alt="" style={{ height: "56px", opacity: 0.3 }} />
+              </div>
             )}
           </div>
         </div>
