@@ -184,30 +184,33 @@ export default function EventDetailPage() {
 
   return (
     <PageShell>
-      {/* Hero image */}
+      {/* Top bar over hero */}
       <section style={{ position: "relative" }}>
-        <div style={{ position: "relative", height: "clamp(320px, 45vh, 520px)", overflow: "hidden", background: "linear-gradient(135deg, #0F1A15 0%, #08110C 100%)", display: "grid", placeItems: "center" }}>
-          {event.image_url ? (
-            <img src={resizedStorageImage(event.image_url, 1600)} alt={event.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-          ) : (
-            <img src="/leaf-icon.png" alt="" style={{ height: "72px", opacity: 0.3 }} />
-          )}
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #020704 0%, rgba(2,7,4,0.5) 45%, transparent 100%)" }} />
-          <div style={{ position: "absolute", top: "88px", left: "0", right: "0" }}>
-            <div className={PAGE_CONTAINER} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
-              <Link href="/events" style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "9px 16px", borderRadius: "999px", backgroundColor: "rgba(0,0,0,0.5)", backdropFilter: "blur(8px)", color: "#F5F3ED", fontSize: "14px", fontWeight: 500, textDecoration: "none", border: "1px solid rgba(255,255,255,0.18)" }}>
-                <ArrowLeft size={15} /> All events
-              </Link>
-              <span style={{ padding: "8px 16px", borderRadius: "999px", fontSize: "13px", fontWeight: 700, backgroundColor: event.event_type === "Virtual" ? "rgba(47,191,143,0.9)" : "linear-gradient(180deg, #F5CB3D, #E8B923)", color: "#0B1410", background: event.event_type === "Virtual" ? "#2FBF8F" : "#E8B923" }}>
-                {event.event_type || "In-Person"}
-              </span>
-            </div>
+        <div style={{ paddingTop: "24px", paddingBottom: "16px" }}>
+          <div className={PAGE_CONTAINER} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "12px" }}>
+            <Link href="/events" style={{ display: "inline-flex", alignItems: "center", gap: "8px", padding: "9px 16px", borderRadius: "999px", backgroundColor: "rgba(255,255,255,0.06)", color: "#F5F3ED", fontSize: "14px", fontWeight: 500, textDecoration: "none", border: "1px solid rgba(255,255,255,0.15)" }}>
+              <ArrowLeft size={15} /> All events
+            </Link>
+            <span style={{ padding: "8px 16px", borderRadius: "999px", fontSize: "13px", fontWeight: 700, color: "#0B1410", background: event.event_type === "Virtual" ? "#2FBF8F" : "#E8B923" }}>
+              {event.event_type || "In-Person"}
+            </span>
+          </div>
+        </div>
+
+        {/* Hero image — fully visible, not cropped */}
+        <div className={PAGE_CONTAINER}>
+          <div style={{ position: "relative", height: "clamp(180px, 30vh, 320px)", borderRadius: "16px", overflow: "hidden", background: "linear-gradient(135deg, #0F1A15 0%, #08110C 100%)", display: "grid", placeItems: "center" }}>
+            {event.image_url ? (
+              <img src={resizedStorageImage(event.image_url, 1000)} alt={event.title} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+            ) : (
+              <img src="/leaf-icon.png" alt="" style={{ height: "56px", opacity: 0.3 }} />
+            )}
           </div>
         </div>
       </section>
 
       {/* Content card */}
-      <section className={PAGE_CONTAINER} style={{ position: "relative", marginTop: "-72px", paddingBottom: "clamp(48px, 8vw, 96px)", zIndex: 2 }}>
+      <section className={PAGE_CONTAINER} style={{ position: "relative", marginTop: "24px", paddingBottom: "clamp(48px, 8vw, 96px)", zIndex: 2 }}>
         <div style={{ maxWidth: "920px", margin: "0 auto", backgroundColor: "#0F1A15", borderRadius: "16px", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 24px 48px rgba(0,0,0,0.45)", overflow: "hidden" }}>
           {/* Header */}
           <div style={{ padding: "clamp(24px, 4vw, 44px)", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>

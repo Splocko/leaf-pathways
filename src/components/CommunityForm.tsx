@@ -286,12 +286,12 @@ const CommunityForm: React.FC<CommunityFormProps> = ({ isOpen, onClose }) => {
     <div>
       {/* Backdrop - not scrollable */}
       <div 
-        className="fixed inset-0 z-40 bg-black/90 backdrop-blur-md"
+        className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-md"
         onClick={onClose}
       />
       {/* Modal container - this scrolls */}
       <div 
-        className="fixed inset-0 z-50 overflow-y-auto"
+        className="fixed inset-0 z-[210] overflow-y-auto"
         onClick={onClose}
         data-lenis-prevent
       >
