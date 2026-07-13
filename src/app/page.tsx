@@ -237,8 +237,8 @@ export default function Home() {
           {/* Right column - Hero video */}
           <div style={{ position: "relative", display: "grid", placeItems: "center" }}>
             <div style={{ position: "relative", borderRadius: "8px", overflow: "hidden", border: "1px solid rgba(255,255,255,0.1)", width: "100%", aspectRatio: "16/9", backgroundColor: "rgba(245,243,237,0.03)" }}>
-              <video autoPlay muted loop playsInline poster="https://leafpathways.com/videos/vid1_poster.webp" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}>
-                <source src="https://leafpathways.com/videos/vid1.mp4" type="video/mp4" />
+              <video autoPlay muted loop playsInline poster="/videos/vid1_poster.webp" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}>
+                <source src="/videos/vid1.mp4" type="video/mp4" />
               </video>
             </div>
             {/* Corner brackets — curved to match the rounder button language */}
