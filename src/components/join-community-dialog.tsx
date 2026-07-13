@@ -9,9 +9,14 @@ import { X } from "lucide-react";
 // screen (which we've put the WhatsApp invite link in) renders inside the
 // same iframe, so completing the form is what unlocks the group link.
 //
-// TODO: replace with the real published Google Form URL, e.g.
-// "https://docs.google.com/forms/d/e/XXXXXXXX/viewform"
-const GOOGLE_FORM_URL = "https://forms.gle/REPLACE_WITH_REAL_FORM_ID";
+// Must be the canonical docs.google.com/forms/d/e/…/viewform URL, not a
+// forms.gle short link — the short link 302-redirects (which both drops our
+// ?embedded=true param and gets blocked by this app's CSP frame-src, which
+// only allowlists docs.google.com). If the form is ever regenerated, resolve
+// the new forms.gle link once (curl -sI, follow the Location header) and
+// paste the resulting docs.google.com URL here.
+const GOOGLE_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfWusYkRPEuSEbMevWtKEUEsa-hDFDEnJBquOpBndPc3m24Sw/viewform";
 
 /**
  * Trigger wrapper — preserves the original API (style/className/children
