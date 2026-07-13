@@ -5,5 +5,4 @@ export const PartnerLogos = [
   { id: "morgan-stanley", name: "Morgan Stanley", logo: "/partners/morgan-stanley.svg" },
   { id: "atkinsrealis", name: "AtkinsRéalis", logo: "/partners/atkinsrealis.svg" },
   { id: "etoro", name: "eToro", logo: "/partners/etoro.svg" },
-  { id: "yubico", name: "Yubico", logo: "/partners/yubico.svg" },
 ];
