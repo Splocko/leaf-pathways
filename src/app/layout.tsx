@@ -42,7 +42,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   preconnect("https://leafpathways.com");
-  preconnect("https://cueuwyazwjikiogxsbrs.supabase.co");
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(

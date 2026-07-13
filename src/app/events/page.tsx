@@ -1,6 +1,6 @@
 import { PageShell, PAGE_CONTAINER } from "@/components/page-shell";
 import { PageHeader } from "@/components/page-header";
-import { LiveEvents } from "@/components/live-events";
+import { ComingSoon } from "@/components/coming-soon";
 import { getEventProgrammes, type EventProgramme } from "@/lib/events";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -65,16 +65,14 @@ export default function Events() {
         subtitle="Workshops, networking evenings, competitions and bootcamps across Law, Engineering, Tech and Finance."
       />
 
-      {/* Upcoming — live from the database */}
+      {/* Calendar — under construction */}
       <section className={`${PAGE_CONTAINER} pb-14 md:pb-20`}>
         <h2 style={sectionHeading}>What&apos;s coming up</h2>
-        <LiveEvents />
-      </section>
-
-      {/* Past events — live from the database */}
-      <section className={`${PAGE_CONTAINER} pb-14 md:pb-20`}>
-        <h2 style={sectionHeading}>Past events</h2>
-        <LiveEvents showPastEvents />
+        <ComingSoon
+          eyebrow="Under construction"
+          title="Our events calendar is being rebuilt"
+          message="We're doing some work behind the scenes. Join the community and we'll let you know the moment events go live again."
+        />
       </section>
 
       {/* Programmes we run — evergreen navigation to each detail page */}

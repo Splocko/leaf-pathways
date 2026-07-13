@@ -7,43 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { JoinCommunityDialog } from "@/components/join-community-dialog";
-import { LiveEvents } from "@/components/live-events";
-
-const events = [
-  {
-    tag: "COMING SOON",
-    tone: "gold",
-    date: "JUL 2026",
-    title: "LEAF Healthcare Bootcamp",
-    desc: "UCAS prep, personal statements, work experience and application support.",
-    ctaLabel: "Register interest",
-    id: "event-healthcare",
-    href: "/events/healthcare-bootcamp",
-    image: "https://cueuwyazwjikiogxsbrs.supabase.co/storage/v1/object/public/event-images/events/event-1774222240178-gvkf8u.png",
-  },
-  {
-    tag: "SOLD OUT",
-    tone: "muted",
-    date: "4 JUL 2026",
-    title: "LEAF Hacks '26",
-    desc: "A 24-hour build sprint for students who want to create, iterate, and pitch under pressure.",
-    ctaLabel: "Join the waitlist",
-    id: "event-hacks",
-    href: "/events/leaf-hacks",
-    image: "https://cueuwyazwjikiogxsbrs.supabase.co/storage/v1/object/public/event-images/events/event-1774099008481-ksnbwf.png",
-  },
-  {
-    tag: "COMING SOON",
-    tone: "gold",
-    date: "OCT 2026",
-    title: "LEAF Apprenticeship Bootcamp 2026",
-    desc: "Winning applications, final interview prep, and the insider knowledge that gets you hired.",
-    ctaLabel: "Register interest",
-    id: "event-apprenticeship",
-    href: "/events/apprenticeship-bootcamp",
-    image: "https://cueuwyazwjikiogxsbrs.supabase.co/storage/v1/object/public/event-images/events/event-1774304810195-6ilfxc.png",
-  },
-];
+import { ComingSoon } from "@/components/coming-soon";
 
 const testimonials = [
   {
@@ -198,53 +162,6 @@ function TestimonialCarousel({ testimonials }: { testimonials: Array<{ name: str
   );
 }
 
-function EventCard({ event }: { event: (typeof events)[0] }) {
-  const isGold = event.tone === "gold";
-
-  return (
-    <div style={{ border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", overflow: "hidden", backgroundColor: "#0F1A15", display: "flex", flexDirection: "column", height: "100%" }}>
-      {/* Image — fixed 16/9 aspect ratio, matched on the event detail page so photos never crop inconsistently between the two */}
-      <Link href={event.href} style={{ position: "relative", aspectRatio: "16/9", backgroundColor: "rgba(245,243,237,0.03)", display: "block", textDecoration: "none", overflow: "hidden" }}>
-        <img src={event.image} alt={event.title} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-        {/* Status pill */}
-        <div style={{
-          position: "absolute",
-          top: "12px",
-          left: "12px",
-          fontFamily: "var(--font-mono)",
-          fontSize: "11px",
-          fontWeight: "500",
-          letterSpacing: "0.06em",
-          padding: "5px 10px",
-          borderRadius: "999px",
-          backgroundColor: isGold ? "rgba(232,185,35,0.12)" : "rgba(245,243,237,0.08)",
-          color: isGold ? "#E8B923" : "rgba(245,243,237,0.6)",
-          border: `1px solid ${isGold ? "rgba(232,185,35,0.4)" : "rgba(255,255,255,0.18)"}`,
-        }}>
-          {event.tag}
-        </div>
-      </Link>
-
-      {/* Content */}
-      <div style={{ padding: "24px", display: "flex", flexDirection: "column", gap: "10px", flex: 1 }}>
-        <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "rgba(245,243,237,0.45)", letterSpacing: "0.04em" }}>
-          {event.date}
-        </div>
-        <h3 style={{ fontFamily: "var(--font-sans)", fontWeight: "600", fontSize: "19px", margin: 0, lineHeight: "1.25" }}>
-          <Link href={event.href} style={{ color: "inherit", textDecoration: "none" }}>{event.title}</Link>
-        </h3>
-        <p style={{ fontSize: "14px", lineHeight: "1.55", color: "rgba(245,243,237,0.6)", margin: 0, flex: 1 }}>
-          {event.desc}
-        </p>
-        <Link href={event.href} style={{ display: "inline-flex", alignItems: "center", gap: "7px", color: "#E8B923", textDecoration: "none", fontWeight: "600", fontSize: "14px", marginTop: "6px" }}>
-          {event.ctaLabel}
-          <ArrowRight size={14} />
-        </Link>
-      </div>
-    </div>
-  );
-}
-
 export default function Home() {
   return (
     <main style={{ minHeight: "100vh", position: "relative" }}>
@@ -385,9 +302,13 @@ export default function Home() {
               <ArrowRight size={14} />
             </Link>
           </div>
-          {/* Right — cards fill the column */}
+          {/* Right — under construction */}
           <div>
-            <LiveEvents limit={2} />
+            <ComingSoon
+              eyebrow="Under construction"
+              title="Our events calendar is being rebuilt"
+              message="We're doing some work behind the scenes. Join the community below and we'll let you know the moment events go live again."
+            />
           </div>
         </div>
       </section>

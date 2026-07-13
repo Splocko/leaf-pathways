@@ -1,18 +1,13 @@
 import { PageShell, PAGE_CONTAINER } from "@/components/page-shell";
 import { PageHeader } from "@/components/page-header";
-import { BlogList } from "@/components/blog-list";
-import { getPosts } from "@/lib/blog";
+import { ComingSoon } from "@/components/coming-soon";
 
 export const metadata = {
   title: "Blog | LEAF Pathways",
   description: "Monthly newsletters, career insights, industry news and community updates.",
 };
 
-// Reads live posts from Supabase (blog_posts) server-side, then hands off to the
-// client BlogList for featured / category filter / search / grid.
-export default async function Blog() {
-  const posts = await getPosts();
-
+export default function Blog() {
   return (
     <PageShell>
       <PageHeader
@@ -27,7 +22,13 @@ export default async function Blog() {
       />
 
       <section className={`${PAGE_CONTAINER} pb-20 md:pb-28`}>
-        <BlogList posts={posts} />
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <ComingSoon
+            eyebrow="Under construction"
+            title="The blog is being rebuilt"
+            message="We're doing some work behind the scenes. Join the community below and we'll let you know the moment new posts go live."
+          />
+        </div>
       </section>
     </PageShell>
   );

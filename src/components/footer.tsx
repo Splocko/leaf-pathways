@@ -1,41 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Check } from "lucide-react";
+import { JoinCommunityDialog } from "@/components/join-community-dialog";
 
 export function Footer() {
-  const [firstName, setFirstName] = useState("");
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!firstName.trim() || !email.trim()) return;
-    setLoading(true);
-    setErrorMsg("");
-    try {
-      const res = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, firstName }),
-      });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Something went wrong.");
-      }
-      setSubmitted(true);
-      setFirstName("");
-      setEmail("");
-    } catch (err) {
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const socials = [
     {
       name: "Instagram",
@@ -81,77 +49,26 @@ export function Footer() {
           gap: "24px",
         }}>
           <div style={{ maxWidth: "460px" }}>
-            <h3 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "24px", margin: "0 0 10px", color: "#F5F3ED" }}>Join the LEAF newsletter</h3>
-            <p style={{ fontSize: "15px", color: "rgba(245,243,237,0.62)", margin: 0, lineHeight: "1.6" }}>Be the first to hear about major opportunities, upcoming events, and industry insight, delivered to your inbox.</p>
+            <h3 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "24px", margin: "0 0 10px", color: "#F5F3ED" }}>Join the LEAF community</h3>
+            <p style={{ fontSize: "15px", color: "rgba(245,243,237,0.62)", margin: 0, lineHeight: "1.6" }}>Complete a short form to get access to our WhatsApp community — opportunities, events and updates, straight to your phone.</p>
           </div>
 
-          {!submitted ? (
-            <form onSubmit={handleSubmit} style={{ display: "flex", gap: "10px", flexWrap: "wrap", flex: 1, minWidth: "280px", maxWidth: "440px" }}>
-              <input
-                type="text"
-                required
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                placeholder="First name"
-                style={{
-                  width: "120px",
-                  backgroundColor: "#0F1A15",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  borderRadius: "4px",
-                  padding: "14px 16px",
-                  color: "#F5F3ED",
-                  fontSize: "14px",
-                  fontFamily: "var(--font-sans)",
-                  boxSizing: "border-box",
-                }}
-              />
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@university.ac.uk"
-                style={{
-                  flex: 1,
-                  minWidth: "180px",
-                  backgroundColor: "#0F1A15",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  borderRadius: "4px",
-                  padding: "14px 16px",
-                  color: "#F5F3ED",
-                  fontSize: "14px",
-                  fontFamily: "var(--font-sans)",
-                  boxSizing: "border-box",
-                }}
-              />
-              <button
-                type="submit"
-                disabled={loading}
-                style={{
-                  backgroundColor: "#E8B923",
-                  color: "#0B1410",
-                  border: "none",
-                  fontFamily: "var(--font-sans)",
-                  fontWeight: "600",
-                  fontSize: "14px",
-                  padding: "14px 22px",
-                  borderRadius: "4px",
-                  cursor: loading ? "not-allowed" : "pointer",
-                  opacity: loading ? 0.6 : 1,
-                }}
-              >
-                {loading ? "Subscribing…" : "Subscribe"}
-              </button>
-              {errorMsg && (
-                <p style={{ width: "100%", margin: "2px 0 0", color: "#ff6b6b", fontSize: "12.5px" }}>{errorMsg}</p>
-              )}
-            </form>
-          ) : (
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#2FBF8F", fontWeight: "600", fontSize: "15px" }}>
-              <Check size={20} />
-              You're subscribed.
-            </div>
-          )}
+          <JoinCommunityDialog
+            style={{
+              backgroundColor: "#E8B923",
+              color: "#0B1410",
+              border: "none",
+              fontFamily: "var(--font-sans)",
+              fontWeight: 600,
+              fontSize: "14px",
+              padding: "14px 22px",
+              borderRadius: "4px",
+              cursor: "pointer",
+              whiteSpace: "nowrap",
+            }}
+          >
+            Join the community
+          </JoinCommunityDialog>
         </div>
 
         {/* Footer Grid */}
