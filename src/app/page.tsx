@@ -370,25 +370,26 @@ export default function Home() {
         `}</style>
       </section>
 
-      {/* EVENTS SECTION */}
+      {/* EVENTS SECTION — copy left, cards right */}
       <section id="events" className="px-5 py-14 md:px-8 md:pt-[110px] md:pb-[100px]" style={{ maxWidth: "1360px", margin: "0 auto" }}>
-        {/* Header — copy left, CTA right */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "24px", marginBottom: "48px" }}>
+        <div className="grid grid-cols-1 md:grid-cols-[minmax(0,400px)_1fr] gap-10 md:gap-16 md:items-center">
+          {/* Left — copy + CTA */}
           <div>
             <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.1em", color: "#2FBF8F", marginBottom: "14px" }}>(01) UPCOMING EVENTS</div>
             <h2 style={{ fontFamily: "var(--font-sans)", fontWeight: "700", fontSize: "clamp(30px, 3.4vw, 44px)", lineHeight: "1.1", margin: 0, letterSpacing: "-0.01em", color: "#F5F3ED" }}>
               Connect at our <span style={{ color: "#E8B923" }}>major events</span>.
             </h2>
-            <p style={{ fontSize: "16px", color: "rgba(245,243,237,0.6)", margin: "14px 0 0", maxWidth: "440px" }}>A packed calendar this year. Book your place before spots fill up.</p>
+            <p style={{ fontSize: "16px", color: "rgba(245,243,237,0.6)", margin: "16px 0 28px" }}>A packed calendar this year. Book your place before spots fill up.</p>
+            <Link href="/events" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#F5F3ED", textDecoration: "none", fontWeight: "600", fontSize: "14px", border: "1px solid rgba(255,255,255,0.18)", padding: "12px 20px", borderRadius: "4px", cursor: "pointer" }}>
+              View full calendar
+              <ArrowRight size={14} />
+            </Link>
           </div>
-          <Link href="/events" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#F5F3ED", textDecoration: "none", fontWeight: "600", fontSize: "14px", border: "1px solid rgba(255,255,255,0.18)", padding: "12px 20px", borderRadius: "4px", cursor: "pointer", flexShrink: 0 }}>
-            View full calendar
-            <ArrowRight size={14} />
-          </Link>
+          {/* Right — cards fill the column */}
+          <div>
+            <LiveEvents limit={2} />
+          </div>
         </div>
-
-        {/* Cards — centered */}
-        <LiveEvents limit={2} compact align="center" />
       </section>
 
       {/* COMMUNITY PHOTO MARQUEE */}
