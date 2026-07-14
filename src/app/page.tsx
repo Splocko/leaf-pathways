@@ -11,7 +11,7 @@ import { ComingSoon } from "@/components/coming-soon";
 
 const testimonials = [
   {
-    name: "Elliot Shaw",
+    name: "Elliott Shaw",
     title: "Social Value Lead for London and the South East, AtkinsRéalis",
     quote: "The real impact of LEAF is the access it gives young people. It opens the door to engineering in a way that feels real and achievable.",
   },
@@ -27,28 +27,23 @@ const testimonials = [
   },
   {
     name: "Vincent Egunlae",
-    title: "Senior Speaker, Investment Banker & Keynote Speaker",
+    title: "Keynote Speaker & Award-Winning Investment Banker",
     quote: "LEAF is a highly professional organisation creating impact for thousands of young people throughout the UK.",
   },
   {
-    name: "Amara Okafor",
-    title: "Law Student, University of Durham",
-    quote: "Joining LEAF connected me with people who actually understood what I was trying to build. The network opened doors I didn't know existed.",
+    name: "Tray-Sean Ben Salmi",
+    title: "Keynote Speaker & Award-Winning Investment Banker",
+    quote: "The events provide a perfect chance for participants to connect with professionals who can give valuable information about careers in finance.",
   },
   {
-    name: "James Whitfield",
-    title: "Graduate Recruitment Lead, AtkinsRéalis",
-    quote: "We've partnered with LEAF on three events now and the calibre of students they bring together never disappoints.",
+    name: "Adam Mlamali",
+    title: "Higher Thought Representative",
+    quote: "LEAF is contributing greatly towards solving the problem of access to opportunities through education, industry immersion and networking.",
   },
   {
-    name: "Priya Sharma",
-    title: "Engineering Graduate, Imperial College London",
-    quote: "The mentorship I found through LEAF gave me the confidence to apply for roles I would have talked myself out of a year ago.",
-  },
-  {
-    name: "Daniel Reyes",
-    title: "Finance Analyst & LEAF Alumnus",
-    quote: "What sets LEAF apart is how genuinely they care about outcomes, not just attendance numbers.",
+    name: "Zeynel Tok",
+    title: "Former Tech Apprentice turned Manager at Broadridge",
+    quote: "These events not only supported students with their post-18 options, but also gave me the opportunity to engage and share my experiences with a large audience.",
   },
 ];
 
