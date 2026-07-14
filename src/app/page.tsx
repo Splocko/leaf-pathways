@@ -100,7 +100,7 @@ function PhotoMarquee() {
           From the group chat to <span style={{ color: "#2FBF8F" }}>real life</span>.
         </h2>
         <p style={{ fontSize: "16px", color: "rgba(245,243,237,0.6)", margin: "14px 0 0", maxWidth: "520px" }}>
-          Bootcamps, competitions, insight days and socials: this is what LEAF looks like in person.
+          Bootcamps, competitions, insight days and socials: this is what LEAF looks like in person today.
         </p>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
