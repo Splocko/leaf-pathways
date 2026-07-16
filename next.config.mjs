@@ -32,7 +32,6 @@ const nextConfig = {
           "media-src 'self' blob: https://leafpathways.com",
           "font-src 'self' data:",
           "connect-src 'self'",
-          "frame-src https://docs.google.com",
           "frame-ancestors 'none'",
           "base-uri 'self'",
           "form-action 'self'",

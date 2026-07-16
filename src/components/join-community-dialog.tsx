@@ -1,27 +1,24 @@
 "use client";
 
 import * as React from "react";
-import { X } from "lucide-react";
 
-// TEMPORARY FALLBACK: no backend/database right now (see README note on the
-// security incident). Joining is a Google Form embedded directly in this
-// dialog — no API calls, no keys. Once submitted, Google's own confirmation
-// screen (which we've put the WhatsApp invite link in) renders inside the
-// same iframe, so completing the form is what unlocks the group link.
+// TEMPORARY FALLBACK: no backend/database right now (see the security-incident
+// note in git history). Joining is just a Google Form — no API calls, no keys.
+// Opens in a new tab (not embedded) so the WhatsApp link in the form's own
+// confirmation message works: WhatsApp refuses to load inside any iframe
+// (X-Frame-Options), so a plain top-level tab is what makes that link usable.
 //
 // Must be the canonical docs.google.com/forms/d/e/…/viewform URL, not a
-// forms.gle short link — the short link 302-redirects (which both drops our
-// ?embedded=true param and gets blocked by this app's CSP frame-src, which
-// only allowlists docs.google.com). If the form is ever regenerated, resolve
-// the new forms.gle link once (curl -sI, follow the Location header) and
-// paste the resulting docs.google.com URL here.
+// forms.gle short link (that just adds a redirect hop). If the form is ever
+// regenerated, resolve the new forms.gle link once (curl -sI, follow the
+// Location header) and paste the resulting docs.google.com URL here.
 const GOOGLE_FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSfWusYkRPEuSEbMevWtKEUEsa-hDFDEnJBquOpBndPc3m24Sw/viewform";
 
 /**
- * Trigger wrapper — preserves the original API (style/className/children
- * render a button) so every existing call site (navbar, hero, event pages)
- * keeps working unchanged.
+ * Trigger — preserves the original API (style/className/children render a
+ * button) so every existing call site (navbar, hero, event pages) keeps
+ * working unchanged. Opens the Google Form in a new tab.
  */
 export function JoinCommunityDialog({
   style,
@@ -32,90 +29,14 @@ export function JoinCommunityDialog({
   className?: string;
   children: React.ReactNode;
 }) {
-  const [open, setOpen] = React.useState(false);
-
-  React.useEffect(() => {
-    if (!open) return;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   return (
-    <>
-      <button type="button" style={style} className={className} onClick={() => setOpen(true)}>
-        {children}
-      </button>
-
-      {open && (
-        <>
-          <div
-            className="fixed inset-0 z-[200] bg-black/80 backdrop-blur-sm"
-            onClick={() => setOpen(false)}
-          />
-          <div
-            className="fixed inset-0 z-[210] flex items-center justify-center p-3 sm:p-6"
-            onClick={() => setOpen(false)}
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                width: "min(560px, 100%)",
-                height: "min(760px, 92dvh)",
-                backgroundColor: "#0F1A15",
-                border: "1px solid rgba(255,255,255,0.12)",
-                borderRadius: "16px",
-                boxShadow: "0 24px 60px rgba(0,0,0,0.5)",
-                display: "flex",
-                flexDirection: "column",
-                overflow: "hidden",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "14px 18px",
-                  borderBottom: "1px solid rgba(255,255,255,0.1)",
-                  flexShrink: 0,
-                }}
-              >
-                <span style={{ fontFamily: "var(--font-sans)", fontWeight: 700, fontSize: "15px", color: "#F5F3ED" }}>
-                  Join <span style={{ color: "#E8B923" }}>LEAF</span>
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  aria-label="Close"
-                  style={{
-                    display: "grid",
-                    placeItems: "center",
-                    width: "32px",
-                    height: "32px",
-                    borderRadius: "8px",
-                    border: "none",
-                    background: "rgba(255,255,255,0.06)",
-                    color: "rgba(245,243,237,0.7)",
-                    cursor: "pointer",
-                  }}
-                >
-                  <X size={16} />
-                </button>
-              </div>
-              <iframe
-                src={`${GOOGLE_FORM_URL}?embedded=true`}
-                title="Join LEAF — sign-up form"
-                style={{ flex: 1, width: "100%", border: "none", backgroundColor: "#0F1A15" }}
-                loading="lazy"
-              >
-                Loading form…
-              </iframe>
-            </div>
-          </div>
-        </>
-      )}
-    </>
+    <button
+      type="button"
+      style={style}
+      className={className}
+      onClick={() => window.open(GOOGLE_FORM_URL, "_blank", "noopener,noreferrer")}
+    >
+      {children}
+    </button>
   );
 }
