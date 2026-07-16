@@ -224,7 +224,7 @@ export default function Home() {
 
             {/* Member count */}
             <div style={{ display: "flex", alignItems: "center", gap: "14px", marginTop: "22px" }}>
-              <span style={{ fontFamily: "var(--font-mono)", fontSize: "clamp(26px, 6vw, 34px)", fontWeight: "500", color: "#E8B923", lineHeight: 1, letterSpacing: "-0.01em", flexShrink: 0 }}>4,000+</span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "clamp(26px, 6vw, 34px)", fontWeight: "500", color: "#E8B923", lineHeight: 1, letterSpacing: "-0.01em", flexShrink: 0 }}>4,300+</span>
               <span style={{ fontSize: "14px", lineHeight: 1.35, color: "rgba(245,243,237,0.6)", maxWidth: "240px" }}>students &amp; young professionals building momentum</span>
             </div>
           </div>
@@ -315,7 +315,7 @@ export default function Home() {
       <section id="stats" style={{ borderTop: "1px solid rgba(255,255,255,0.16)", borderBottom: "1px solid rgba(255,255,255,0.16)" }}>
         <div className="px-5 md:px-8 grid grid-cols-1 md:grid-cols-2" style={{ maxWidth: "1360px", margin: "0 auto" }}>
           <div className="py-10 md:py-14 md:pr-10 border-b md:border-b-0 md:border-r border-white/[0.16]">
-            <div style={{ fontFamily: "var(--font-mono)", fontSize: "44px", fontWeight: "500", color: "#E8B923", letterSpacing: "-0.01em" }}>4,000+</div>
+            <div style={{ fontFamily: "var(--font-mono)", fontSize: "44px", fontWeight: "500", color: "#E8B923", letterSpacing: "-0.01em" }}>4,300+</div>
             <div style={{ fontSize: "15px", color: "rgba(245,243,237,0.6)", marginTop: "10px" }}>Students & young professionals in the LEAF community, and growing every day.</div>
           </div>
           <div className="py-10 md:py-14 md:pl-10">
